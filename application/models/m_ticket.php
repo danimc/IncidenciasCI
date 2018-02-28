@@ -23,6 +23,12 @@ class m_ticket extends CI_Model {
         return $this->db->get("usuario")->result();
     }
 
+    function estatus()
+    {
+        
+        return $this->db->get("situacion_ticket")->result();
+    }
+
     function nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus)
     {
         $fecha = $this->fecha_actual();
@@ -275,59 +281,44 @@ return $this->db->query($qry)->row();
         function etiqueta($estatus)
     {
         if($estatus == 1){
-            $esta = '<p align="center">
-                        <small class="label label-primary">
-                            <i class="fa fa-ticket"></i> Abierto
-                        </small>
-                    </p>';
+            $esta = '<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-ticket"></i> Abierto
+                        </button>';
             return $esta;
         }
         if($estatus == 2){
-            $esta = '<p align="center">
-                        <small class="label bg-maroon">
+            $esta = '<button class="btn btn-xs bg-maroon" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
                             <i class="fa fa-user-plus"></i> Asigando
-                        </small>
-                    </p>';
+                      </button>';
             return $esta;
         }
           if($estatus == 3){
-            $esta = '<p align="center">
-                        <small class="label label-warning">
-                            <i class="fa fa-spinner"></i> En Proceso
-                        </small>
-                    </p>';
+            $esta = '<button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> En Proceso
+                        </button>';
             return $esta;
         }
           if($estatus == 4){
-            $esta = '<p align="center">
-                        <small class="label label-danger">
+            $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
                             <i class="fa fa-check-circle"></i> Resuelto
                         </small>
                     </p>';
             return $esta;
         }
             if($estatus == 5){
-            $esta = '<p align="center">
-                        <small class="label label-success">
-                            <i class="fa fa-lock"></i> Resuelto
-                        </small>
-                    </p>';
+            $esta = '<button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
+                <i class="fa fa-lock"></i> Cerrado
+                </button>';
             return $esta;
         }
            if($estatus == 6){
-            $esta = '<p align="center">
-                        <small class="label bg-black">
+            $esta = '<button class="btn btn-xs bg-black" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
                             <i class="fa  fa-hourglass-2"></i> Pendiente
-                        </small>
-                    </p>';
+                        </button>';
             return $esta;
         }
            if($estatus == 7){
-            $esta = '<p align="center">
-                        <small class="label bg-orange">
+            $esta = '<button class="btn btn-xs bg-orange" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
                             <i class="fa  fa-random"></i> Reasignado
-                        </small>
-                    </p>';
+                        </button>';
             return $esta;
         }
     }

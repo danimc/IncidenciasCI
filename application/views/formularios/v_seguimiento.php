@@ -1,6 +1,7 @@
 <?
 $estatus    = $this->m_ticket->etiqueta($ticket->situacion);
 $asignado   = $this->m_ticket->asignados($ticket->asignado);
+$estados = $this->m_ticket->estatus();
 ?>
 <div class="content-wrapper">
     <div id="mensaje"></div>
@@ -65,7 +66,7 @@ $asignado   = $this->m_ticket->asignados($ticket->asignado);
                           
                
 
-                        </td><th>Estatus: </th><td><a href="#"><?=$estatus?></a></td>
+                        </td><th>Estatus: </th><td><?=$estatus?></td>
                         </tr><tr>
                         <th>Incidente:</th><td colspan="3"> <?=$ticket->titulo?></td>
                         </tr><tr>
@@ -100,6 +101,7 @@ $asignado   = $this->m_ticket->asignados($ticket->asignado);
 
       <!-- #############################MODALES################################-->
 
+<!-------MODAL PARA CAMBIAR AL USUARIO ASIGNADO---->
 <form id="frmAsignarUsr">
      <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -129,6 +131,7 @@ $asignado   = $this->m_ticket->asignados($ticket->asignado);
       </div>
 </form>
 
+<!-------MODAL PARA CAMBIAR LA CATEGORIA---->
 <form id="frmCategoria">
      <div class="modal fade" id="modalCategoria" role="dialog">
         <div class="modal-dialog">
@@ -148,6 +151,36 @@ $asignado   = $this->m_ticket->asignados($ticket->asignado);
                 </select>
                 <input type="hidden" name="folio" value="<?=$ticket->folio?>">
                 <input type="hidden" name="antCategoria" value="<?=$ticket->id_categoria?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button" id="cambiarCat"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+ 
+ <!-------MODAL PARA CAMBIAR EL ESTATUS---->
+<form id="frmStatus">
+     <div class="modal fade" id="modalStatus" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-maroon">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Cambiar Status </h4>
+            </div>
+            <div class="modal-body">
+              <p>Cambie el estatus actual del ticket de servicio.</p>
+                <select name="categoria" class="form-control">
+                  <option>Seleccione el estatus del ticket</option>
+                  <?
+                  foreach ($estados as $estado) {?>
+                    <option value="<?=$estado->id?>"><?=$estado->situacion?></option>
+                           <?}?>         
+                </select>
+                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
+                <input type="hidden" name="antStatus" value="<?=$ticket->situacion?>">
                 </div>
               <div class="modal-footer">
                 <button type="button" id="cambiarCat"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
