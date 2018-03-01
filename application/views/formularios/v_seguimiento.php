@@ -46,7 +46,7 @@ $estados = $this->m_ticket->estatus();
                   <div class="box-header with-border">                    
                     <h4 class="box-tittle"> Información del Incidente</h4>
                   </div>
-                  <div class="box-body table-responsive">
+                  <div class="box-body">
                     <table class="table">
                       <tr>
                         <th>Num. de Folio:</th><td><?=$ticket->folio?></td><th class="">Asignado a:
@@ -62,10 +62,7 @@ $estados = $this->m_ticket->estatus();
                           </td>
                         </tr><tr>
                         <th>Categoría de Incidencia:</th><td> <?=$ticket->categoria?>
-                        <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalCategoria" title="Cambiar Categoría"><i class="fa fa-get-pocket "></i> </button> 
-                          
-               
-
+                        <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalCategoria" title="Cambiar Categoría"><i class="fa fa-get-pocket "></i> </button>
                         </td><th>Estatus: </th><td><?=$estatus?></td>
                         </tr><tr>
                         <th>Incidente:</th><td colspan="3"> <?=$ticket->titulo?></td>
@@ -113,7 +110,7 @@ $estados = $this->m_ticket->estatus();
             <div class="modal-body">
               <p>Asigne a un ingeniero que se hará cargo de este incidente y llevara el seguimiento del mismo.</p>
                 <select name="ingeniero" class="form-control">
-                  <option>Elegir a un Ingeniero de la lista</option>
+                  <option disabled>Elegir a un Ingeniero de la lista</option>
                   <?
                   foreach ($asignados as $usuario) {?>
                     <option value="<?=$usuario->codigo?>"><?=$usuario->usuario?></option>
@@ -143,7 +140,7 @@ $estados = $this->m_ticket->estatus();
             <div class="modal-body">
               <p>Cambie la categoría del Incidente si no corresponde al reporte registrado de este Ticket de servicio.</p>
                 <select name="categoria" class="form-control">
-                  <option>Selecciones una Categoría Valida</option>
+                  <option disabled>Selecciones una Categoría Valida</option>
                   <?
                   foreach ($categorias as $categoria) {?>
                     <option value="<?=$categoria->id_cat?>"><?=$categoria->categoria?></option>
@@ -172,8 +169,8 @@ $estados = $this->m_ticket->estatus();
             </div>
             <div class="modal-body">
               <p>Cambie el estatus actual del ticket de servicio.</p>
-                <select name="categoria" class="form-control">
-                  <option>Seleccione el estatus del ticket</option>
+                <select name="estado" class="form-control">
+                  <option disabled>Seleccione el estatus del ticket</option>
                   <?
                   foreach ($estados as $estado) {?>
                     <option value="<?=$estado->id?>"><?=$estado->situacion?></option>
@@ -183,7 +180,7 @@ $estados = $this->m_ticket->estatus();
                 <input type="hidden" name="antStatus" value="<?=$ticket->situacion?>">
                 </div>
               <div class="modal-footer">
-                <button type="button" id="cambiarCat"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" id="cambiarStatus"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
             </div>
           </div>
@@ -216,6 +213,22 @@ $estados = $this->m_ticket->estatus();
       type: "POST",
       dataType: 'json',
       url: "<?=base_url()?>index.php?/ticket/cambiar_categoria",
+      data: formulario,
+    }).done(function(respuesta){
+       $("#mensaje").html(respuesta.mensaje);
+       if (respuesta.id == 1) {
+
+        setTimeout('document.location.reload()',1000);
+       }     
+    });
+   });
+
+    $("#cambiarStatus").click(function(){
+    var formulario = $("#frmStatus").serializeArray();
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/cambiar_estatus",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);

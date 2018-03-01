@@ -126,6 +126,30 @@ class Ticket extends CI_Controller {
 		echo json_encode($msg);
 	}
 
+	function cambiar_estatus()
+	{
+		$estatus = $_POST['estado'];
+		$folio = $_POST['folio'];
+		$antStatus = $_POST['antStatus'];
+
+		$msg = new \stdClass();
+
+		if ($estatus != $antStatus) {
+			$this->m_ticket->cambiar_estatus($folio, $estatus);
+
+			 $msg->id = 1;
+			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio es estatus</p></div>';
+		}else{
+
+			$msg->id = 2;
+			$msg->mensaje = '<div class="alert alert-danger"><p><i class="fa fa-close"></i> Ha seleccionado el mismo estado del Ticket</p></div>';
+			
+		}
+
+		echo json_encode($msg);
+
+	}
+
 	function correo_ticket_levantado($idIncidente, $usuarioIncidente, $titulo, $descripcion, $categoria, $reportante)
 	{
 

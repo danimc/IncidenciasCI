@@ -99,6 +99,13 @@ return $this->db->query($qry)->row();
         $this->db->update('ticket');
     }
 
+    function cambiar_estatus($folio, $estatus)
+    {
+        $this->db->set('estatus', $estatus);
+        $this->db->where('folio', $folio);
+        $this->db->update('ticket');
+    }
+
     //***********************TABLAS **********************
 
     function tabla_admon(){
@@ -292,7 +299,7 @@ return $this->db->query($qry)->row();
             return $esta;
         }
           if($estatus == 3){
-            $esta = '<button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> En Proceso
+            $esta = '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> En Proceso
                         </button>';
             return $esta;
         }
