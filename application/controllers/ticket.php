@@ -72,6 +72,7 @@ class Ticket extends CI_Controller {
 		$datos['ticket'] = $this->m_ticket->seguimiento_ticket($folio);
 		$datos['asignados'] = $this->m_ticket->obt_asignados();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
+		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');

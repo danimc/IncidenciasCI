@@ -55,31 +55,54 @@ class m_ticket extends CI_Model {
         $qry = "";
 
         $qry = "SELECT 
-folio
-,fecha_inicio
-,hora_inicio
-,us.usuario
-,dependencias.nombre_dependencia
-,us.extension
-,us.correo
-,titulo
-,categoria_ticket.categoria
-,ticket.categoria as id_categoria
-,ticket.descripcion
-,asignado.usuario as asignado
-,est.id as situacion
-,fecha_cierre
-,hora_cierre
-from ticket
-LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
-LEFT JOIN usuario asignado on asignado.codigo = ticket.usr_asignado
-LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
-LEFT JOIN situacion_ticket est on est.id = ticket.estatus
-LEFT JOIN dependencias on  us.dependencia = dependencias.id_dependencia
-WHERE ticket.folio = '$folio'";
+                folio
+                ,fecha_inicio
+                ,hora_inicio
+                ,us.usuario
+                ,dependencias.nombre_dependencia
+                ,us.extension
+                ,us.correo
+                ,titulo
+                ,categoria_ticket.categoria
+                ,ticket.categoria as id_categoria
+                ,ticket.descripcion
+                ,asignado.usuario as asignado
+                ,est.id as situacion
+                ,fecha_cierre
+                ,hora_cierre
+                from ticket
+                LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
+                LEFT JOIN usuario asignado on asignado.codigo = ticket.usr_asignado
+                LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
+                LEFT JOIN situacion_ticket est on est.id = ticket.estatus
+                LEFT JOIN dependencias on  us.dependencia = dependencias.id_dependencia
+                WHERE ticket.folio = '$folio'";
 
-return $this->db->query($qry)->row();
+        return $this->db->query($qry)->row();
     }
+
+    function obt_seguimiento($folio)
+    {
+   $qry = "SELECT 
+        h_ticket.id
+        ,cat.categoria
+        ,situ.situacion
+        ,usuario.usuario
+        ,asignado.usuario asignado
+        ,mensaje
+        ,fecha
+        ,hora
+        FROM h_ticket
+        LEFT JOIN categoria_ticket cat ON cat.id_cat = h_ticket.categoria
+        LEFT JOIN situacion_ticket situ ON situ.id = h_ticket.estatus
+        LEFT JOIN usuario ON usuario.codigo = h_ticket.usr
+        LEFT JOIN usuario asignado ON asignado.codigo = h_ticket.asignado
+        WHERE folio = '$folio'";
+
+        return $this->db->query($qry)->result();
+    }
+
+
 
     function asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
     {
@@ -341,5 +364,23 @@ return $this->db->query($qry)->row();
         
         return $asig;
     }
+
+    function chat($mensaje)
+    {
+        ?>
+         <li>
+        <!-- timeline icon -->
+        <i class="fa fa-comment bg-purple"></i>
+        <div class="timeline-item bg-default ">
+            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+
+            <h3 class="timeline-header btn-default"><a href="">Mensaje:</a> <b> <?=$mensaje->usuario?></b> Dice: </h3>
+
+            <div class="timeline-body bg-gray ">
+                <?=$mensaje->mensaje?>                
+            </div>
+        </div>
+    </li>
+    <?}
 
 }

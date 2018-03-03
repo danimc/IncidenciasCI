@@ -18,6 +18,8 @@ class m_usuario extends CI_Model {
 				, dependencias.abreviatura as dependencia
 				, foto
                 , rol
+                , extension
+                , correo
 				FROM crm.usuario
 				INNER JOIN dependencias
 				WHERE usuario.dependencia = dependencias.id_dependencia
