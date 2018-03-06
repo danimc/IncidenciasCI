@@ -83,9 +83,10 @@ $estados = $this->m_ticket->estatus();
                   <h2>Seguimiento del Ticket</h2>
                 </div>
                 <div class=" box-body">
-                <ul class="timeline">
-                  <?php foreach ($seguimiento as $time){
-                    $mensaje = $this->m_ticket->chat($time);
+              <ul class="timeline"> <?php 
+
+              foreach ($seguimiento as $time){
+                    $mensaje = $this->m_ticket->timeline($time);
                     echo $mensaje;              
              } ?>
               </ul>

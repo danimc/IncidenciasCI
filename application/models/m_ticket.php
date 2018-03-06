@@ -365,22 +365,60 @@ class m_ticket extends CI_Model {
         return $asig;
     }
 
-    function chat($mensaje)
+    function timeline($mensaje)
     {
-        ?>
-         <li>
-        <!-- timeline icon -->
+
+    if (isset($mensaje->mensaje)){
+?>
+    <li>
         <i class="fa fa-comment bg-purple"></i>
         <div class="timeline-item bg-default ">
             <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
-
             <h3 class="timeline-header btn-default"><a href="">Mensaje:</a> <b> <?=$mensaje->usuario?></b> Dice: </h3>
-
             <div class="timeline-body bg-gray ">
                 <?=$mensaje->mensaje?>                
             </div>
         </div>
     </li>
-    <?}
+        <?}
+
+        if (isset($mensaje->categoria)) {
+            ?>
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-tags bg-orange"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+
+            <h3 class="timeline-header"><a href="#">Cambio de Categoria:</a> <b> <?=$mensaje->usuario?></b> Cambio la categoria a <b><?=$mensaje->categoria?> </b>
+        </div>
+    </li> 
+
+        <?}
+        if (isset($mensaje->situacion)) {
+            if (isset($mensaje->asignado)) {
+?>
+        <li>
+            <i class="fa fa-user bg-blue"></i>
+            <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o">    </i> <?=$mensaje->hora?></span>
+            <h3 class="timeline-header"><a href="#">El ticket ha sido Asignado a: <?=$mensaje->asignado?> </a></h3>          
+            </div>
+        </li>
+           <? }
+           else{
+?>
+        <li>
+        <!-- timeline icon -->
+        <i class="fa fa-info-circle bg-green"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+
+            <h3 class="timeline-header"><a href="#">Cambio de Estatus</a> <b> <?=$mensaje->usuario?></b> Cambio es estatus del incidente a <b> <?=$mensaje->situacion?> </b> </h3>
+        </div>
+    </li>
+    <?      }
+        }
+    }
 
 }
