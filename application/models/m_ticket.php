@@ -129,6 +129,51 @@ class m_ticket extends CI_Model {
         $this->db->update('ticket');
     }
 
+    function h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
+    {
+        $this->folio = $folio;
+        $this->usr = $this->session->userdata("codigo");
+        $this->estatus = $estatus;
+        $this->asignado = $ingeniero;
+        $this->fecha = $fecha;
+        $this->hora = $hora;
+
+        $this->db->insert('h_ticket', $this);
+    }
+
+    function h_cambiar_categoria($folio, $categoria)
+    {
+        $this->folio = $folio;
+        $this->usr = $this->session->userdata("codigo");
+        $this->fecha = date('Y-m-d');
+        $this->hora = date('h:i:s');
+        $this->categoria = $categoria;
+
+        $this->db->insert('h_ticket', $this);
+    }
+
+    function h_cambiar_estatus($folio, $estatus)
+    {
+        $this->folio = $folio;
+        $this->usr = $this->session->userdata("codigo");
+        $this->fecha = date('Y-m-d');
+        $this->hora = date('h:i:s');
+        $this->estatus = $estatus;
+
+        $this->db->insert('h_ticket', $this);
+    }
+
+    function mensaje($folio, $mensaje)
+    {
+        $this->folio = $folio;
+        $this->usr = $this->session->userdata("codigo");
+        $this->mensaje = $mensaje;
+        $this->fecha = date('Y-m-d');
+        $this->hora =  date("h:i:s");
+
+        $this->db->insert('h_ticket', $this);
+    }
+
     //***********************TABLAS **********************
 
     function tabla_admon(){
@@ -367,7 +412,23 @@ class m_ticket extends CI_Model {
 
     function timeline($mensaje)
     {
+        $contadorfecha = 0;
 
+        if ($contadorfecha != $mensaje->fecha)
+            {
+              ?>
+                    <li class="time-label">
+                    <span class="bg-red">
+                    <?=$mensaje->fecha?>
+                    </span>
+                    </li>
+<?   
+        
+            }
+            else{
+               
+            
+            } 
     if (isset($mensaje->mensaje)){
 ?>
     <li>

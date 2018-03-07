@@ -67,7 +67,7 @@ $estados = $this->m_ticket->estatus();
                         </tr><tr>
                         <th>Incidente:</th><td colspan="3"> <?=$ticket->titulo?></td>
                         </tr><tr>
-                        <th style="vertical-align: middle;">Descripción: </th><td class="bg-red" colspan="3"><?=$ticket->descripcion?></td>
+                        <th style="vertical-align: middle;">Descripción: </th><td class="bg-danger" colspan="3"><?=$ticket->descripcion?></td>
                         </tr>
                     </table>
                   </div>
@@ -86,12 +86,13 @@ $estados = $this->m_ticket->estatus();
               <ul class="timeline"> <?php 
 
               foreach ($seguimiento as $time){
-                    $mensaje = $this->m_ticket->timeline($time);
-                    echo $mensaje;              
-             } ?>
+                    $mensaje = $this->m_ticket->timeline($time);               
+                    } ?>
+
+                    <?=$mensaje?>
               </ul>
-                <form id="seguimiento" method="POST" action="acciones/funcionesTickets">
-                    <textarea id="chat" name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
+                    <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     <input type="hidden" name="folio" value="<?=$ticket->folio?>">
                     <br>
                     <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>

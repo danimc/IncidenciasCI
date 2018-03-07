@@ -98,6 +98,7 @@ class Ticket extends CI_Controller {
 		  $usr = $this->m_usuario->obt_usuario();
 
 		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
+		  $this->m_ticket->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
 
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
@@ -114,6 +115,7 @@ class Ticket extends CI_Controller {
 
 		if ($categoria != $antCategoria) {
 			$this->m_ticket->cambiar_categoria($folio, $categoria);
+			$this->m_ticket->h_cambiar_categoria($folio, $categoria);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio la categoría</p></div>';
@@ -137,6 +139,7 @@ class Ticket extends CI_Controller {
 
 		if ($estatus != $antStatus) {
 			$this->m_ticket->cambiar_estatus($folio, $estatus);
+			$this->m_ticket->h_cambiar_estatus($folio, $estatus);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio es estatus</p></div>';
@@ -150,6 +153,17 @@ class Ticket extends CI_Controller {
 		echo json_encode($msg);
 
 	}
+
+	function mensaje()
+	{
+		$folio = $_POST['folio'];
+		$mensaje = $_POST['chat'];
+
+		$this->m_ticket->mensaje($folio, $mensaje);
+
+		redirect('ticket/seguimiento/'. $folio .'/#chat');
+	}
+
 
 	function correo_ticket_levantado($idIncidente, $usuarioIncidente, $titulo, $descripcion, $categoria, $reportante)
 	{
