@@ -35,6 +35,8 @@ $usuario = $this->m_usuario->obt_usuario();
         <!-- Tablas -->
         <link rel="stylesheet" href="<?=base_url()?>src/css/dataTables.bootstrap.css">
 
+        <link rel="stylesheet" type="text/css" href="<?=base_url()?>src/css/bootstrap3-wysihtml5.css">
+
         <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
     </head>    
 

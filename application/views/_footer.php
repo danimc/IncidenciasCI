@@ -213,6 +213,8 @@
 
         <script src="<?=base_url()?>src/js/demo.js"></script>
 
+    
+
         <script src="<?=base_url()?>src/js/jquery.dataTables.min.js"></script>
 
         <script src="<?=base_url()?>src/js/dataTables.bootstrap.min.js"></script>

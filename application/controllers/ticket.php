@@ -30,7 +30,7 @@ class Ticket extends CI_Controller {
 		$this->load->view('_footer');
 	}
 
-	function levantar_incidente()
+		function levantar_incidente()
 	{
 		$reportante = $_POST['codigo'];
 		$usuarioIncidente = $_POST['usrIncidente'];
@@ -93,8 +93,8 @@ class Ticket extends CI_Controller {
 
 		  $ingeniero = $_POST['ingeniero'];
 		  $folio = $_POST['folio'];
-		  $fecha= date('Y-m-d');
-		  $hora= date('H:i:s');
+		  $fecha= $this->m_ticket->fecha_actual();
+		  $hora= $this->m_ticket->hora_actual();
 		  $usr = $this->m_usuario->obt_usuario();
 
 		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
@@ -110,12 +110,14 @@ class Ticket extends CI_Controller {
 		$categoria = $_POST['categoria'];
 		$folio = $_POST['folio'];
 		$antCategoria = $_POST['antCategoria'];
+		$fecha= $this->m_ticket->fecha_actual();
+		$hora= $this->m_ticket->hora_actual();
 
 		$msg = new \stdClass();
 
 		if ($categoria != $antCategoria) {
 			$this->m_ticket->cambiar_categoria($folio, $categoria);
-			$this->m_ticket->h_cambiar_categoria($folio, $categoria);
+			$this->m_ticket->h_cambiar_categoria($folio, $categoria, $fecha, $hora);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio la categoría</p></div>';
@@ -134,12 +136,14 @@ class Ticket extends CI_Controller {
 		$estatus = $_POST['estado'];
 		$folio = $_POST['folio'];
 		$antStatus = $_POST['antStatus'];
+		$fecha= $this->m_ticket->fecha_actual();
+		$hora= $this->m_ticket->hora_actual();
 
 		$msg = new \stdClass();
 
 		if ($estatus != $antStatus) {
 			$this->m_ticket->cambiar_estatus($folio, $estatus);
-			$this->m_ticket->h_cambiar_estatus($folio, $estatus);
+			$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio es estatus</p></div>';
@@ -154,12 +158,31 @@ class Ticket extends CI_Controller {
 
 	}
 
+	function cerrar_ticket()
+	{
+		$folio = $_POST['folio'];
+		$usr = $this->session->userdata("codigo");
+		$fecha = $this->m_ticket->fecha_actual();
+		$hora = $this->m_ticket->hora_actual();
+
+		$this->m_ticket->cerrar_ticket($folio, $fecha, $hora);
+		$this->m_ticket->h_cerrar_ticket($folio, $usr, $fecha, $hora);
+
+		$this->correo_ticket_cerrado($folio, $fecha, $hora);
+
+		$msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se Cerro el Ticket Folio: '. $folio .'</p></div>';
+
+		echo json_encode($msg);
+	}
+
 	function mensaje()
 	{
 		$folio = $_POST['folio'];
 		$mensaje = $_POST['chat'];
+		$fecha= $this->m_ticket->fecha_actual();
+		$hora= $this->m_ticket->hora_actual();
 
-		$this->m_ticket->mensaje($folio, $mensaje);
+		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora);
 
 		redirect('ticket/seguimiento/'. $folio .'/#chat');
 	}
@@ -188,7 +211,7 @@ class Ticket extends CI_Controller {
 		$datos['usuario'] = $usuario;
 		$datos['descripcion'] = $descripcion;
 	    $this->load->view('_head');
-		$msg = $this->load->view('correo', $datos, true);
+		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
 
 		$this->load->library('email');
 		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
@@ -203,5 +226,42 @@ class Ticket extends CI_Controller {
 
 	//	echo $this->email->print_debugger();
 
+	}
+
+	function correo_ticket_cerrado($folio, $fecha, $hora)
+	{
+		$usr = $this->m_ticket->seguimiento_ticket($folio);
+		$ticket = $this->m_ticket->seguimiento_ticket($folio);
+		$horario = $hora;
+		$saludo = '';
+
+		if($horario <= '11:59:59'){
+			$saludo = 'Buenos días';
+		}
+		elseif ($horario <= '19:59:59') {
+			$saludo = 'Buenas tardes';
+		}
+		elseif ($horario <= '23:59:59') {
+			$saludo = 'Buenas noches';
+		}
+
+		$datos['ticket'] = $ticket;
+		$datos['saludo'] = $saludo;
+
+		$this->load->view('_head');
+		$msg = $this->load->view('correos/c_cerrarTicket', $datos, true);
+
+		$this->load->library('email');
+		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
+		$this->email->to($usr->correo);
+		$this->email->cc('incidenciasoag@gmail.com');
+		//$this->email->bcc('them@their-example.com');
+
+		$this->email->subject('Registro de Incidente | incidenciasOAG');
+		$this->email->message($msg);
+		$this->email->set_mailtype('html');
+		$this->email->send();
+
+		echo $this->email->print_debugger();
 	}
 }

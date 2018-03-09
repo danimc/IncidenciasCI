@@ -2,6 +2,7 @@
 $estatus    = $this->m_ticket->etiqueta($ticket->situacion);
 $asignado   = $this->m_ticket->asignados($ticket->asignado);
 $estados = $this->m_ticket->estatus();
+$mensaje = '';
 ?>
 <div class="content-wrapper">
     <div id="mensaje"></div>
@@ -17,6 +18,11 @@ $estados = $this->m_ticket->estatus();
         <!-- Main content -->
         <section class="content">
           <a href="<?=base_url()?>index.php?/ticket/lista_tickets" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
+          <? if($ticket->situacion != 5){?>
+          <a href="#" data-toggle="modal" data-target="#cerrar" class="btn btn-app bg-red"><span class="fa fa-lock"></span>Cerrar Ticket</a>
+          <?}else{?>
+             <a disabled="true" class="btn btn-app bg-red" ><i class="fa fa-lock"></i> Cerrar Ticket</a>
+          <?}?>
           <div class="row">
             <div class="col-md-12">
               <div id="mensaje"></div>
@@ -201,6 +207,35 @@ $estados = $this->m_ticket->estatus();
       </div>
 </form>
 
+<!-------MODAL PARA CAMBIAR CERRAR EL TICKET---->
+<form id="frmCerrar">
+      <div class="modal fade" id="cerrar" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-red">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title " align="center">Cerrar Ticket de Servicio</h4>
+            </div>
+            <div class="modal-body">
+              <div class="icon" align="center">
+                <img src="img/advertencia.png">
+              </div>
+              <h3 align="center">ATENCION!</h3>
+              <h4 align="center">Esta a punto de cerrar un ticket de servicio.</h4>
+                <br> <small>Al cerrar un ticket de servicio se da por terminado el incidente y termina la atencion al mismo. ¿Esta seguro de 
+                querer continuar?  </small>
+        
+                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button"   class="btn btn-success pull-left" data-dismiss="modal">Cerrar Ticket <i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar <i class="fa fa-close"></i></button>
+                  </div>
+          </div>
+        </div>
+      </div>
+</form>
+
 
 
 
@@ -252,5 +287,24 @@ $estados = $this->m_ticket->estatus();
     });
    });
 
+    $("#cerrar").click(function(){
+    var formulario = $("#frmCerrar").serializeArray();
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/cerrar_ticket",
+      data: formulario,
+    }).done(function(respuesta){
+       $("#mensaje").html(respuesta);
+        setTimeout('document.location.reload()',1000);
+     
+    });
+   }); 
+
   });
 </script>
+    <script src="<?=base_url()?>src/js/wys.js"></script>
+
+  <script type="text/javascript">
+    $('#chat').wysihtml5();
+  </script>

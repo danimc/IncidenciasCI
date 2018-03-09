@@ -25,7 +25,9 @@ class m_ticket extends CI_Model {
 
     function estatus()
     {
-        
+        $this->db->where('id !=', 2);
+        $this->db->where('id !=', 5);
+        $this->db->where('id !=', 7);
         return $this->db->get("situacion_ticket")->result();
     }
 
@@ -129,6 +131,15 @@ class m_ticket extends CI_Model {
         $this->db->update('ticket');
     }
 
+    function cerrar_ticket($folio, $fecha, $hora)
+    {
+        $this->db->set('estatus', 5);
+        $this->db->set('fecha_cierre', $fecha);
+        $this->db->set('hora_cierre', $hora);
+        $this->db->where('folio', $folio);
+        $this->db->update('ticket');
+    }
+
     function h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
     {
         $this->folio = $folio;
@@ -141,35 +152,46 @@ class m_ticket extends CI_Model {
         $this->db->insert('h_ticket', $this);
     }
 
-    function h_cambiar_categoria($folio, $categoria)
+    function h_cambiar_categoria($folio, $categoria, $fecha, $hora)
     {
         $this->folio = $folio;
         $this->usr = $this->session->userdata("codigo");
-        $this->fecha = date('Y-m-d');
-        $this->hora = date('h:i:s');
+        $this->fecha = $fecha;
+        $this->hora = $hora;
         $this->categoria = $categoria;
 
         $this->db->insert('h_ticket', $this);
     }
 
-    function h_cambiar_estatus($folio, $estatus)
+    function h_cambiar_estatus($folio, $estatus, $fecha, $hora)
     {
         $this->folio = $folio;
         $this->usr = $this->session->userdata("codigo");
-        $this->fecha = date('Y-m-d');
-        $this->hora = date('h:i:s');
+        $this->fecha = $fecha;
+        $this->hora = $hora;
         $this->estatus = $estatus;
 
         $this->db->insert('h_ticket', $this);
     }
 
-    function mensaje($folio, $mensaje)
+    function h_cerrar_ticket($folio, $usr, $fecha, $hora)
+    {
+        $this->folio = $folio;
+        $this->usr = $usr;
+        $this->fecha = $fecha;
+        $this->hora = $hora;
+        $this->estatus = 5;
+
+        $this->db->insert('h_ticket', $this);
+    }
+
+    function mensaje($folio, $mensaje, $fecha, $hora)
     {
         $this->folio = $folio;
         $this->usr = $this->session->userdata("codigo");
         $this->mensaje = $mensaje;
-        $this->fecha = date('Y-m-d');
-        $this->hora =  date("h:i:s");
+        $this->fecha = $fecha;
+        $this->hora =  $hora;
 
         $this->db->insert('h_ticket', $this);
     }
@@ -216,7 +238,7 @@ class m_ticket extends CI_Model {
     }
     
     function fecha_actual(){
-        date_default_timezone_get("America/Mexico_City");
+        date_default_timezone_set("America/Mexico_City");
         $fecha = date("Y-m-d");
         return $fecha;
     }
@@ -413,13 +435,13 @@ class m_ticket extends CI_Model {
     function timeline($mensaje)
     {
         $contadorfecha = 0;
-
         if ($contadorfecha != $mensaje->fecha)
             {
+                $fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
               ?>
                     <li class="time-label">
                     <span class="bg-red">
-                    <?=$mensaje->fecha?>
+                    <?=$fecha?>
                     </span>
                     </li>
 <?   
