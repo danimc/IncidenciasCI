@@ -4,6 +4,16 @@ $asignado   = $this->m_ticket->asignados($ticket->asignado);
 $estados = $this->m_ticket->estatus();
 $mensaje = '';
 ?>
+
+<script>
+     function desactiva_enlace(enlace)
+  {
+      var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Cerrando...";
+      enlace.disabled='disabled';
+      document.getElementById('btn2').disabled=true;
+      enlace.innerHTML = button;
+  }
+</script>
 <div class="content-wrapper">
     <div id="mensaje"></div>
 <section class="content-header">
@@ -208,7 +218,7 @@ $mensaje = '';
 </form>
 
 <!-------MODAL PARA CAMBIAR CERRAR EL TICKET---->
-<form id="frmCerrar">
+<form id="frmCerrar" action="<?=base_url()?>index.php?/ticket/cerrar_ticket" method="POST">
       <div class="modal fade" id="cerrar" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -228,8 +238,8 @@ $mensaje = '';
                 <input type="hidden" name="folio" value="<?=$ticket->folio?>">
                 </div>
               <div class="modal-footer">
-                <button type="button"   class="btn btn-success pull-left" data-dismiss="modal">Cerrar Ticket <i class="fa fa-check"></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar <i class="fa fa-close"></i></button>
+                <button type="submit" onclick="desactiva_enlace(this)" class="btn btn-success pull-left" data-dismiss="modal">Cerrar Ticket <i class="fa fa-check"></i></button>
+                <button type="button" id="btn2" class="btn btn-danger" data-dismiss="modal">Cancelar <i class="fa fa-close"></i></button>
                   </div>
           </div>
         </div>
@@ -286,22 +296,10 @@ $mensaje = '';
        }     
     });
    });
-
-    $("#cerrar").click(function(){
-    var formulario = $("#frmCerrar").serializeArray();
-    $.ajax({
-      type: "POST",
-      dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cerrar_ticket",
-      data: formulario,
-    }).done(function(respuesta){
-       $("#mensaje").html(respuesta);
-        setTimeout('document.location.reload()',1000);
-     
-    });
-   }); 
-
   });
+
+ 
+
 </script>
     <script src="<?=base_url()?>src/js/wys.js"></script>
 

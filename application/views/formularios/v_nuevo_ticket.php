@@ -1,3 +1,13 @@
+
+<script>
+     function desactiva_enlace(enlace)
+  {
+      var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Generando Ticket de Servicio...";
+      enlace.disabled='disabled';
+      enlace.innerHTML = button;
+  }
+</script>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -70,7 +80,7 @@
                     <div class="box-body pad">
                         <textarea required="" class="textarea" id="descripcion" name="descripcion" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">
+                            <button onclick="desactiva_enlace(this)" type="submit" class="btn btn-success">
                                     <i class="fa fa-save"></i>
                                     Generar Ticket de Servicio</button>
                             </form>

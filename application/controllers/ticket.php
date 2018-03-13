@@ -9,6 +9,7 @@ class Ticket extends CI_Controller {
 		$this->load->model('m_seguridad',"",TRUE);
 		$this->load->model('m_usuario',"",TRUE);
 		$this->load->model('m_ticket',"",TRUE);
+		$this->load->model('m_correos',"",TRUE);
 
 	}
 
@@ -164,15 +165,15 @@ class Ticket extends CI_Controller {
 		$usr = $this->session->userdata("codigo");
 		$fecha = $this->m_ticket->fecha_actual();
 		$hora = $this->m_ticket->hora_actual();
-
+		$msg = new \stdClass();
 		$this->m_ticket->cerrar_ticket($folio, $fecha, $hora);
 		$this->m_ticket->h_cerrar_ticket($folio, $usr, $fecha, $hora);
+			
+		$this->m_correos->correo_ticket_cerrado($folio, $fecha, $hora);	
 
-		$this->correo_ticket_cerrado($folio, $fecha, $hora);
+		redirect('ticket/lista_tickets');
 
-		$msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se Cerro el Ticket Folio: '. $folio .'</p></div>';
-
-		echo json_encode($msg);
+		
 	}
 
 	function mensaje()
@@ -228,40 +229,5 @@ class Ticket extends CI_Controller {
 
 	}
 
-	function correo_ticket_cerrado($folio, $fecha, $hora)
-	{
-		$usr = $this->m_ticket->seguimiento_ticket($folio);
-		$ticket = $this->m_ticket->seguimiento_ticket($folio);
-		$horario = $hora;
-		$saludo = '';
-
-		if($horario <= '11:59:59'){
-			$saludo = 'Buenos días';
-		}
-		elseif ($horario <= '19:59:59') {
-			$saludo = 'Buenas tardes';
-		}
-		elseif ($horario <= '23:59:59') {
-			$saludo = 'Buenas noches';
-		}
-
-		$datos['ticket'] = $ticket;
-		$datos['saludo'] = $saludo;
-
-		$this->load->view('_head');
-		$msg = $this->load->view('correos/c_cerrarTicket', $datos, true);
-
-		$this->load->library('email');
-		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
-		$this->email->to($usr->correo);
-		$this->email->cc('incidenciasoag@gmail.com');
-		//$this->email->bcc('them@their-example.com');
-
-		$this->email->subject('Registro de Incidente | incidenciasOAG');
-		$this->email->message($msg);
-		$this->email->set_mailtype('html');
-		$this->email->send();
-
-		echo $this->email->print_debugger();
-	}
+	
 }

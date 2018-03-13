@@ -217,10 +217,9 @@ class m_ticket extends CI_Model {
                 LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
                 LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
                 LEFT JOIN situacion_ticket est on est.id = ticket.estatus
-                LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
-                ORDER BY folio DESC";
-
-   return $this->db->query($qry)->result();
+                LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo";
+               
+                return $this->db->query($qry)->result();
     }
 
     //******************************** FECHAS **********************************************/   
@@ -245,7 +244,7 @@ class m_ticket extends CI_Model {
     
       function hora_actual(){
         date_default_timezone_set("America/Mexico_City");
-        $hora = date("h:i:s");
+        $hora = date("H:i:s");
         return $hora;
     }
     function fechahora_actual(){
