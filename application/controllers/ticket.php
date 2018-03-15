@@ -54,31 +54,64 @@ class Ticket extends CI_Controller {
 	}
 
 	function lista_tickets()
-	{
+	{	
+		$codigo = $this->session->userdata("codigo");
+		$rol = $this->session->userdata("rol");
 		$folio = $this->uri->segment(3);
-		
 		$datos['usuario'] = $this->m_usuario->obt_usuario();
 		$datos['folio'] = $folio;
-		$datos['tickets'] = $this->m_ticket->tabla_admon();
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
-		$this->load->view('l_tickets', $datos);
-		$this->load->view('_footer');
+
+		switch ($rol) {
+			case 1:
+				
+				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador();
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('listas/l_tickets_admin', $datos);
+				$this->load->view('_footer');
+				break;
+			case 2:
+				$datos['tickets'] = $this->m_ticket->lista_tickets_usuario($codigo);
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('listas/l_tickets_usuarios', $datos);
+				$this->load->view('_footer');
+				break;
+			default:
+					echo "no tienes autorizado ingresar a esta sección";
+				break;
+		}		
 	}
 
 	function seguimiento()
 	{
 		$folio = $this->uri->segment(3);
+		$rol = $this->session->userdata("rol");
 		$datos['folio'] = $folio;
 		$datos['ticket'] = $this->m_ticket->seguimiento_ticket($folio);
 		$datos['asignados'] = $this->m_ticket->obt_asignados();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
 		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
 
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
-		$this->load->view('formularios/v_seguimiento', $datos);
-		$this->load->view('_footer');
+		switch ($rol) {
+			case 1:
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('formularios/v_seguimiento_admin', $datos);
+				$this->load->view('_footer');
+				break;
+			case 2:
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('formularios/v_seguimiento_usuario', $datos);
+				$this->load->view('_footer');
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		
 
 
 	}

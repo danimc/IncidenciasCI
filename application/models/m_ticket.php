@@ -198,7 +198,8 @@ class m_ticket extends CI_Model {
 
     //***********************TABLAS **********************
 
-    function tabla_admon(){
+    function lista_tickets_administrador()
+    {
         $qry = '';
         $qry = "SELECT 
                 folio
@@ -219,6 +220,33 @@ class m_ticket extends CI_Model {
                 LEFT JOIN situacion_ticket est on est.id = ticket.estatus
                 LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo";
                
+                return $this->db->query($qry)->result();
+    }
+
+    function lista_tickets_usuario($codigo)
+    {
+        $qry = '';
+        $qry = "SELECT 
+                folio
+                ,fecha_inicio
+                ,hora_inicio
+                ,us.usuario
+                ,titulo
+                ,categoria_ticket.categoria
+                ,est.id as id_situacion
+                ,est.situacion
+                ,fecha_asignado
+                ,hora_asignado
+                ,asignado.usuario usr_asignado
+                ,ticket.estatus
+                from ticket
+                LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
+                LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
+                LEFT JOIN situacion_ticket est on est.id = ticket.estatus
+                LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
+                WHERE usr_incidente = '$codigo'
+                ORDER BY folio DESC";
+
                 return $this->db->query($qry)->result();
     }
 

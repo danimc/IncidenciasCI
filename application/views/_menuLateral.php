@@ -25,11 +25,31 @@ $usuario = $this->m_usuario->obt_usuario()
 
 					<!-- Sidebar Menu -->
 					<ul class="sidebar-menu">
-						<li class="header">MENU LATERAL</li>
+						<li class="header">
+							MENU LATERAL
+						</li>
 						<!-- Optionally, you can add icons to the links -->
-						<li class="active"><a href="<?php echo base_url();?>index.php?/Inicio"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+						<li class="active">
+							<a href="<?php echo base_url();?>index.php?/Inicio"><i class="fa fa-home"></i> <span>Inicio</span></a>
+						</li>
 						<!--<li ><a href="menuUsuarios"><i class="fa fa-user"></i> <span>Usuarios</span></a></li>-->
-						<li><a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Tickets</span></a></li>
+						 <li class="treeview">
+					        <a href="#">
+					        	<i class="fa fa-ticket"></i>
+					            <span>Tickets</span>
+					            <span class="pull-right-container">
+					              <i class="fa fa-angle-left pull-right"></i>
+					            </span>
+					          </a>
+					          <ul class="treeview-menu">
+					          	<li>
+					          		<a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="fa fa-plus"></i> Nuevo Ticket</a>
+					          	</li>
+					            <li>
+									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Mis Tickets</span></a>
+								</li>
+					          </ul>
+					        </li>
 
 					</ul>
 					<!-- /.sidebar-menu -->

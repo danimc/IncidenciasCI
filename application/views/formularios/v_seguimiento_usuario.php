@@ -36,28 +36,8 @@ $mensaje = '';
           <div class="row">
             <div class="col-md-12">
               <div id="mensaje"></div>
-              <div class="col-md-4">
-                <div class="box box-primary">
-                  <div class="box-header with-border">                    
-                    <h4 class="box-tittle"> Datos del solicitante</h4>
-                  </div>
-                  <div class="box-body">
-                    <strong><i class="fa fa-user margin-r-5"></i> Usuario: </strong> <?=$ticket->usuario ?>
-                    <hr>
-                    <!--  <h4><strong><i class="fa fa-user margin-r-5"></i> Username:</strong> <?=$username?></h4>
-<hr> -->
-                    <strong><i class="fa fa-legal margin-r-5"></i> Dependencia:</strong> <?=$ticket->nombre_dependencia?>
-                    <hr>
-                    <strong><i class="fa fa-phone margin-r-5"></i>Extension:</strong> <?=$ticket->extension?>
-                    <hr>
-                    <strong><i class="fa fa-envelope margin-r-5"></i> Correo: </strong><a href='mailto:<?=$ticket->correo?>'><?=$ticket->correo?>
-                    </a>
-                  </div>
-                </div>  
-              </div>
-             <!--Fin de la carta de datos del solicitante-->
-
-              <div class="col-md-8 ">
+              <div class="col-md-2"></div>
+               <div class="col-md-8">
                 <div class="box box-success">
                   <div class="box-header with-border">                    
                     <h4 class="box-tittle"> Información del Incidente</h4>
@@ -66,7 +46,7 @@ $mensaje = '';
                     <table class="table">
                       <tr>
                         <th>Num. de Folio:</th><td><?=$ticket->folio?></td><th class="">Asignado a:
-                        </th><td class=""><b><?=$ticket->asignado?> <?=$asignado?></b></td>
+                        </th><td class=""><b><?=$ticket->asignado?></b></td>
                         </tr><tr>
                         <th>Fecha de Reporte:</th><td><?=$ticket->fecha_inicio?> a las <?=$ticket->hora_inicio?> </td>
                         <th>Fecha de Finalización:</th><td>
@@ -78,7 +58,6 @@ $mensaje = '';
                           </td>
                         </tr><tr>
                         <th>Categoría de Incidencia:</th><td> <?=$ticket->categoria?>
-                        <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalCategoria" title="Cambiar Categoría"><i class="fa fa-get-pocket "></i> </button>
                         </td><th>Estatus: </th><td><?=$estatus?></td>
                         </tr><tr>
                         <th>Incidente:</th><td colspan="3"> <?=$ticket->titulo?></td>
@@ -127,96 +106,6 @@ $mensaje = '';
 
       <!-- #############################MODALES################################-->
 
-<!-------MODAL PARA CAMBIAR AL USUARIO ASIGNADO---->
-<form id="frmAsignarUsr">
-     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-red">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Asignar a un Ingeniero</h4>
-            </div>
-            <div class="modal-body">
-              <p>Asigne a un ingeniero que se hará cargo de este incidente y llevara el seguimiento del mismo.</p>
-                <select name="ingeniero" class="form-control">
-                  <option disabled>Elegir a un Ingeniero de la lista</option>
-                  <?
-                  foreach ($asignados as $usuario) {?>
-                    <option value="<?=$usuario->codigo?>"><?=$usuario->usuario?></option>
-                           <?}?>         
-                </select>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <input type="hidden" name="antAsignado" value="<?=$ticket->asignado?>">
-                </div>
-              <div class="modal-footer">
-                <button type="button" id="asignarUsr"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-</form>
-
-<!-------MODAL PARA CAMBIAR LA CATEGORIA---->
-<form id="frmCategoria">
-     <div class="modal fade" id="modalCategoria" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-blue">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cambiar Categoria </h4>
-            </div>
-            <div class="modal-body">
-              <p>Cambie la categoría del Incidente si no corresponde al reporte registrado de este Ticket de servicio.</p>
-                <select name="categoria" class="form-control">
-                  <option disabled>Selecciones una Categoría Valida</option>
-                  <?
-                  foreach ($categorias as $categoria) {?>
-                    <option value="<?=$categoria->id_cat?>"><?=$categoria->categoria?></option>
-                           <?}?>         
-                </select>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <input type="hidden" name="antCategoria" value="<?=$ticket->id_categoria?>">
-                </div>
-              <div class="modal-footer">
-                <button type="button" id="cambiarCat"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-</form>
- 
- <!-------MODAL PARA CAMBIAR EL ESTATUS---->
-<form id="frmStatus">
-     <div class="modal fade" id="modalStatus" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-maroon">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cambiar Status </h4>
-            </div>
-            <div class="modal-body">
-              <p>Cambie el estatus actual del ticket de servicio.</p>
-                <select name="estado" class="form-control">
-                  <option disabled>Seleccione el estatus del ticket</option>
-                  <?
-                  foreach ($estados as $estado) {?>
-                    <option value="<?=$estado->id?>"><?=$estado->situacion?></option>
-                           <?}?>         
-                </select>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <input type="hidden" name="antStatus" value="<?=$ticket->situacion?>">
-                </div>
-              <div class="modal-footer">
-                <button type="button" id="cambiarStatus"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-</form>
-
 <!-------MODAL PARA CAMBIAR CERRAR EL TICKET---->
 <form id="frmCerrar" action="<?=base_url()?>index.php?/ticket/cerrar_ticket" method="POST">
       <div class="modal fade" id="cerrar" role="dialog">
@@ -228,7 +117,7 @@ $mensaje = '';
             </div>
             <div class="modal-body">
               <div class="icon" align="center">
-                <img src="img/advertencia.png">
+                <img src="<?=base_url()?>src/img/advertencia.png">
               </div>
               <h3 align="center">ATENCION!</h3>
               <h4 align="center">Esta a punto de cerrar un ticket de servicio.</h4>
