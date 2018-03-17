@@ -25,15 +25,17 @@
   {
     var contraNueva = document.getElementById('nueva').value;
     var verifica    = document.getElementById('verifica').value;
-    if (contraNueva == verifica) {
-        var mensaje = '<div class="alert alert-success"><p><i class="fa fa-success"></i> Correcto</p></div>';
-        document.getElementById('mensaje').innerHTML = mensaje;
-        document.getElementById('cambiarPass').disabled = false;
-    }
-    else{
-        var mensaje = '<div class="alert alert-danger"><p><i class="fa fa-error"></i> Las contraseñas no coinciden</p></div>';
-        document.getElementById('mensaje').innerHTML = mensaje;
-           document.getElementById('cambiarPass').disabled = true;
+    if (verifica != '') {
+        if (contraNueva == verifica) {
+            var mensaje = '<div class="alert alert-success"><p><i class="fa fa-success"></i> Correcto</p></div>';
+            document.getElementById('mensaje').innerHTML = mensaje;
+            document.getElementById('cambiarPass').disabled = false;
+        }
+        else{
+            var mensaje = '<div align="center" class="alert alert-danger"><p><i class="fa fa-error"></i> Las contraseñas no coinciden</p></div>';
+            document.getElementById('mensaje').innerHTML = mensaje;
+            document.getElementById('cambiarPass').disabled = true;
+        }
     }
   }
 </script>
@@ -56,6 +58,11 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-md-12">
+                            <?
+                                if ($this->uri->segment(3) == 'e') {?>
+                                    <div align="center" class="alert alert-success"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
+                                <?}
+                            ?>
                             <div class="box box-widget widget-user">
                                 <div class="widget-user-header bg-aqua-active">
                                     <h3 class="widget-user-username"><?=$usuario->nombre?></h3>
@@ -103,7 +110,7 @@
                                     <hr>
                                     <h4><strong><i class="fa fa-user margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
                                     <hr>
-                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong><?=$usuario->dependencia?> </h4>
+                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong> <?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </h4>
                                     <hr>
                                     <h4><strong><i class="fa fa-phone margin-r-5"></i>Extension: </strong><?=$usuario->extension?> </h4>
                                     <hr>
@@ -125,7 +132,7 @@
 
 
 <!-------MODAL PARA CAMBIAR LA CONTRASEÑA ------>
- <form id="frmcambiarContra">
+ <form id="frmcambiarContra" method="POST" action="<?=base_url()?>index.php?/usuario/cambiar_contra">
      <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -136,16 +143,15 @@
             <div class="modal-body">
                 <h3 align="center" class="title">Cambiar Contraseña</h3>
                   
-              <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor ingrese los 
-              datos necesarios en el siguiete formulario </p>
+              <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor ingrese los datos necesarios en el siguiente formulario  </p>
 
                 <div id="mensaje"></div>
                 <br>
               <label for="contraAnterior">Su contraseña Actual:</label>
-              <input required id="encripta" onchange="desactiva_enlace(this)" class="form-control" type="text" name="contraAnterior">
+              <input required id="encripta" onchange="desactiva_enlace(this)" class="form-control" type="password" name="contraAnterior">
               <br>
               <label for="contraAnterior">Contraseña Nueva:</label>
-              <input onchange="verifica_contra()" class="form-control" disabled id="nueva" type="text" name="contraNueva">
+              <input onchange="verifica_contra()" class="form-control" disabled id="nueva" type="password" name="contraNueva">
               <br>
               <label for="contraAnterior">Repetir nueva contraseña</label>
               <input onchange="verifica_contra()" id="verifica" disabled class="form-control" type="password" name="contraVerifica">
@@ -154,8 +160,8 @@
                 <input type="hidden" id="contra" name="contra" value="<?=$usuario->password?>">
                 </div>
               <div class="modal-footer">
-                <button type="button" id="cambiarPass"   class="btn btn-success" disabled data-dismiss="modal"><i class="fa fa-check"></i> Cambiar Contraseña</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">Cancelar</i></button>
+                <button type="submit" id="cambiarPass"   class="btn btn-success" disabled ><i class="fa fa-check"></i> Cambiar Contraseña</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"> Cancelar</i></button>
             </div>
           </div>
         </div>

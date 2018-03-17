@@ -22,13 +22,16 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer');
 	}
 
-	function modificar_password()
+	function cambiar_contra()
 	{
-		$datos['passAnterior'] = $this->session->userdata("password");
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
-		$this->load->view('formularios/v_perfil_password', $datos);
-		$this->load->view('_footer');
+		$usuario 	= $_POST['usuario'];
+		$contra 	= htmlentities($_POST['contraNueva']);
+		$contraMd5	= md5($contra);
+
+		$this->m_usuario->cambiar_contra($usuario, $contraMd5);
+
+		redirect('usuario/index/e');
+
 	}
 }
 

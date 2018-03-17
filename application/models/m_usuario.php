@@ -35,5 +35,11 @@ class m_usuario extends CI_Model {
         return $this->db->get('usuario')->row();
     }
 
+    function cambiar_contra($usuario, $contraMd5)
+    {
+        $this->db->set('password', $contraMd5);
+        $this->db->where('codigo', $usuario);
+        $this->db->update('usuario');
 
+    }
 }
