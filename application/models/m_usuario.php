@@ -16,10 +16,12 @@ class m_usuario extends CI_Model {
 				,usuario
 				, CONCAT(nombre, ' ', apellido) as nombre
 				, dependencias.abreviatura as dependencia
+                , dependencias.nombre_dependencia as nom_dependencia
 				, foto
                 , rol
                 , extension
                 , correo
+                , password
 				FROM crm.usuario
 				INNER JOIN dependencias
 				WHERE usuario.dependencia = dependencias.id_dependencia

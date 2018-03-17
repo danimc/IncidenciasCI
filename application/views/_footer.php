@@ -207,6 +207,8 @@
         <!-- AdminLTE App -->
         <script src="<?=base_url()?>src/js/app.min.js"></script>
 
+        <script src="<?=base_url()?>src/js/md5.js"></script>
+
         <script src="<?=base_url()?>src/js/jquery.slimscroll.js"></script>
 
         <script src="<?=base_url()?>src/js/Chart.min.js"></script>

@@ -20,8 +20,16 @@ class Usuario extends CI_Controller {
 		$this->load->view('_menuLateral');
 		$this->load->view('v_perfil', $datos);
 		$this->load->view('_footer');
+	}
 
-
+	function modificar_password()
+	{
+		$datos['passAnterior'] = $this->session->userdata("password");
+		$this->load->view('_encabezado');
+		$this->load->view('_menuLateral');
+		$this->load->view('formularios/v_perfil_password', $datos);
+		$this->load->view('_footer');
 	}
 }
+
 ?>

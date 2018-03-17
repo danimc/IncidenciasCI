@@ -139,7 +139,7 @@ $usuario = $this->m_usuario->obt_usuario();
             </li>
             <li class="user-footer">
                 <div class="pull-left">
-                    <a href="perfil?usr=<?//=$_SESSION['idUsuario']?>" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="<?=base_url()?>index.php?/usuario" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                     <a href="<?=base_url()?>index.php?/acceso/logout" class="btn btn-default btn-flat"> Cerrar Sesion</a>
