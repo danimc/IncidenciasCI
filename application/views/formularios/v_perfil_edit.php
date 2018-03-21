@@ -45,12 +45,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Perfil
-                        <small>De usuario</small>
+                        Editar
+                        <small>Perfil de usuario</small>
                     </h1><br>
                     <ol class="breadcrumb">
                         <li><a href="/index"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li>Perfil</li>
+                        <li>editar</li>
                     </ol>
                 </section>
 
@@ -58,6 +59,11 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-md-12">
+                            <?
+                                if ($this->uri->segment(3) == 'e') {?>
+                                    <div align="center" class="alert alert-success"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
+                                <?}
+                            ?>
                             <div class="box box-widget widget-user">
                                 <div class="widget-user-header bg-aqua-active">
                                     <h3 class="widget-user-username"><?=$usuario->nombre?></h3>
@@ -90,40 +96,53 @@
                                 </div>
 
                             </div>
- <?
-                                if ($this->uri->segment(3) == 'e') {?>
-                                    <div align="center" class="alert alert-success"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
-                                <?}
-                            ?>
+
                         </div>
-
-
+                        <form method="POST" action="<?=base_url()?>index.php?/usuario/editar_usuario" >
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
-                                    <h3 class="box-tittle"> Información de Usuario</h3>
+                                    
+                                    <h3 class="box-tittle"> Editar Información de Usuario</h3>
 
                                 </div>
 
                                 <div class="box-body">
-                                    <h4><strong><i class="fa fa-vcard margin-r-5"></i> Nombre: </strong><?=$usuario->nombre?> </h4>
+                                    <h4><strong><i class="fa fa-vcard margin-r-5"></i> Nombre: </strong> </h4>
+                                    <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nombre" value="<?=$usuario->nombres?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                    <input type="text" class="form-control" name="apellido" value="<?=$usuario->apellido?>">
+                                    </div>
+                                    <br><br>
                                     <hr>
-                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
+                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Username: </strong></h4>
+                                    <input type="text" class="form-control" name="username" value="<?=$usuario->usuario?>" disabled><hr>
+                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong></h4> 
+                                        <select name="dependencia" class="form-control">
+                                            <option value="0"><?=$usuario->nom_dependencia?></option>
+                                            <?foreach ($dependencias as $dependencia) {?>
+                                                <option value="<?=$dependencia->id_dependencia?>">
+                                                    <?=$dependencia->nombre_dependencia?>
+                                                </option>                                                
+                                           <? }?>    
+                                        </select> 
                                     <hr>
-                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong> <?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </h4>
+                                    <h4><strong><i class="fa fa-phone margin-r-5"></i>Extension: </strong></h4>
+                                    <input maxlength="5" type="text" class="form-control" name="extension" value="<?=$usuario->extension?>"> 
                                     <hr>
-                                    <h4><strong><i class="fa fa-phone margin-r-5"></i>Extension: </strong><?=$usuario->extension?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-envelope margin-r-5"></i> Correo: </strong><?=$usuario->correo?></h4>
+                                    <h4><strong><i class="fa fa-envelope margin-r-5"></i> Correo:</strong></h4>
+                                    <input class="form-control" type="email" name="correo" value="<?=$usuario->correo?>">
                                     <hr>
                                     <a href="#" data-toggle="modal" data-target="#myModal""><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
                                     <h4><strong><i class="fa fa-lock margin-r-5"></i> Contraseña: </strong>*******</h4>
-
-
+                                    <hr>
+                                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
                                 </div>
-                            </div>
+                            </div>                               
                         </div>
+                        </form>
                     </div>
 
                 </section>

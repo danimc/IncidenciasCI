@@ -33,6 +33,16 @@ class Usuario extends CI_Controller {
 		redirect('usuario/index/e');
 
 	}
+
+	function editar()
+	{
+		$datos['usuario'] = $this->m_usuario->obt_usuario();
+		$datos['dependencias'] = $this->m_usuario->obt_dependencias();	
+		$this->load->view('_encabezado');
+		$this->load->view('_menuLateral');
+		$this->load->view('formularios/v_perfil_edit', $datos);
+		$this->load->view('_footer');
+	}
 }
 
 ?>

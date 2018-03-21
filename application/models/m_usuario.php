@@ -14,6 +14,8 @@ class m_usuario extends CI_Model {
     	$qry = "SELECT 
 				codigo
 				,usuario
+                ,nombre as nombres
+                ,apellido
 				, CONCAT(nombre, ' ', apellido) as nombre
 				, dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
@@ -33,6 +35,11 @@ class m_usuario extends CI_Model {
     {
         $this->db->where('codigo',$id);
         return $this->db->get('usuario')->row();
+    }
+
+    function obt_dependencias()
+    {
+        return $this->db->get('dependencias')->result();
     }
 
     function cambiar_contra($usuario, $contraMd5)
