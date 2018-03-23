@@ -50,6 +50,25 @@ $usuario = $this->m_usuario->obt_usuario()
 								</li>
 					          </ul>
 					        </li>
+					        <li class="treeview">
+					        <a href="#">
+					        	<i class="fa  fa-folder"></i>
+					            <span>Archivo Muerto</span>
+					            <span class="pull-right-container">
+             						 <small class="label pull-right bg-red">Nuevo</small>
+           						 </span>
+					           
+					          </a>
+					          <ul class="treeview-menu">
+					          	<li>
+					          		<a href="<?=base_url()?>index.php?/expedientes/solicitar_expediente"><i class="fa fa-plus"></i> Solicitar Expediente</a>
+					          	</li>
+					            <li>
+									<a href="<?php echo base_url();?>index.php?/expedientes/archivo_muerto_usr"><i class="fa fa-barcode"></i> <span>Exp. Pedidos</span></a>
+								</li>
+					          </ul>
+					        </li>
+
 
 					</ul>
 					<!-- /.sidebar-menu -->
