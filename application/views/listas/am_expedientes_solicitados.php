@@ -31,12 +31,9 @@
               <th>Etiqueta</th>
               <th>Expediente</th>
               <th>Ubicación</th>
+              <th>Solicitó</th>
               <th>Fecha Solicitud</th>
-              <th>Estatus</th>
-              <th>entregado a:</th>
-             
-
-            </tr>
+              <th>Estatus</th></tr>
           </thead>
           <tbody>
            <? foreach ($expedientes as $exp) 
@@ -48,14 +45,9 @@
               <td ><?=$exp->etiqueta?></td>
               <td ><?=$exp->expediente?></td>
               <td ><?=$exp->ubicacion?></td>
+              <td ><?=$exp->usuario?></td>
               <td ><?=$exp->fecha_solicitud?>
-              <td ><?=$exp->estatus?></td>
-              <td ><?=$exp->entregado?></td>
-
-
-              <td width="10" align="center">
-
-              </td>
+              <td ><?=$exp->estatus?></td>              
             </tr>
             <?
           }

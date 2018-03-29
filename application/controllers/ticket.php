@@ -92,24 +92,19 @@ class Ticket extends CI_Controller {
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
 		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
 
-		switch ($rol) {
-			case 1:
+		if ($rol == 1) {
+			
 				$this->load->view('_encabezado');
 				$this->load->view('_menuLateral');
 				$this->load->view('formularios/v_seguimiento_admin', $datos);
 				$this->load->view('_footer');
-				break;
-			case 2:
+				}
+		else{
 				$this->load->view('_encabezado');
 				$this->load->view('_menuLateral');
 				$this->load->view('formularios/v_seguimiento_usuario', $datos);
 				$this->load->view('_footer');
-				break;
-			
-			default:
-				# code...
-				break;
-		}
+				}
 		
 
 

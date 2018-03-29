@@ -63,9 +63,19 @@ $usuario = $this->m_usuario->obt_usuario()
 					          	<li>
 					          		<a href="<?=base_url()?>index.php?/expedientes/solicitar_expediente"><i class="fa fa-plus"></i> Solicitar Expediente</a>
 					          	</li>
+					          	<?
+					          		if($this->m_seguridad->acceso_modulo(3) != 0)
+					          			{?>
+					          	  <li>
+									<a href="<?php echo base_url();?>index.php?/expedientes/archivo_muerto_oficialia"><i class="fa fa-toggle-right"></i> <span>Atender Solicitudes</span></a>
+								</li>
+									<?
+										}
+									?>
 					            <li>
 									<a href="<?php echo base_url();?>index.php?/expedientes/archivo_muerto_usr"><i class="fa fa-barcode"></i> <span>Exp. Pedidos</span></a>
 								</li>
+
 					          </ul>
 					        </li>
 
