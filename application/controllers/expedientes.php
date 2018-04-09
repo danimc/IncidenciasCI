@@ -86,6 +86,8 @@ class Expedientes extends CI_Controller {
 		$datos['exp'] = $this->m_expedientes->obt_seguimiento_exp($expediente);
 		$datos['asignados'] = $this->m_expedientes->obt_asignados();
 		$datos['historial'] = $this->m_expedientes->obt_historial($expediente);
+		$datos['estatus' ] = $this->m_expedientes->etiqueta($datos['exp']->estatus);
+		$datos['usuarios'] = $this->m_expedientes->obt_usuarios_dependencia($datos['exp']->id_dependencia);
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
@@ -95,22 +97,15 @@ class Expedientes extends CI_Controller {
 
 	function asignar_usuario()
 	{
+		$estatus = 2; 
+		$responsable = $_POST['responsable'];
+		$folio = $_POST['folio'];
+		$fecha= $this->m_ticket->fecha_actual();
+		$hora= $this->m_ticket->hora_actual();
+		$usr = $this->m_usuario->obt_usuario();
 
-		if($_POST['antAsignado'] == ''){
-			$estatus = 2; 
-		}
-		/*else{
-			$estatus = 7;
-		}*/
-
-		  $responsable = $_POST['responsable'];
-		  $folio = $_POST['folio'];
-		  $fecha= $this->m_ticket->fecha_actual();
-		  $hora= $this->m_ticket->hora_actual();
-		  $usr = $this->m_usuario->obt_usuario();
-
-		  $this->m_expedientes->asignar_usuario($folio, $responsable, $estatus);
-		  $this->m_expedientes->h_asignar_usuario($folio, $responsable, $fecha, $hora, $estatus);
+		$this->m_expedientes->asignar_usuario($folio, $responsable, $estatus);
+		$this->m_expedientes->h_asignar_usuario($folio, $responsable, $fecha, $hora, $estatus);
 
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 

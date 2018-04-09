@@ -62,7 +62,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
                         <th>Num. de Solicitud:</th><td><?=$exp->id?></td><th class="">Asignado a:
                         </th><td class=""><b><?=$exp->asignado?> <?=$asignado?></b></td>
                         </tr><tr>
-                        <th>Fecha de Reporte:</th><td><?=$fecha_solicitud?> </td>
+                        <th>Fecha de solicitud:</th><td><?=$fecha_solicitud?> </td>
                         <th>Fecha de Finalización:</th><td>
                             <?if(isset($exp->fecha_cierre)){ ?>                            
                                 <?=$exp->fecha_cierre?> a las <?=$exp->hora_cierre?>
@@ -71,7 +71,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
                             }?>
                           </td>
                         </tr><tr>
-                        </td><th>Estatus: </th><td><?=$exp->estatus?></td>
+                        </td><th>Estatus: </th><td><?=$estatus?></td>
                         <th>Ubicación de Exp.:</th><td> <?=$exp->ubicacion?>
                         
                         </tr><tr>
@@ -145,29 +145,31 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
       </div>
 </form>
 
- <!-------MODAL PARA CAMBIAR EL ESTATUS---->
+ <!-------MODAL PARA CAMBIAR EL ESTATUS A RECIBIDO---->
 <form id="frmStatus">
-     <div class="modal fade" id="modalStatus" role="dialog">
+     <div class="modal fade" id="modalRecibido" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-maroon">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cambiar Status </h4>
+              <h4 class="modal-title">Marcar como Entregado </h4>
             </div>
             <div class="modal-body">
-              <p>Cambie el estatus actual del ticket de servicio.</p>
-                <select name="estado" class="form-control">
-                  <option disabled>Seleccione el estatus del ticket</option>
+              <p>Marque como entregado el expediente.</p>
+
+                <input type="checkbox" name="solicitante">
+                <label>El expediente fue Entregado al Solicitante</label>
+                <select disabled  name="estado" class="form-control">
+                  <option >Seleccione quien recibió el Expediente</option>
                   <?
-                  foreach ($estados as $estado) {?>
-                    <option value="<?=$estado->id?>"><?=$estado->situacion?></option>
+                  foreach ($usuarios as $usr) {?>
+                    <option value="<?=$usr->codigo?>"><?=$usr->usuario?></option>
                            <?}?>         
                 </select>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <input type="hidden" name="antStatus" value="<?=$ticket->situacion?>">
+                <input type="hidden" name="folio" value="<?=$exp->id?>">            
                 </div>
               <div class="modal-footer">
-                <button type="button" id="cambiarStatus"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" id="recibido"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
             </div>
           </div>

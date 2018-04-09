@@ -135,6 +135,12 @@ class m_expedientes extends CI_Model {
         return $this->db->get("usuario")->result();
     }
 
+    function obt_usuarios_dependencia($dependencia)
+    {
+        $this->db->where('dependencia', $dependencia);
+        return $this->db->get('usuario')->result();
+    }
+
     function asignar_usuario($folio, $responsable, $estatus)
     {
         $this->db->set('asignado', $responsable);
@@ -236,4 +242,39 @@ class m_expedientes extends CI_Model {
 
         return $etiqueta;
     }
+
+
+        function etiqueta($estatus)
+    {
+        if($estatus == 1){
+            $esta = '<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal" title="Cambiar Status"> <i class="fa fa-ticket"></i> Solicitado
+                        </button>';
+            return $esta;
+        }
+        if($estatus == 2){
+            $esta = '<button class="btn btn-xs bg-maroon" data-toggle="modal" data-target="#modalRecibido" title="Cambiar Status">
+                            <i class="fa fa-user-plus"></i> Asigando
+                      </button>';
+            return $esta;
+        }
+          if($estatus == 3){
+            $esta = '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> Entregado
+                        </button>';
+            return $esta;
+        }
+          if($estatus == 4){
+            $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
+                            <i class="fa fa-check-circle"></i> Devuelto
+                        </small>
+                    </p>';
+            return $esta;
+        }
+            if($estatus == 5){
+            $esta = '<button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
+                <i class="fa fa-lock"></i> Finalizado
+                </button>';
+            return $esta;
+        }       
+    }
+
 }
