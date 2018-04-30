@@ -13,6 +13,7 @@ class Incidencias extends CI_Controller {
 
 	public function index()
 	{
+
 		$this->load->view('_encabezado');
 
 	}
@@ -38,6 +39,8 @@ class Incidencias extends CI_Controller {
 		$descripcion = $_POST['descripcion'];
 		$categoria = $_POST['categoria'];
 		$estatus = '1';
+
+		
 	
 
 		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus);

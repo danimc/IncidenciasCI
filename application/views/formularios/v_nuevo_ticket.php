@@ -1,10 +1,10 @@
 
 <script>
      function desactiva_enlace(enlace)
-  {
+  {           
       var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Generando Ticket de Servicio...";
-      enlace.disabled='disabled';
       enlace.innerHTML = button;
+        
   }
 </script>
 

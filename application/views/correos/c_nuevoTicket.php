@@ -1,20 +1,21 @@
 <?
-$dia = $this->m_ticket->fecha_text($fechaReporte);
+$fecha = $ticket->fecha_inicio . ' ' . $ticket->hora_inicio;
+$dia = $this->m_ticket->fecha_text($fecha);
 ?>
-<h2>REGISTRO DEl INCIDENTE FOLIO: <?=$idIncidente?></h2>
+<h2>REGISTRO DEl INCIDENTE FOLIO: <?=$ticket->folio?></h2>
 
-<p><?=$saludo?> <?=$usuario->nombre?> Se ha levantado un Incidente a su nombre con el folio: <b><?=$idIncidente?>.</b> </p>
+<p><?=$saludo?> <?=$ticket->usuario?> Se ha levantado un Incidente a su nombre con el folio: <b><?=$ticket->folio?>.</b> </p>
 <h4>Especificaciones:</h4>
 
 
 <table align="center" border=".5" width="" style="background-color: #e5e8e8;  ">
 <tr>
 	<td><b>Folio:</b></td>
-	<td><?=$idIncidente?></td>
+	<td><?=$ticket->folio?></td>
 </tr>
 <tr>
 	<td><b>Descripción</b></td>
-	<td><?=$descripcion?></td>
+	<td><?=$ticket->descripcion?></td>
 </tr>
 <tr>
 	<td><b>Fecha de alta:</b></td>

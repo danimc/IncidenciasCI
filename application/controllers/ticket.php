@@ -45,15 +45,13 @@ class Ticket extends CI_Controller {
 
 		$idIncidente = $this->db->insert_id();
 
-		$this->correo_ticket_levantado($idIncidente,  $usuarioIncidente, $titulo, $descripcion, $categoria, $reportante);
-
-		redirect('ticket/lista_tickets/'. $this->db->insert_id());
-
-		//echo $this->db->insert_id() ;
+		redirect('ticket/lista_tickets/'. $idIncidente);
 	}
+
 
 	function lista_tickets()
 	{	
+		
 		$codigo = $this->session->userdata("codigo");
 		$rol = $this->session->userdata("rol");
 		$folio = $this->uri->segment(3);
@@ -216,12 +214,11 @@ class Ticket extends CI_Controller {
 	}
 
 
-	function correo_ticket_levantado($idIncidente, $usuarioIncidente, $titulo, $descripcion, $categoria, $reportante)
+	function correo_ticket_levantado()
 	{
-
-		$usuario = $this->m_usuario->obt_usuario_ticket($usuarioIncidente);
+		$incidente = $this->uri->segment(3);
+		$infoCorreo = $this->m_ticket->seguimiento_ticket($incidente);
 		$horario = $this->m_ticket->hora_actual();
-		$fechaReporte = $this->m_ticket->fechahora_actual();
 		$saludo = '';
 
 		if($horario <= '11:59:59'){
@@ -233,17 +230,15 @@ class Ticket extends CI_Controller {
 		elseif ($horario <= '23:59:59') {
 			$saludo = 'Buenas noches';
 		}
-		$datos['fechaReporte'] = $fechaReporte;
-		$datos['idIncidente'] = $idIncidente;
-		$datos['saludo'] = $saludo;
-		$datos['usuario'] = $usuario;
-		$datos['descripcion'] = $descripcion;
+		
+		$datos['ticket'] = $infoCorreo;
+		$datos['saludo'] = $saludo;		
 	    $this->load->view('_head');
 		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
 
 		$this->load->library('email');
 		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
-		$this->email->to($usuario->correo);
+		$this->email->to($infoCorreo->correo);
 		$this->email->cc('incidenciasoag@gmail.com');
 		//$this->email->bcc('them@their-example.com');
 
