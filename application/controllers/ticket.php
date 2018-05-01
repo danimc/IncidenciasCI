@@ -42,10 +42,8 @@ class Ticket extends CI_Controller {
 		$estatus = '1';	
 
 		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus);
-
 		$idIncidente = $this->db->insert_id();
-
-		redirect('ticket/lista_tickets/'. $idIncidente);
+		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
 
@@ -246,6 +244,8 @@ class Ticket extends CI_Controller {
 		$this->email->message($msg);
 		$this->email->set_mailtype('html');
 		$this->email->send();
+
+		redirect('ticket/lista_tickets/'. $incidente);
 
 	//	echo $this->email->print_debugger();
 

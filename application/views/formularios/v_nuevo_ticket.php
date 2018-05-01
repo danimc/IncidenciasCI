@@ -1,7 +1,18 @@
 
 <script>
+
+    function activar_envio()
+    {
+       var titulo = document.getElementById('incidente').value;
+       var descripcion = document.getElementById('descripcion').value;
+       if (titulo != '' && descripcion != ''){
+        document.getElementById('btn').disabled=false;
+       }
+    }
+
      function desactiva_enlace(enlace)
-  {           
+  {  
+
       var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Generando Ticket de Servicio...";
       enlace.innerHTML = button;
         
@@ -62,7 +73,7 @@
                     <div class="box-body">
                         <div class="form-group col-md-4">
                             <h4><i class="fa fa-box"></i>Descripcion corta del Incidente</h4>
-                            <input required="" class="form-control" type="text" name="incidente" id="incidente" placeholder="Ejemplo: mi pc no enciende">
+                            <input required="" class="form-control" type="text" name="incidente" id="incidente" onchange="activar_envio()" placeholder="Ejemplo: mi pc no enciende">
                         </div>
                         <div class="form-group col-md-4">
                             <h4><i class="fa fa-box"></i>Categoria: </h4>
@@ -81,9 +92,10 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body pad">
-                        <textarea required="" class="textarea" id="descripcion" name="descripcion" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <textarea onchange="activar_envio()" required="true" class="textarea" id="descripcion" name="descripcion" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">                         
+                        </textarea>
                         <div class="form-group">
-                            <button onclick="desactiva_enlace(this)" type="submit" class="btn btn-success">
+                            <button disabled="true" id="btn" data-toggle="modal" data-target="#cerrar" onclick="desactiva_enlace(this)" type="submit" class="btn btn-success">
                                     <i class="fa fa-save"></i>
                                     Generar Ticket de Servicio</button>
                             </form>
@@ -92,6 +104,22 @@
                         </div>
 
 </section>
+
+
+ <div class="modal fade" id="cerrar" role="dialog">
+        <div class="modal-dialog col-md">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="icon" align="center">
+                <i class="fa fa-spinner fa-spin" style="font-size:80px;"></i>
+              </div>  
+
+              <h4 align="center">Generando Ticket de Servicio...</h4>
+              </div>
+            
+          </div>
+        </div>
+      </div>
 
 <!-- /.content -->
 </div>
