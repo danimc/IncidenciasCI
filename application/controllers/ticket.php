@@ -21,7 +21,8 @@ class Ticket extends CI_Controller {
 
 	function nuevo_ticket()
 	{
-		$datos['usuario'] = $this->m_usuario->obt_usuario();
+		 $codigo = $this->session->userdata("codigo");	
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['reportante'] = $this->m_ticket->obt_lista_usuarios();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
 
@@ -53,7 +54,7 @@ class Ticket extends CI_Controller {
 		$codigo = $this->session->userdata("codigo");
 		$rol = $this->session->userdata("rol");
 		$folio = $this->uri->segment(3);
-		$datos['usuario'] = $this->m_usuario->obt_usuario();
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['folio'] = $folio;
 
 		switch ($rol) {
@@ -114,12 +115,12 @@ class Ticket extends CI_Controller {
 		}else{
 			$estatus = 7;
 		}
-
+		  $codigo = $this->session->userdata("codigo");	
 		  $ingeniero = $_POST['ingeniero'];
 		  $folio = $_POST['folio'];
 		  $fecha= $this->m_ticket->fecha_actual();
 		  $hora= $this->m_ticket->hora_actual();
-		  $usr = $this->m_usuario->obt_usuario();
+		  $usr = $this->m_usuario->obt_usuario($codigo);
 
 		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
 		  $this->m_ticket->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);

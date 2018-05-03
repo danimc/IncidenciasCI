@@ -101,7 +101,7 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?=base_url()?>index.php?/usuario/editar/" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
                                     <h3 class="box-tittle"> Información de Usuario</h3>
 
                                 </div>

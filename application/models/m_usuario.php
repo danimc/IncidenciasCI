@@ -17,19 +17,21 @@ class m_usuario extends CI_Model {
          usuario, 
          abreviatura, 
          nombre_dependencia, 
-         puesto, 
+         p.puesto, 
          extension, 
          estatus
          FROM crm.usuario
          INNER JOIN crm.dependencias
-         WHERE dependencia = id_dependencia";
+         INNER JOIN crm.puesto_usr p
+         WHERE dependencia = id_dependencia
+         AND usuario.puesto = p.id";
 
          return $this->db->query($qry)->result();
     }
 
-    function obt_usuario() 
+    function obt_usuario($codigo) 
     {
-    	$usr = $this->session->userdata("codigo");
+    	$usr = $codigo;
 
     	$qry = "SELECT 
 				codigo

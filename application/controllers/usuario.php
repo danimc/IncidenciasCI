@@ -14,8 +14,8 @@ class Usuario extends CI_Controller {
 
 	public function index()
 	{	
-
-		$datos['usuario'] = $this->m_usuario->obt_usuario();	
+		$codigo = $this->session->userdata("codigo");	
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);	
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
 		$this->load->view('v_perfil', $datos);
@@ -36,7 +36,17 @@ class Usuario extends CI_Controller {
 
 	function editar()
 	{
-		$datos['usuario'] = $this->m_usuario->obt_usuario();
+		$editar = $this->uri->segment(3);
+
+		if($editar != ''){
+			$codigo = $editar;
+		}
+		else{
+			$codigo = $this->session->userdata("codigo");
+		}
+
+		
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['dependencias'] = $this->m_usuario->obt_dependencias();	
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
@@ -50,7 +60,7 @@ class Usuario extends CI_Controller {
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
-		$this->load->view('listas/listaUsuarios', $datos);
+		$this->load->view('listas/l_listaUsuarios', $datos);
 		$this->load->view('_footer');
 	}
 }

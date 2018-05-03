@@ -1,5 +1,6 @@
 <?
-$usuario = $this->m_usuario->obt_usuario()
+$codigo = $this->session->userdata("codigo");	
+$usuario = $this->m_usuario->obt_usuario($codigo);
 ?>
 <aside class="main-sidebar">
 

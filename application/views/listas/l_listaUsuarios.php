@@ -47,10 +47,11 @@
               <td ><?=$user->nombre . ' ' . $user->apellido?></td>
               <td ><?=$user->nombre_dependencia?></td>
               <td ><?=$user->puesto?></td>
-              <td ><?=$user->extension?></td>
+              <td align="center" ><?=$user->extension?></td>
 
 
-              <td width="10" align="center"><a class="btn btn-xs btn-info" href="" title="Información y seguimiento del Ticket de servicio"><i class="fa fa-info-circle"></i> información</a>
+              <td align="center">
+                <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/editar/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
               </td>
             </tr>
             <?

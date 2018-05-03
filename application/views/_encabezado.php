@@ -1,6 +1,7 @@
 <?php
 header("Content-Type: text/html;charset=utf-8");
-$usuario = $this->m_usuario->obt_usuario();
+$codigo = $this->session->userdata("codigo");  
+$usuario = $this->m_usuario->obt_usuario($codigo);
 
 ?>
     <!--

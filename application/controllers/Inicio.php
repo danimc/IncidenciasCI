@@ -12,7 +12,8 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		$datos['usuario'] = $this->m_usuario->obt_usuario();
+		$codigo = $this->session->userdata("codigo");	
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
