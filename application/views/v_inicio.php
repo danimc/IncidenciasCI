@@ -51,6 +51,44 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
+
+              <a href="<?=base_url()?>index.php?/usuario/lista_usuarios">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      
+                    <div class="info-box bg-green">
+                      <span class="info-box-icon"><i class="fa fa-users"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-number">Control de Usuarios</span>
+                        <!-- The progress section is optional -->
+                        <div title="porcentaje de tickets cerrados" class="progress">
+                          <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                          Altas y bajas de Usuarios
+                        </span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                 </div>
+                 </a>
+
+                 <a href="menuActivos">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      
+                    <div class="info-box bg-red">
+                      <span class="info-box-icon"><i class="fa fa-barcode"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-number">Activos</span>
+                        <!-- The progress section is optional -->
+                        <div title="porcentaje de tickets cerrados" class="progress">
+                          <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-description">
+                          Gestion de activos 
+                        </span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                 </div>
+                 </a>
           </section>
         </div>
 

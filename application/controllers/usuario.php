@@ -43,6 +43,16 @@ class Usuario extends CI_Controller {
 		$this->load->view('formularios/v_perfil_edit', $datos);
 		$this->load->view('_footer');
 	}
+
+	function lista_usuarios()
+	{
+		$datos['usuario'] = $this->m_usuario->obt_usuarios();
+
+		$this->load->view('_encabezado');
+		$this->load->view('_menuLateral');
+		$this->load->view('listas/listaUsuarios', $datos);
+		$this->load->view('_footer');
+	}
 }
 
 ?>

@@ -7,6 +7,26 @@ class m_usuario extends CI_Model {
         parent::__construct();
     }
 
+    function obt_usuarios()
+    {
+        $qry = '';
+
+        $qry = "SELECT codigo,
+         nombre, 
+         apellido, 
+         usuario, 
+         abreviatura, 
+         nombre_dependencia, 
+         puesto, 
+         extension, 
+         estatus
+         FROM crm.usuario
+         INNER JOIN crm.dependencias
+         WHERE dependencia = id_dependencia";
+
+         return $this->db->query($qry)->result();
+    }
+
     function obt_usuario() 
     {
     	$usr = $this->session->userdata("codigo");

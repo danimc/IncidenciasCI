@@ -218,7 +218,8 @@ class m_ticket extends CI_Model {
                 LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
                 LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
                 LEFT JOIN situacion_ticket est on est.id = ticket.estatus
-                LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo";
+                LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
+                ORDER BY folio DESC";
                
                 return $this->db->query($qry)->result();
     }
@@ -423,8 +424,7 @@ class m_ticket extends CI_Model {
           if($estatus == 4){
             $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
                             <i class="fa fa-check-circle"></i> Resuelto
-                        </small>
-                    </p>';
+                        </small>';
             return $esta;
         }
             if($estatus == 5){

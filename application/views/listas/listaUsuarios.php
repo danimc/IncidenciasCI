@@ -1,29 +1,25 @@
-<?
-$estados = $this->m_ticket->estatus();
-?>
 
  <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
       Panel de control
-      <small>Listado de Tickets</small>
+      <small>Administración de Usuarios</small>
     </h1><br>
     <ol class="breadcrumb">
       <li><a href="/oag"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#"><i class="fa fa-ticket"></i> Tickets</a></li>
+      <li><a href="#"><i class="fa fa-users"></i> Usuarios</a></li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
     <a href="/oagmvc" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
-    <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-app bg-green"><span class="fa fa-plus"></span>Nuevo Ticket</a>
-    <a href="menuTickets?asignado=true" class="btn btn-app bg-orange"><span class="fa fa-search"></span>Mis Asignados</a>			   
-    <div id="form_newsletter_result"></div>
+    <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-app bg-green"><span class="fa fa-user-plus"></span>Nuevo Usuario</a>
+   <div id="form_newsletter_result"></div>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Lista de Tickets</h3>
+        <h3 class="box-title">Lista de Usuarios</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -31,32 +27,30 @@ $estados = $this->m_ticket->estatus();
          <table id="example1" class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th>Folio</th>
-              <th>Fecha de Reporte</th>
-              <th>Estatus</th>
-              <th>Usuario</th>
-              <th>Incidente</th>
-              <th>Categoria</th>
+              <th>Codigo</th>
+              <th>username</th>
+              <th>Nombre</th>
+              <th>Unidad</th>
+              <th>puesto</th>
+              <th>contacto</th>
               <th>Acciones</th>
-
             </tr>
           </thead>
           <tbody>
-           <? foreach ($tickets as $ticket) 
+           <? foreach ($usuario as $user) 
            {
-            $fecha = $this->m_ticket->fecha_text_f($ticket->fecha_inicio);
-            $estatus = $this->m_ticket->etiqueta($ticket->id_situacion);
+             //$estatus = $this->m_ticket->etiqueta($user->id_situacion);
             ?>
             <tr class="">
-              <td ><?=$ticket->folio?></td>
-              <td  data-toggle = "tooltip" title="Hora de reporte: <?=$ticket->hora_inicio?>"><?=$fecha?></td>
-              <td data-toggle="tooltip"><?=$estatus?></td>
-              <td ><?=$ticket->usuario?></td>
-              <td ><?=$ticket->titulo?></td>
-              <td ><?=$ticket->categoria?></td>
+              <td ><?=$user->codigo?></td>
+              <td ><?=$user->usuario?></td>
+              <td ><?=$user->nombre . ' ' . $user->apellido?></td>
+              <td ><?=$user->nombre_dependencia?></td>
+              <td ><?=$user->puesto?></td>
+              <td ><?=$user->extension?></td>
 
 
-              <td width="10" align="center"><a class="btn btn-info btn-xs" href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$ticket->folio?>" title="Información y seguimiento del Ticket de servicio"><i class="fa fa-info-circle"></i> Seguimiento</a>
+              <td width="10" align="center"><a class="btn btn-xs btn-info" href="" title="Información y seguimiento del Ticket de servicio"><i class="fa fa-info-circle"></i> información</a>
               </td>
             </tr>
             <?
@@ -69,21 +63,6 @@ $estados = $this->m_ticket->estatus();
   </div>
 </div>
   </section>
-
-
-  <script>
-  $(function () {
-   // $("#example1").DataTable();
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": false,
-      "info": true,
-      "autoWidth": true
-    });
-  });
-</script>
 
 
 <!-------MODAL PARA CAMBIAR EL ESTATUS---->
