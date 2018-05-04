@@ -39,6 +39,7 @@ class m_usuario extends CI_Model {
                 ,nombre as nombres
                 ,apellido
 				, CONCAT(nombre, ' ', apellido) as nombre
+                , dependencias.id_dependencia as depId
 				, dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
 				, foto
@@ -70,5 +71,17 @@ class m_usuario extends CI_Model {
         $this->db->where('codigo', $usuario);
         $this->db->update('usuario');
 
+    }
+
+    function editar_usuario($nombre, $apellido, $dependencia, $extension, $correo, $codigo)
+    {
+        $this->db->set('nombre', $nombre);
+        $this->db->set('apellido', $apellido);
+        $this->db->set('dependencia', $dependencia);
+        $this->db->set('extension', $extension);
+        $this->db->set('correo', $correo);
+        $this->db->where('codigo', $codigo);
+
+        $this->db->update('usuario');
     }
 }

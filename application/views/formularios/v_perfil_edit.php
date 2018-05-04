@@ -108,6 +108,7 @@
                                 </div>
 
                                 <div class="box-body">
+                                    <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
                                     <h4><strong><i class="fa fa-vcard margin-r-5"></i> Nombre: </strong> </h4>
                                     <div class="col-md-6">
                                     <input type="text" class="form-control" name="nombre" value="<?=$usuario->nombres?>">
@@ -121,7 +122,7 @@
                                     <input type="text" class="form-control" name="username" value="<?=$usuario->usuario?>" disabled><hr>
                                     <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong></h4> 
                                         <select name="dependencia" class="form-control">
-                                            <option value="0"><?=$usuario->nom_dependencia?></option>
+                                            <option value="<?=$usuario->depId?>"><?=$usuario->nom_dependencia?></option>
                                             <?foreach ($dependencias as $dependencia) {?>
                                                 <option value="<?=$dependencia->id_dependencia?>">
                                                     <?=$dependencia->nombre_dependencia?>

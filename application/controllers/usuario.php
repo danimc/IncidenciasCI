@@ -54,8 +54,23 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer');
 	}
 
-	function lista_usuarios()
+	function editar_usuario()
 	{
+		$codigo			= $_POST['codigo'];
+		$nombre 		= $_POST['nombre'];
+		$apellido		= $_POST['apellido'];
+		$dependencia 	= $_POST['dependencia'];
+		$extension 		= $_POST['extension'];
+		$correo			= $_POST['correo'];
+
+		$this->m_usuario->editar_usuario($nombre, $apellido, $dependencia, $extension, $correo, $codigo);
+
+		redirect('usuario/editar/'. $codigo);
+
+	}
+
+	function lista_usuarios()
+	{ 
 		$datos['usuario'] = $this->m_usuario->obt_usuarios();
 
 		$this->load->view('_encabezado');
