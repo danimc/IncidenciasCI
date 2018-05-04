@@ -51,7 +51,7 @@
 
 
               <td align="center">
-                <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/editar/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
+                <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/perfil/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
               </td>
             </tr>
             <?

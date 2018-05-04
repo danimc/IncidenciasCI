@@ -101,15 +101,15 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar/" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
                                     <h3 class="box-tittle"> Información de Usuario</h3>
 
                                 </div>
 
                                 <div class="box-body">
-                                    <h4><strong><i class="fa fa-vcard margin-r-5"></i> Nombre: </strong><?=$usuario->nombre?> </h4>
+                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong><?=$usuario->nombre?> </h4>
                                     <hr>
-                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
+                                    <h4><strong><i class="fa  fa-star margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
                                     <hr>
                                     <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong> <?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </h4>
                                     <hr>
@@ -124,6 +124,25 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- sección 2 -->
+                        <div class="col-md-6">
+                            <div class="box ">
+                                <div class="box-header with-border">
+                                   <!-- <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>-->
+                                    <h3 class="box-tittle"> Datos de Personal:</h3>                                   
+                                </div>
+
+                                <div class="box-body">
+                                   <h4><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong><?=$usuario->situacion?> </h4>
+                                    <hr>
+                                    <h4><strong><i class="fa fa-black-tie margin-r-5"></i> Puesto: </strong><?=$usuario->puesto?> </h4>
+                                    <hr>                                   
+                                    <h4><strong><i class="fa  fa-exclamation-circle  margin-r-5"></i> Plaza: </strong> No hay información actual </h4>                                   
+                                </div>
+                             </div>
+                        </div>
+
                     </div>
 
                 </section>

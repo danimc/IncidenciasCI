@@ -13,8 +13,21 @@ class Usuario extends CI_Controller {
 	}
 
 	public function index()
+	{
+
+	}
+
+	function perfil()
 	{	
-		$codigo = $this->session->userdata("codigo");	
+		$editar = $this->uri->segment(3);
+
+		if($editar != ''){
+			$codigo = $editar;
+		}
+		else{
+			$codigo = $this->session->userdata("codigo");
+		}
+		
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);	
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');

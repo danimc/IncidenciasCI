@@ -34,23 +34,28 @@ class m_usuario extends CI_Model {
     	$usr = $codigo;
 
     	$qry = "SELECT 
-				codigo
-				,usuario
+                codigo
+                ,usuario
                 ,nombre as nombres
                 ,apellido
-				, CONCAT(nombre, ' ', apellido) as nombre
-                , dependencias.id_dependencia as depId
-				, dependencias.abreviatura as dependencia
+                , CONCAT(nombre, ' ', apellido) as nombre
+                , dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
-				, foto
+                , foto
                 , rol
+                ,p.puesto
+                ,e.situacion
                 , extension
                 , correo
                 , password
-				FROM crm.usuario
-				INNER JOIN dependencias
-				WHERE usuario.dependencia = dependencias.id_dependencia
-				AND codigo = '$usr'";
+                FROM crm.usuario
+                INNER JOIN dependencias
+                INNER JOIN crm.puesto_usr p
+                INNER JOIN situacion_usuarios e
+                WHERE usuario.dependencia = dependencias.id_dependencia
+                AND usuario.puesto = p.id
+                AND usuario.estatus = e.id
+                AND codigo = '$usr'";
     	
     	return $this->db->query($qry)->row();
     }
