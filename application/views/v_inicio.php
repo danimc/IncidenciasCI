@@ -51,7 +51,10 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
-
+            <? $accesoUsr = $this->m_seguridad->acceso_modulo(1);
+                if($accesoUsr != 0){
+                  ?>
+                
               <a href="<?=base_url()?>index.php?/usuario/lista_usuarios">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                       
@@ -70,7 +73,12 @@
                     </div><!-- /.info-box -->
                  </div>
                  </a>
+                  <?}
 
+                  $accesoActivos = $this->m_seguridad->acceso_modulo(2);
+                  if ($accesoActivos != 0) {
+                    ?>
+                  
                  <a href="menuActivos">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                       
@@ -89,6 +97,8 @@
                     </div><!-- /.info-box -->
                  </div>
                  </a>
+                 <?
+               }?>
           </section>
         </div>
 

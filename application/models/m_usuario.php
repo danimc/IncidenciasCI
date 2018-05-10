@@ -39,6 +39,7 @@ class m_usuario extends CI_Model {
                 ,nombre as nombres
                 ,apellido
                 , CONCAT(nombre, ' ', apellido) as nombre
+                ,dependencias.id_dependencia as depId
                 , dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
                 , foto
