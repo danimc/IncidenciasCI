@@ -51,6 +51,12 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 								</li>
 					          </ul>
 					        </li>
+
+					        <? 
+					        $accesoArchMuerto = $this->m_seguridad->acceso_modulo(10);
+					        if($accesoArchMuerto != 0){
+					        	?>
+					        
 					        <li class="treeview">
 					        <a href="#">
 					        	<i class="fa  fa-folder"></i>
@@ -79,6 +85,8 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 
 					          </ul>
 					        </li>
+					        <?
+					    }?>
 
 
 					</ul>

@@ -51,7 +51,10 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
-
+            <? $accesoUsr = $this->m_seguridad->acceso_modulo(1);
+                if($accesoUsr != 0){
+                  ?>
+                
               <a href="<?=base_url()?>index.php?/usuario/lista_usuarios">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                       
@@ -70,7 +73,12 @@
                     </div><!-- /.info-box -->
                  </div>
                  </a>
+                  <?}
 
+                  $accesoActivos = $this->m_seguridad->acceso_modulo(2);
+                  if ($accesoActivos != 0) {
+                    ?>
+                  
                  <a href="menuActivos">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                       
@@ -89,6 +97,41 @@
                     </div><!-- /.info-box -->
                  </div>
                  </a>
+                 <?
+               }?>
+
+               <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Mis Tickets Pendientes</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody><tr>
+                  <th ># Folio</th>
+                  <th>Incidencia</th>
+                  <th>Solicitante</th>
+                  <th >Estado</th>
+                </tr>   
+
+                <? foreach ($tPendientes as $pendiente) {
+                   $estatus = $this->m_ticket->etiqueta($pendiente->estatus); ?>
+           
+              <tr align="center" data-toggle="tooltip" data-placement="right"  title= "Solicitado desde:  ">
+
+                  <td width="70px"><?=$pendiente->folio?></td>
+                  <td><?=$pendiente->titulo?></td>
+                  <td width="250px"><?=$pendiente->usuario?></td>                
+                  <td width="100px"><a href=""><?=$estatus?></a></td> 
+                </tr>  
+                <?}?>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+         
+          </div>
+        </div>
           </section>
         </div>
 
