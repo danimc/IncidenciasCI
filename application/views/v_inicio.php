@@ -116,14 +116,14 @@
                 </tr>   
 
                 <? foreach ($tPendientes as $pendiente) {
-                   $estatus = $this->m_ticket->etiqueta($pendiente->estatus); ?>
+                   $estatus = $this->m_inicio->etiqueta($pendiente->estatus); ?>
            
-              <tr align="center" data-toggle="tooltip" data-placement="right"  title= "Solicitado desde:  ">
+              <tr  data-toggle="tooltip" data-placement="right"  title= "Solicitado desde:  ">
 
                   <td width="70px"><?=$pendiente->folio?></td>
                   <td><?=$pendiente->titulo?></td>
-                  <td width="250px"><?=$pendiente->usuario?></td>                
-                  <td width="100px"><a href=""><?=$estatus?></a></td> 
+                  <td align="center"><?=$pendiente->usuario?></td>                
+                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><span class="badge bg-red"><?=$pendiente->situacion?></span></a></td> 
                 </tr>  
                 <?}?>
               </tbody></table>

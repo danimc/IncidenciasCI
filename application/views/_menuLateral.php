@@ -47,7 +47,13 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					          		<a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="fa fa-plus"></i> Nuevo Ticket</a>
 					          	</li>
 					            <li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Mis Tickets</span></a>
+									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_abiertos"><i class="fa fa-ticket"></i> <span>Tickets Abiertos</span></a>
+								</li>
+								<li>
+									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_cerrados"><i class="fa fa-lock"></i> <span>Tickets Cerrados</span></a>
+								</li>
+								<li>
+									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Lista de Tickets</span></a>
 								</li>
 					          </ul>
 					        </li>

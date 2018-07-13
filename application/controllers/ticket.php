@@ -47,6 +47,40 @@ class Ticket extends CI_Controller {
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
+	function lista_tickets_cerrados()
+	{
+		$codigo = $this->session->userdata("codigo");
+		$rol = $this->session->userdata("rol");
+		$folio = $this->uri->segment(3);
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
+		$datos['folio'] = $folio;
+		$datos['titulo'] = "CERRADOS";
+
+				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador_cerrados();
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('listas/l_tickets_admin', $datos);
+				$this->load->view('_footer');
+
+				
+	}
+
+		function lista_tickets_abiertos()
+	{
+		$codigo = $this->session->userdata("codigo");
+		$rol = $this->session->userdata("rol");
+		$folio = $this->uri->segment(3);
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
+		$datos['folio'] = $folio;
+		$datos['titulo'] = "ATENDIENDO";
+
+				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador_abiertos();
+				$this->load->view('_encabezado');
+				$this->load->view('_menuLateral');
+				$this->load->view('listas/l_tickets_admin', $datos);
+				$this->load->view('_footer');
+				
+	}
 
 	function lista_tickets()
 	{	
@@ -56,6 +90,7 @@ class Ticket extends CI_Controller {
 		$folio = $this->uri->segment(3);
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['folio'] = $folio;
+		$datos['titulo'] = "COMPLETA";
 
 		switch ($rol) {
 			case 1:
@@ -65,6 +100,7 @@ class Ticket extends CI_Controller {
 				$this->load->view('_menuLateral');
 				$this->load->view('listas/l_tickets_admin', $datos);
 				$this->load->view('_footer');
+
 				break;
 			case 2:
 				$datos['tickets'] = $this->m_ticket->lista_tickets_usuario($codigo);

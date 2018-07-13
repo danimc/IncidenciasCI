@@ -23,7 +23,7 @@ $estados = $this->m_ticket->estatus();
     <div id="form_newsletter_result"></div>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Lista de Tickets</h3>
+        <h3 class="box-title">Lista de Tickets <?=$titulo?></h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">

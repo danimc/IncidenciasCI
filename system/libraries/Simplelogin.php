@@ -20,8 +20,10 @@ class Simplelogin
 			die(var_dump($user));
 		}
 
+		$where = "usuario ='$user' OR codigo ='$user'";
 		$this->CI->db->select("*"); 
 		$this->CI->db->where('usuario', $user);
+		$this->CI->db->or_where('codigo', $user);
 		$query = $this->CI->db->get($this->user_table);
 		
 		

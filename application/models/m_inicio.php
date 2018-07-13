@@ -29,9 +29,54 @@ class m_inicio extends CI_Model {
 				LEFT JOIN situacion_ticket est on est.id = ticket.estatus
 				LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
 				where usr_asignado = '$usr'
-				and est.id != 5";
+				and est.id != 5
+				LIMIT 10";
 
 		return $this->db->query($qry)->result();
+    }
+
+      function etiqueta($estatus)
+    {
+        if($estatus == 1){
+            $esta = '<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-ticket"></i> Abierto
+                        </button>';
+            return $esta;
+        }
+        if($estatus == 2){
+            $esta = '<button class="btn btn-xs bg-maroon" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
+                            <i class="fa fa-user-plus"></i> Asigando
+                      </button>';
+            return $esta;
+        }
+          if($estatus == 3){
+            $esta = '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> En Proceso
+                        </button>';
+            return $esta;
+        }
+          if($estatus == 4){
+            $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
+                            <i class="fa fa-check-circle"></i> Resuelto
+                        </small>';
+            return $esta;
+        }
+            if($estatus == 5){
+            $esta = '<button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
+                <i class="fa fa-lock"></i> Cerrado
+                </button>';
+            return $esta;
+        }
+           if($estatus == 6){
+            $esta = '<button class="btn btn-xs bg-black" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
+                            <i class="fa  fa-hourglass-2"></i> Pendiente
+                        </button>';
+            return $esta;
+        }
+           if($estatus == 7){
+            $esta = '<button class="btn btn-xs bg-orange" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
+                            <i class="fa  fa-random"></i> Reasignado
+                        </button>';
+            return $esta;
+        }
     }
 }
 ?>
