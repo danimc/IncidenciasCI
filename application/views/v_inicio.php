@@ -100,6 +100,26 @@
                  <?
                }?>
 
+<a href="<?=base_url()?>src/formatos/formato56.xls">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      
+                    <div class="info-box bg-red">
+                      <span class="info-box-icon"><i class="fa fa-file-excel-o"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-number">Descargar Formato</span>
+                        <!-- The progress section is optional -->
+                        <div title="porcentaje de tickets cerrados" class="progress">
+                          <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                          Descarga el formato 5.6
+                        </span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                 </div>
+                 </a>
+
+
                <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="box">
             <div class="box-header with-border">
@@ -128,10 +148,13 @@
                 <?}?>
               </tbody></table>
             </div>
+
             <!-- /.box-body -->
          
           </div>
         </div>
+          
+
           </section>
         </div>
 

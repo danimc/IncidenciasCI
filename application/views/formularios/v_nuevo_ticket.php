@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group col-md-12">
-                                <select class="form-control selectpicker" id="usrIncidente" data-live-search="true" name="usrIncidente">
+                                <select class="form-control " id="usrIncidente" data-live-search="true" name="usrIncidente">
                                     <option value="<?=$usuario->codigo?>" >
                                         <?=$usuario->usuario?>
                                     </option>

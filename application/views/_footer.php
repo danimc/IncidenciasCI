@@ -215,7 +215,9 @@
 
         <script src="<?=base_url()?>src/js/demo.js"></script>
 
-    
+        <script src="<?=base_url()?>src/js/bootstrap-select.min.js"></script>
+
+       <script src="<?=base_url()?>src/js/bootstrap-select.js"></script>
 
         <script src="<?=base_url()?>src/js/jquery.dataTables.min.js"></script>
 

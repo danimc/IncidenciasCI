@@ -185,6 +185,11 @@ class m_ticket extends CI_Model {
         $this->db->insert('h_ticket', $this);
     }
 
+    function notificacion()
+    {
+        
+    }
+
     function mensaje($folio, $mensaje, $fecha, $hora)
     {
         $this->folio = $folio;
@@ -195,6 +200,18 @@ class m_ticket extends CI_Model {
 
         $this->db->insert('h_ticket', $this);
     }
+
+   /* function noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion)
+    {
+        $this->generador = $reportante;
+        $this->ticket = $idIncidente;
+        $this->receptor = $usuarioIncidente;
+        $this->tipo = $notificacion;
+        $this->vistoR = 1;
+
+        $this->db->insert('crm.notificaciones', $this);
+
+    }*/
 
     //***********************TABLAS **********************
 

@@ -36,7 +36,7 @@ class Ticket extends CI_Controller {
 	{
 		$reportante = $_POST['codigo'];
 		$usuarioIncidente = $_POST['usrIncidente'];
-	
+	    $notificacion = 1;
 		$titulo = $_POST['incidente'];
 		$descripcion = $_POST['descripcion'];
 		$categoria = $_POST['categoria'];
@@ -44,6 +44,9 @@ class Ticket extends CI_Controller {
 
 		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus);
 		$idIncidente = $this->db->insert_id();
+
+		$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
+
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
@@ -151,6 +154,7 @@ class Ticket extends CI_Controller {
 		}else{
 			$estatus = 7;
 		}
+		  $notificacion = 2;
 		  $codigo = $this->session->userdata("codigo");	
 		  $ingeniero = $_POST['ingeniero'];
 		  $folio = $_POST['folio'];
@@ -160,6 +164,7 @@ class Ticket extends CI_Controller {
 
 		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
 		  $this->m_ticket->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
+		
 
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
