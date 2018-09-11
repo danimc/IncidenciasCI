@@ -222,9 +222,9 @@ $mensaje = '';
               <div class="icon" align="center">
                 <img src="<?=base_url()?>src/img/advertencia.png">
               </div>
-              <h3 align="center">ATENCION!</h3>
+              <h3 align="center">ATENCIÓN</h3>
               <h4 align="center">Esta a punto de cerrar un ticket de servicio.</h4>
-                <br> <small>Al cerrar un ticket de servicio se da por terminado el incidente y termina la atencion al mismo. ¿Esta seguro de 
+                <br> <small>Al cerrar un ticket de servicio se da por terminado el incidente y termina la atención al mismo. ¿Esta seguro de 
                 querer continuar?  </small>
         
                 <input type="hidden" name="folio" value="<?=$ticket->folio?>">
@@ -275,6 +275,12 @@ $mensaje = '';
 
     $("#btnCerrar").click(function(){
     var formulario = $("#frmCerrar").serializeArray();
+    var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Cerrando...";
+     // enlace.disabled='disabled';
+      document.getElementById('btnCerrar').disabled=true;
+      document.getElementById('btnCerrar').innerHTML = button;
+      //enlace.innerHTML = button;
+
     $.ajax({
       type: "POST",
       dataType: 'json',
@@ -283,6 +289,9 @@ $mensaje = '';
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
        if (respuesta.id == 1) {
+
+         var buttonClosed = "<i class='fa fa-check '></i> Exito :)";
+         document.getElementById('btnCerrar').innerHTML = buttonClosed;
 
         setTimeout('document.location.reload()',1000);
        }     
