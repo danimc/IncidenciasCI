@@ -27,7 +27,7 @@ class m_correos extends CI_Model {
 		$datos['ticket'] = $ticket;
 		$datos['saludo'] = $saludo;
 
-		$this->load->view('_head');
+		//$this->load->view('_head');
 		$msg = $this->load->view('correos/c_cerrarTicket', $datos, true);
 
 		$this->load->library('email');

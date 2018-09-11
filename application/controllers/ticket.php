@@ -45,7 +45,7 @@ class Ticket extends CI_Controller {
 		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus);
 		$idIncidente = $this->db->insert_id();
 
-		$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
+		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
 
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
@@ -229,14 +229,18 @@ class Ticket extends CI_Controller {
 		$folio = $_POST['folio'];
 		$usr = $this->session->userdata("codigo");
 		$fecha = $this->m_ticket->fecha_actual();
-		$hora = $this->m_ticket->hora_actual();
-		$msg = new \stdClass();
-		$this->m_ticket->cerrar_ticket($folio, $fecha, $hora);
-		$this->m_ticket->h_cerrar_ticket($folio, $usr, $fecha, $hora);
-			
-		$this->m_correos->correo_ticket_cerrado($folio, $fecha, $hora);	
+		$hora = $this->m_ticket->hora_actual();			
 
-		redirect('ticket/lista_tickets');
+			$this->m_ticket->cerrar_ticket($folio, $fecha, $hora);
+			$this->m_ticket->h_cerrar_ticket($folio, $usr, $fecha, $hora);			
+			$this->m_correos->correo_ticket_cerrado($folio, $fecha, $hora);	
+
+		$msg = new \stdClass();
+		$msg->id = 1;
+		$msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Ticket Cerrado Satisfactoriamente :)</p></div>';
+ 		echo json_encode($msg);
+
+	    
 
 		
 	}
@@ -273,7 +277,7 @@ class Ticket extends CI_Controller {
 		
 		$datos['ticket'] = $infoCorreo;
 		$datos['saludo'] = $saludo;		
-	    $this->load->view('_head');
+	  //  $this->load->view('_head');
 		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
 
 		$this->load->library('email');
