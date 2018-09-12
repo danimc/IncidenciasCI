@@ -120,14 +120,16 @@
                  </a>
 
 
-               <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Mis Tickets Pendientes</h3>
             </div>
             <!-- /.box-header -->
+
             <div class="box-body">
-              <table class="table table-bordered">
+               <div class="table-responsive col-md-12">
+              <table class="table table-bordered responsive">
                 <tbody><tr>
                   <th ># Folio</th>
                   <th>Incidencia</th>
@@ -147,6 +149,7 @@
                 </tr>  
                 <?}?>
               </tbody></table>
+            </div>
             </div>
 
             <!-- /.box-body -->

@@ -55,6 +55,7 @@ $mensaje = '';
                     <h4 class="box-tittle"> Información del Incidente</h4>
                   </div>
                   <div class="box-body">
+                     <div class="table-responsive col-md-12">
                     <table class="table">
                       <tr>
                         <th>Num. de Folio:</th><td><?=$ticket->folio?></td><th class="">Asignado a:
@@ -78,6 +79,7 @@ $mensaje = '';
                         <th style="vertical-align: middle;">Descripción: </th><td class="bg-danger" colspan="3"><?=$ticket->descripcion?></td>
                         </tr>
                     </table>
+                  </div>
                   </div>
                 </div>  
               </div>
