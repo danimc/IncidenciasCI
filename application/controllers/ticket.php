@@ -47,7 +47,7 @@ class Ticket extends CI_Controller {
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
 
-		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
+		//redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
 	function lista_tickets_cerrados()

@@ -38,7 +38,9 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>src/css/bootstrap3-wysihtml5.css">
 
-        <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
+        <link rel="stylesheet" href="<?=base_url()?>src/css/bootstrap-select.min.css">
+
+        
     </head>    
 
     <?php
@@ -57,23 +59,6 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         redirect('/Inicio/noaccess');
     }
     ?>
-
-    <script type="text/javascript">
-      function ejecutarAjax(){
-        var conexion;
-        conexion = new XMLHttpRequest();
-        conexion.onreadystatechange = function(){
-            if (conexion.readyState == 4 && conexion.status == 200) {
-                document.getElementById("midiv").innerHTML = conexion.responseText;
-            }
-        } 
-        
-
-        conexion.open("GET", "acciones/funcionesIndex.php/1", true);
-        conexion.send();
-    }
-
-</script>
 
 <body class="hold-transition skin-blue sidebar-mini">
          <div class="wrapper">

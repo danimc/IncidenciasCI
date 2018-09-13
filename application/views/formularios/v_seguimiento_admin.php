@@ -331,8 +331,5 @@ $mensaje = '';
       enlace.innerHTML = button;
   }
 </script>
-    <script src="<?=base_url()?>src/js/wys.js"></script>
+   
 
-  <script type="text/javascript">
-    $('#chat').wysihtml5();
-  </script>

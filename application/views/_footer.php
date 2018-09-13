@@ -201,7 +201,7 @@
    <div class="control-sidebar-bg"></div>
         </div>
         <!-- jQuery 2.2.3 -->
-        
+        <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?=base_url()?>src/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
@@ -214,14 +214,14 @@
         <script src="<?=base_url()?>src/js/Chart.min.js"></script>
 
         <script src="<?=base_url()?>src/js/demo.js"></script>
-
-        <script src="<?=base_url()?>src/js/bootstrap-select.min.js"></script>
-
+        
        <script src="<?=base_url()?>src/js/bootstrap-select.js"></script>
 
         <script src="<?=base_url()?>src/js/jquery.dataTables.min.js"></script>
 
         <script src="<?=base_url()?>src/js/dataTables.bootstrap.min.js"></script>
+
+         <script src="<?=base_url()?>src/js/wys.js"></script>
 
     </body>
 
@@ -238,5 +238,8 @@
     });
   });
 </script>
+  <script type="text/javascript">
+    $('#chat').wysihtml5();
+  </script>
 
     <html>

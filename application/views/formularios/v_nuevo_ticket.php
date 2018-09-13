@@ -1,23 +1,5 @@
 
-<script>
 
-    function activar_envio()
-    {
-       var titulo = document.getElementById('incidente').value;
-       var descripcion = document.getElementById('descripcion').value;
-       if (titulo != '' && descripcion != ''){
-        document.getElementById('btn').disabled=false;
-       }
-    }
-
-     function desactiva_enlace(enlace)
-  {  
-
-      var button = "<i class='fa fa-spinner fa-pulse fa-fw'></i> Generando Ticket de Servicio...";
-      enlace.innerHTML = button;
-        
-  }
-</script>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -49,7 +31,7 @@
                             </div>
 
                             <div class="form-group col-md-12">
-                                <select class="form-control " id="usrIncidente" data-live-search="true" name="usrIncidente">
+                                <select class="form-control selectpicker" id="usrIncidente" data-live-search="true" name="usrIncidente">
                                     <option value="<?=$usuario->codigo?>" >
                                         <?=$usuario->usuario?>
                                     </option>
@@ -77,7 +59,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <h4><i class="fa fa-box"></i>Categoria: </h4>
-                            <select name="categoria" id="categoria" class="form-control">
+                            <select name="categoria" id="categoria" class="form-control selectpicker" data-live-search="true">
                         <option >Seleccione una categoria</option>
                         <? foreach ($categorias as $cat) {?>
                                                     <option value="<?=$cat->id_cat?>"><?=$cat->categoria?></option>
@@ -92,10 +74,9 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body pad">
-                        <textarea onchange="activar_envio()" required="true" class="textarea" id="descripcion" name="descripcion" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">                         
-                        </textarea>
+                        <textarea onchange="activar_envio()" required="true" class="textarea" id="chat" name="descripcion" placeholder="Escriba aquí todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         <div class="form-group">
-                            <button disabled="true" id="btn" data-toggle="modal" data-target="#cerrar" onclick="desactiva_enlace(this)" type="submit" class="btn btn-success">
+                            <button  id="btn" data-toggle="modal" data-target="#cerrar"  type="submit" class="btn btn-success">
                                     <i class="fa fa-save"></i>
                                     Generar Ticket de Servicio</button>
                             </form>
@@ -125,3 +106,4 @@
 </div>
 <!-- /.content-wrapper -->
  
+
