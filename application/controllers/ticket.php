@@ -47,7 +47,7 @@ class Ticket extends CI_Controller {
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
 
-		//redirect('ticket/correo_ticket_levantado/'. $idIncidente);
+		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
 	function lista_tickets_cerrados()
@@ -291,7 +291,7 @@ class Ticket extends CI_Controller {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
-		redirect('ticket/lista_tickets/'. $incidente);
+		redirect('ticket/seguimiento/'. $incidente);
 
 	//	echo $this->email->print_debugger();
 

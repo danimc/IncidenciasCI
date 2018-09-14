@@ -201,7 +201,7 @@
    <div class="control-sidebar-bg"></div>
         </div>
         <!-- jQuery 2.2.3 -->
-        <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
+     
         <!-- Bootstrap 3.3.6 -->
         <script src="<?=base_url()?>src/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
@@ -229,11 +229,11 @@
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
-      "searching": true,
+      "searching": false,
       "ordering": false,
-      "info": true,
+      "info": false,
       "autoWidth": false
     });
   });
