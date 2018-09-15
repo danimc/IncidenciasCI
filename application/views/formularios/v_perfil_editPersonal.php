@@ -1,56 +1,16 @@
 
-<script>
-     function desactiva_enlace(input)
-  {
-      var contraEscrita = input.value;
-      var contraMd5 = md5(contraEscrita);
-      var contraActual = document.getElementById('contra').value;
-       if (contraMd5 == contraActual) {
-            document.getElementById('nueva').disabled=false;
-            document.getElementById('verifica').disabled=false;
-            document.getElementById('mensaje').innerHTML = null;
-
-       }
-       else{
-            var mensaje = '<div class="alert alert-warning"><p><i class="fa fa-warning"></i> Su contraseña no es la correcta</p></div>';
-
-            document.getElementById('nueva').disabled=true;
-            document.getElementById('verifica').disabled=true;
-            document.getElementById('mensaje').innerHTML = mensaje;
-       } 
-    
-  }
-
-  function verifica_contra()
-  {
-    var contraNueva = document.getElementById('nueva').value;
-    var verifica    = document.getElementById('verifica').value;
-    if (verifica != '') {
-        if (contraNueva == verifica) {
-            var mensaje = '<div class="alert alert-success"><p><i class="fa fa-success"></i> Correcto</p></div>';
-            document.getElementById('mensaje').innerHTML = mensaje;
-            document.getElementById('cambiarPass').disabled = false;
-        }
-        else{
-            var mensaje = '<div align="center" class="alert alert-danger"><p><i class="fa fa-error"></i> Las contraseñas no coinciden</p></div>';
-            document.getElementById('mensaje').innerHTML = mensaje;
-            document.getElementById('cambiarPass').disabled = true;
-        }
-    }
-  }
-</script>
-
  <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Perfil
-                        <small>De usuario</small>
+                        Editar
+                        <small>Perfil de usuario | Datos de Personal</small>
                     </h1><br>
                     <ol class="breadcrumb">
                         <li><a href="/index"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li>Perfil</li>
+                        <li>editar</li>
                     </ol>
                 </section>
 
@@ -58,7 +18,7 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="box box-widget widget-user">
+                           <div class="box box-widget widget-user">
                                 <div class="widget-user-header bg-aqua-active">
                                     <h3 class="widget-user-username"><?=$usuario->nombre?></h3>
                                     <h5 class="widget-user-desc"><?=$usuario->nom_dependencia?></h5>
@@ -90,61 +50,53 @@
                                 </div>
 
                             </div>
- <?
-                                if ($this->uri->segment(3) == 'e') {?>
-                                    <div align="center" class="alert alert-success"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
-                                <?}
-                            ?>
+
                         </div>
-
-
+                        <form method="POST" action="<?=base_url()?>index.php?/usuario/editar_datos_personal" >
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
-                                    <h3 class="box-tittle"> Información de Usuario</h3>
+                                    
+                                    <h3 class="box-tittle"> Editar Información de Personal</h3>
 
                                 </div>
 
                                 <div class="box-body">
-                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong><?=$usuario->nombre?> </h4>
+                                    <h4><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong></h4> 
+                                        <select name="situacion" class="form-control selectpicker">
+                                            <option value="<?=$usuario->estatus?>"><?=$usuario->situacion?></option>
+                                            <?foreach ($situaciones as $situacion) {?>
+                                                <option value="<?=$situacion->id?>">
+                                                    <?=$situacion->situacion?>
+                                                </option>                                                
+                                           <? }?>    
+                                        </select> 
+                           
+                                     <h4><strong><i class="fa fa-black-tie margin-r-5"></i> Plaza: </strong></h4> 
+                                        <select name="plaza" class="form-control selectpicker">
+                                            <option value="<?=$usuario->estatus?>"><?=$usuario->puesto?></option>
+                                            <?foreach ($plazas as $plaza) {?>
+                                                <option value="<?=$plaza->id?>">
+                                                    <?=$plaza->puesto?>
+                                                </option>                                                
+                                           <? }?>    
+                                        </select> 
+                                         <h4><strong><i class="fa fa-black-tie margin-r-5"></i> Rol de Usuario: </strong></h4> 
+                                        <select name="rol" class="form-control selectpicker">
+                                            <option value="<?=$usuario->estatus?>"><?=$usuario->rol?></option>
+                                            <?foreach ($roles as $rol) {?>
+                                                <option value="<?=$rol->id_rol?>">
+                                                    <?=$rol->rol?>
+                                                </option>                                                
+                                           <? }?>    
+                                        </select> 
+                                        <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
                                     <hr>
-                                    <h4><strong><i class="fa  fa-star margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong> <?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-phone margin-r-5"></i>Extension: </strong><?=$usuario->extension?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-envelope margin-r-5"></i> Correo: </strong><?=$usuario->correo?></h4>
-                                    <hr>
-                                    <a href="#" data-toggle="modal" data-target="#myModal""><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
-                                    <h4><strong><i class="fa fa-lock margin-r-5"></i> Contraseña: </strong>*******</h4>
-
-
+                                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
                                 </div>
-                            </div>
+                            </div>                               
                         </div>
-
-                        <!-- sección 2 -->
-                        <div class="col-md-6">
-                            <div class="box ">
-                                <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar_info_personal/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
-                                    <h3 class="box-tittle"> Datos de Personal:</h3>                                   
-                                </div>
-
-                                <div class="box-body">
-                                   <h4><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong><?=$usuario->situacion?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-black-tie margin-r-5"></i> Plaza: </strong><?=$usuario->puesto?> </h4>
-                                    <hr>                                   
-                                    <h4><strong><i class="fa  fa-exclamation-circle  margin-r-5"></i> Puesto: </strong> No hay información actual </h4>
-                                     <hr>                                   
-                                    <h4><strong><i class="fa   fa-hand-o-right  margin-r-5"></i> Rol de Usuario: </strong> <?=$usuario->rol?> </h4>                                     
-                                </div>
-                             </div>
-                        </div>
-
+                        </form>
                     </div>
 
                 </section>

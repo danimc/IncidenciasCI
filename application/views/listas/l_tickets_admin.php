@@ -19,7 +19,7 @@ $estados = $this->m_ticket->estatus();
   <section class="content">
     <a href="/oagmvc" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
     <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-app bg-green"><span class="fa fa-plus"></span>Nuevo Ticket</a>
-    <a href="menuTickets?asignado=true" class="btn btn-app bg-orange"><span class="fa fa-search"></span>Mis Asignados</a>			   
+   		   
     <div id="form_newsletter_result"></div>
     <div class="box">
       <div class="box-header">

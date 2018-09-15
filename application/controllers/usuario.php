@@ -17,6 +17,11 @@ class Usuario extends CI_Controller {
 
 	}
 
+	function nuevo_usuario()
+	{
+
+	}
+
 	function perfil()
 	{	
 		$editar = $this->uri->segment(3);
@@ -65,6 +70,40 @@ class Usuario extends CI_Controller {
 		$this->load->view('_menuLateral');
 		$this->load->view('formularios/v_perfil_edit', $datos);
 		$this->load->view('_footer');
+	}
+
+	function editar_info_personal()
+	{
+		$editar = $this->uri->segment(3);
+
+		if($editar != ''){
+			$codigo = $editar;
+		}
+		else{
+			$codigo = $this->session->userdata("codigo");
+		}
+
+		
+		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
+		$datos['situaciones'] = $this->m_usuario->obt_situacion_usuarios();
+		$datos['plazas'] = $this->m_usuario->obt_plazas();
+		$datos['roles'] = $this->m_usuario->obt_roles();
+		$this->load->view('_encabezado');
+		$this->load->view('_menuLateral');
+		$this->load->view('formularios/v_perfil_editPersonal', $datos);
+		$this->load->view('_footer');
+	}
+
+	function editar_datos_personal()
+	{
+		$codigo			= $_POST['codigo'];
+		$situacion	= $_POST['situacion'];	  
+		$plaza		= $_POST['plaza'];
+		$rol		= $_POST['rol'];
+
+		$this->m_usuario->editar_datos_personal($situacion, $plaza, $rol, $codigo);
+
+		redirect('usuario/perfil/'. $codigo);
 	}
 
 	function editar_usuario()

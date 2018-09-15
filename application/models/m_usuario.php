@@ -43,9 +43,11 @@ class m_usuario extends CI_Model {
                 , dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
                 , foto
-                , rol
-                ,p.puesto
-                ,e.situacion
+                , usuario.rol as id_rol
+                , rol.rol
+                , p.puesto
+                , e.situacion
+                , estatus
                 , extension
                 , correo
                 , password
@@ -53,9 +55,11 @@ class m_usuario extends CI_Model {
                 INNER JOIN dependencias
                 INNER JOIN crm.puesto_usr p
                 INNER JOIN situacion_usuarios e
+                INNER JOIN rol
                 WHERE usuario.dependencia = dependencias.id_dependencia
                 AND usuario.puesto = p.id
                 AND usuario.estatus = e.id
+                AND rol.id_rol = usuario.rol
                 AND codigo = '$usr'";
     	
     	return $this->db->query($qry)->row();
@@ -69,6 +73,21 @@ class m_usuario extends CI_Model {
     function obt_dependencias()
     {
         return $this->db->get('dependencias')->result();
+    }
+
+    function obt_situacion_usuarios()
+    {
+        return $this->db->get('situacion_usuarios')->result();
+    }
+
+    function obt_plazas()
+    {
+        return $this->db->get('puesto_usr')->result();
+    }
+
+    function obt_roles()
+    {
+        return $this->db->get('rol')->result();
     }
 
     function cambiar_contra($usuario, $contraMd5)
@@ -86,6 +105,17 @@ class m_usuario extends CI_Model {
         $this->db->set('dependencia', $dependencia);
         $this->db->set('extension', $extension);
         $this->db->set('correo', $correo);
+        $this->db->where('codigo', $codigo);
+
+        $this->db->update('usuario');
+    }
+
+    function editar_datos_personal($situacion, $plaza, $rol, $codigo)
+    {
+        $this->db->set('puesto', $plaza);
+        $this->db->set('estatus', $situacion);
+        $this->db->set('rol', $rol);
+
         $this->db->where('codigo', $codigo);
 
         $this->db->update('usuario');
