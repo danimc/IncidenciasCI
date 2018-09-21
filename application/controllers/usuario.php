@@ -33,6 +33,8 @@ class Usuario extends CI_Controller {
 			$codigo = $this->session->userdata("codigo");
 		}
 		
+		$datos['ticketR'] = $this->m_usuario->obt_tickets_reportados($codigo);
+		$datos['rol'] = $this->session->userdata("rol");
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);	
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');

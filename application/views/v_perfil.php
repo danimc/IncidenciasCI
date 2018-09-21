@@ -70,7 +70,7 @@
                                     <div class="row">
                                         <div class="col-sm-4 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header"> 1</h5>
+                                                <h5 class="description-header"><?=$ticketR?></h5>
                                                 <span class="description-text"> Tickets Reportados</span>
                                             </div>
                                         </div>
@@ -129,7 +129,11 @@
                         <div class="col-md-6">
                             <div class="box ">
                                 <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar_info_personal/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
+                                    <? if($rol == 1) {?>
+                                    <a href="<?=base_url()?>index.php?/usuario/editar_info_personal/<?=$usuario->codigo?>" class="btn btn-default pull-right">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <?}?>
                                     <h3 class="box-tittle"> Datos de Personal:</h3>                                   
                                 </div>
 

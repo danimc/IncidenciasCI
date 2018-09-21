@@ -16,6 +16,7 @@ class Inicio extends CI_Controller {
 		$codigo = $this->session->userdata("codigo");	
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_sis($codigo);
+		$datos['tGeneral'] = $this->m_inicio->tickets_pendientes_general();
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');

@@ -110,6 +110,13 @@ class m_usuario extends CI_Model {
         $this->db->update('usuario');
     }
 
+    function obt_tickets_reportados($codigo)
+    {
+        $this->db->where('usr_incidente', $codigo);
+
+       return $this->db->get('ticket')->num_rows();
+    }
+
     function editar_datos_personal($situacion, $plaza, $rol, $codigo)
     {
         $this->db->set('puesto', $plaza);

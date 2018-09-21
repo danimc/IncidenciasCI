@@ -156,6 +156,41 @@
          
           </div>
         </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tickes Abiertos</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+               <div class="table-responsive col-md-12">
+              <table class="table table-bordered responsive">
+                <tbody><tr>
+                  <th ># Folio</th>
+                  <th>Incidencia</th>
+                  <th >Estado</th>
+                </tr>   
+
+                <? foreach ($tGeneral as $pendiente) {
+                   $estatus = $this->m_inicio->etiqueta($pendiente->estatus); ?>
+           
+              <tr  data-toggle="tooltip" data-placement="right"  title= "Solicitado desde:  ">
+
+                  <td width="70px"><?=$pendiente->folio?></td>
+                  <td><?=$pendiente->titulo?></td>          
+                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><span class="badge bg-red"><?=$pendiente->situacion?></span></a></td> 
+                </tr>  
+                <?}?>
+              </tbody></table>
+            </div>
+            </div>
+
+            <!-- /.box-body -->
+         
+          </div>
+        </div>
           
 
           </section>
