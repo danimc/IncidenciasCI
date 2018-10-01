@@ -51,6 +51,7 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
+
             <? $accesoUsr = $this->m_seguridad->acceso_modulo(1);
                 if($accesoUsr != 0){
                   ?>
@@ -156,8 +157,9 @@
          
           </div>
         </div>
-
-                <div class="col-md-6 col-sm-6 col-xs-12 ">
+        <?if ($usuario->id_rol == 1 ) {?>
+     
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Tickes Abiertos</h3>
@@ -191,7 +193,8 @@
          
           </div>
         </div>
-          
+            
+       <? }?>
 
           </section>
         </div>
