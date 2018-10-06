@@ -48,7 +48,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					          	</li>
 
 					          	<?
-					          		if( $usuario->rol == 1 )
+					          		if( $usuario->id_rol == 1 )
 					          		{
 					          	 ?>
 
@@ -67,6 +67,13 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 								</li>
 					          </ul>
 					        </li>
+					   			  <? $accesoUsr = $this->m_seguridad->acceso_modulo(1);
+
+				              	  if($accesoUsr != 0){ ?>
+							    <li class=>
+									<a href="<?=base_url()?>index.php?/usuario/lista_usuarios"><i class="fa fa-user"></i> <span>Ctrl de Usuarios</span></a>
+								</li>
+								<?}?>
 
 					        <? 
 					        $accesoArchMuerto = $this->m_seguridad->acceso_modulo(10);

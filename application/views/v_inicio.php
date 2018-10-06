@@ -146,7 +146,9 @@
                   <td width="70px"><?=$pendiente->folio?></td>
                   <td><?=$pendiente->titulo?></td>
                   <td align="center"><?=$pendiente->usuario?></td>                
-                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><span class="badge bg-red"><?=$pendiente->situacion?></span></a></td> 
+                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">
+                    <?=$estatus?></a>
+                  </td> 
                 </tr>  
                 <?}?>
               </tbody></table>
@@ -182,7 +184,7 @@
 
                   <td width="70px"><?=$pendiente->folio?></td>
                   <td><?=$pendiente->titulo?></td>          
-                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><span class="badge bg-red"><?=$pendiente->situacion?></span></a></td> 
+                  <td width="150px" align="center"><a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><?=$estatus?></a></td> 
                 </tr>  
                 <?}?>
               </tbody></table>
