@@ -25,6 +25,15 @@ class Inicio extends CI_Controller {
 	
 	}
 
+	function descargar_formatos()
+	{
+		$codigo = $this->session->userdata("codigo");	
+		$this->load->view('_encabezado');
+		$this->load->view('_menuLateral');
+		$this->load->view('v_descargaFormatos');
+		$this->load->view('_footer');	
+	}
+
 
 	public function noaccess()
 	{

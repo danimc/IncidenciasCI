@@ -101,19 +101,19 @@
                  <?
                }?>
 
-<a href="<?=base_url()?>src/formatos/formato56.xls">
+<a href="<?=base_url()?>index.php?/inicio/descargar_formatos">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                       
                     <div class="info-box bg-red">
                       <span class="info-box-icon"><i class="fa fa-file-excel-o"></i></span>
                       <div class="info-box-content">
-                        <span class="info-box-number">Descargar Formato</span>
+                        <span class="info-box-number">Descargar Formatos</span>
                         <!-- The progress section is optional -->
                         <div title="porcentaje de tickets cerrados" class="progress">
-                          <div class="progress-bar" style="width: 70%"></div>
+                          <div class="progress-bar" style="width: 100%"></div>
                         </div>
                         <span class="progress-description">
-                          Descarga el formato 5.6
+                          formatos de Entrega-Recepción
                         </span>
                       </div><!-- /.info-box-content -->
                     </div><!-- /.info-box -->

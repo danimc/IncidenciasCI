@@ -83,7 +83,7 @@ class m_inicio extends CI_Model {
           if($estatus == 4){
             $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
                             <i class="fa fa-check-circle"></i> Resuelto
-                        </small>';
+                        </button>';
             return $esta;
         }
             if($estatus == 5){
