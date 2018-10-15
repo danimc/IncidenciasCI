@@ -57,6 +57,7 @@ class m_inicio extends CI_Model {
                 LEFT JOIN situacion_ticket est on est.id = ticket.estatus
                 LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
                 where est.id != 5
+                ORDER BY folio DESC
                 LIMIT 10";
 
         return $this->db->query($qry)->result();
