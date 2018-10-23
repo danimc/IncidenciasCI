@@ -30,7 +30,7 @@ class m_inicio extends CI_Model {
 				LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
 				where usr_asignado = '$usr'
 				and est.id != 5
-				LIMIT 5";
+				LIMIT 10";
 
 		return $this->db->query($qry)->result();
     }
