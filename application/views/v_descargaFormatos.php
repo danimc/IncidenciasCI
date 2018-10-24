@@ -29,7 +29,7 @@
                     <a href="<?=base_url()?>src/formatos/formato53.xls" class="mailbox-attachment-name"></i> Formato 5.3</a>
                         <span class="mailbox-attachment-size">
                           25.0 KB
-                          <a href="<?=base_url()?>src/formatos/formato56.xls" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="<?=base_url()?>src/formatos/formato53.xls" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
                   </div>
                 </li>
@@ -46,7 +46,7 @@
                   </div>
                 </li>
                 <li>
-                   <a href="<?=base_url()?>src/formatos/formato57.xls"
+                   <!--<a href="<?=base_url()?>src/formatos/formato57.xls"
                   <span class="mailbox-attachment-icon bg-green"><i class="fa fa-file-excel-o"></i></span>
                 </a>
                   <div class="mailbox-attachment-info">
@@ -56,7 +56,7 @@
                           <a href="<?=base_url()?>src/formatos/formato57.xls" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
                   </div>
-                </li>
+                </li>-->
                
               </ul>
             </div>
