@@ -530,10 +530,9 @@ class m_ticket extends CI_Model {
         return $asig;
     }
 
-    function timeline($mensaje)
-    {
-        $contadorfecha = 0;
-        if ($contadorfecha != $mensaje->fecha)
+    function timeline($mensaje, $fecha)
+    {        
+        if ($fecha != 1)
             {
                 $fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
               ?>
