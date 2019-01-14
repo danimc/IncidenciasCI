@@ -18,6 +18,7 @@
         <form enctype="multipart/form-data" role="form" action="<?base_url()?>index.php?/ticket/levantar_incidente" method="post" id="form_newsletter">
     <!-- Main content -->
     <section class="content">
+        <div class="row">
         
             <div class="col-md-4">
                 <div class="box box-primary">
@@ -83,7 +84,7 @@
                             <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
                             
                         </div>
-
+</div>
 </section>
 
 

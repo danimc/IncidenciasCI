@@ -13,6 +13,7 @@
 
           <!-- Main content -->
     <section class="content">
+      <div class="row">
             <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket">
               <div class="col-md-3 col-sm-6 col-xs-12">           
                 <div class="info-box bg-orange-active">
@@ -197,7 +198,7 @@
         </div>
             
        <? }?>
-
+</div>
           </section>
         </div>
 
