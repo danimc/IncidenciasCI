@@ -13,10 +13,17 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		$codigo = $this->session->userdata("codigo");	
-		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
-		$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_sis($codigo);
+		$codigo = $this->session->userdata("codigo");
+		$usuario = $this->m_usuario->obt_usuario($codigo);	
+		$datos['usuario'] = $usuario;
 		$datos['tGeneral'] = $this->m_inicio->tickets_pendientes_general();
+
+		if ( $usuario->id_rol == 1) {
+			$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_sis($codigo);
+		}
+		else {
+			$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_usr($codigo);
+		}	
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
