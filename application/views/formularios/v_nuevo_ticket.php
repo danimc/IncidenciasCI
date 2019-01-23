@@ -84,7 +84,7 @@
                             <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
                             
                         </div>
-</div>
+                    </div>
 </section>
 
 
