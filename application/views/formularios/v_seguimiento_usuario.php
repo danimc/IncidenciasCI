@@ -78,10 +78,18 @@ $mensaje = '';
                   <h2>Seguimiento del Ticket</h2>
                 </div>
                 <div class=" box-body">
-              <ul class="timeline"> <?php 
-
+              <ul class="timeline"> 
+              <?php 
+                $contadorfecha = '';
               foreach ($seguimiento as $time){
-                    $mensaje = $this->m_ticket->timeline($time);               
+                if ($time->fecha != $contadorfecha ) {
+                  $contadorfecha = $time->fecha;
+                  $fecha = $contadorfecha;
+                }
+                else{
+                  $fecha = 1;
+                }
+                    $mensaje = $this->m_ticket->timeline($time, $fecha);               
                     } ?>
 
                     <?=$mensaje?>
