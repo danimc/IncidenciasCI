@@ -7,6 +7,21 @@ class m_inicio extends CI_Model {
         parent::__construct();
     }
 
+    function obt_contador_total()
+    {
+        return $this->db->get('ticket')->num_rows();
+    }
+    function obt_contador_cerrados()
+    {
+        $this->db->where('estatus', 5);
+        return $this->db->get('ticket')->num_rows();
+    }
+        function obt_contador_abiertos()
+    {
+        $this->db->where('estatus !=', 5);
+        return $this->db->get('ticket')->num_rows();
+    }
+
     function tickets_pendientes_sis($usr)
     {
     	$qry = "";
@@ -23,6 +38,7 @@ class m_inicio extends CI_Model {
 				,hora_asignado
 				,asignado.usuario usr_asignado
 				,ticket.estatus
+                ,ticket.descripcion
 				from ticket
 				LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
 				LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
@@ -95,43 +111,31 @@ class m_inicio extends CI_Model {
       function etiqueta($estatus)
     {
         if($estatus == 1){
-            $esta = '<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-ticket"></i> Abierto
-                        </button>';
+            $esta = ' <span class="badge badge-primary badge-pill mb-2"><i class="fa fa-ticket"></i> Abierto</span>';
             return $esta;
         }
         if($estatus == 2){
-            $esta = '<button class="btn btn-xs bg-maroon" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
-                            <i class="fa fa-user-plus"></i> Asigando
-                      </button>';
+            $esta = ' <span class="badge badge-pink badge-pill mb-2"><i class="fa fa-user-plus"></i> Asignado</span>';
             return $esta;
         }
           if($estatus == 3){
-            $esta = '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> <i class="fa fa-spinner"></i> En Proceso
-                        </button>';
+            $esta = ' <span class="badge badge-info badge-pill mb-2"><i class="fa fa-spinner"></i> En Proceso</span>';
             return $esta;
         }
           if($estatus == 4){
-            $esta = '<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
-                            <i class="fa fa-check-circle"></i> Resuelto
-                        </button>';
+            $esta = ' <span class="badge badge-success badge-pill mb-2"><i class="fa fa-check-circle"></i> Resuelto</span>';
             return $esta;
         }
             if($estatus == 5){
-            $esta = '<button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
-                <i class="fa fa-lock"></i> Cerrado
-                </button>';
+            $esta = ' <span class="badge badge-danger badge-pill mb-2"><i class="fa fa-lock"></i> Cerrado</span>';
             return $esta;
         }
            if($estatus == 6){
-            $esta = '<button class="btn btn-xs bg-black" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status"> 
-                            <i class="fa  fa-hourglass-2"></i> Pendiente
-                        </button>';
+            $esta = ' <span class="badge badge-secondary badge-pill mb-2"><i class="fa  fa-hourglass-2"></i> Pendiente</span>';
             return $esta;
         }
            if($estatus == 7){
-            $esta = '<button class="btn btn-xs bg-orange" data-toggle="modal" data-target="#modalStatus" title="Cambiar Status">
-                            <i class="fa  fa-random"></i> Reasignado
-                        </button>';
+            $esta = ' <span class="badge badge-warning badge-pill mb-2"><i class="fa  fa-random"></i> Reasignado</span>';
             return $esta;
         }
     }

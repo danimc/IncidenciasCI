@@ -16,6 +16,9 @@ class Inicio extends CI_Controller {
 		$codigo = $this->session->userdata("codigo");
 		$usuario = $this->m_usuario->obt_usuario($codigo);	
 		$datos['usuario'] = $usuario;
+		$datos['total'] = $this->m_inicio->obt_contador_total();
+		$datos['cerrados'] = $this->m_inicio->obt_contador_cerrados();
+		$datos['abiertos'] = $this->m_inicio->obt_contador_abiertos(); 
 		$datos['tGeneral'] = $this->m_inicio->tickets_pendientes_general();
 
 		if ( $usuario->id_rol == 1) {
@@ -25,10 +28,10 @@ class Inicio extends CI_Controller {
 			$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_usr($codigo);
 		}	
 
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('v_inicio', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	
 	}
 
