@@ -153,7 +153,9 @@ $pieAbiertos = $abiertos/$total * 100;
                                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 470px;">
                                   <ul class="media-list media-list-divider scroller mr-2" data-height="470px" style="overflow: hidden; width: auto; height: 470px;">
         <?  foreach ($tPendientes as $pendiente) {
-            $estatus = $this->m_inicio->etiqueta($pendiente->estatus); 
+            $estatus = $this->m_inicio->etiqueta($pendiente->estatus);
+            $datetime = $pendiente->fecha_inicio . ' ' . $pendiente->hora_inicio;
+            $hora = $this->m_ticket->fecha_text($datetime); 
             ?>
                                     <li class="media">
                                         <div class="media-body d-flex">
@@ -165,7 +167,7 @@ $pieAbiertos = $abiertos/$total * 100;
                                                 <div class="d-flex align-items-center font-13">
                                                     <img class="img-circle mr-2" src="<?=base_url()?>src/img/usr/team.png" alt="" width="22">
                                                     <a class="mr-2 text-success" href="javascript:;"><?=$pendiente->usuario?></a>
-                                                    <span class="text-muted">18 mins ago</span>
+                                                    <span class="text-muted"><?=$hora?></span>
                                                 </div>
                                             </div>
                                             <div class="text-right" style="width:100px;">

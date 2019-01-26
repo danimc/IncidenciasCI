@@ -9,6 +9,7 @@ class Inicio extends CI_Controller {
 		$this->load->model('m_seguridad',"",TRUE);
 		$this->load->model('m_usuario',"",TRUE);
 		$this->load->model('m_inicio',"",TRUE);
+		$this->load->model('m_ticket',"",TRUE);
 	}
 
 	public function index()

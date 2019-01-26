@@ -46,7 +46,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					{
 		?>
 							                      <li>
-                        <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="sidebar-item-icon ti-user"></i>
+                        <a href="<?=base_url()?>index.php?/usuario/lista_usuarios"><i class="sidebar-item-icon ti-user"></i>
                             <span class="nav-label">Ctrl Usuarios</span></a>
                     </li>
 		<?
