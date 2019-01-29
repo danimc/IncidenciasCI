@@ -16,6 +16,9 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                         <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="sidebar-item-icon ti-ticket"></i>
                             <span class="nav-label">Nuevo Ticket</span></a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="sidebar-item-icon fa fa-barcode"></i> <span>Lista de Tickets</span></a>
+                    </li>
                             <?
 			if( $usuario->id_rol == 1 )
 			{
@@ -30,17 +33,12 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 								</li>
 								<li>
 									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_cerrados"><i class="sidebar-item-icon fa fa-lock"></i> <span>Tickets Cerrados</span></a>
-								</li>
-								<li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="sidebar-item-icon fa fa-barcode"></i> <span>Lista de Tickets</span></a>
-								</li>
+								</li>								
                         </ul>
                     </li>
-
-
-
-        <?
-				}		
+                    <?
+				}
+                
 				$accesoUsr = $this->m_seguridad->acceso_modulo(1);
 				if($accesoUsr != 0)
 					{

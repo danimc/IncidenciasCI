@@ -60,10 +60,10 @@ class Ticket extends CI_Controller {
 		$datos['titulo'] = "CERRADOS";
 
 				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador_cerrados();
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
+				$this->load->view('_encabezado1');
+				$this->load->view('_menuLateral1');
 				$this->load->view('listas/l_tickets_admin', $datos);
-				$this->load->view('_footer');
+				$this->load->view('_footer1');
 
 				
 	}
@@ -78,10 +78,10 @@ class Ticket extends CI_Controller {
 		$datos['titulo'] = "ATENDIENDO";
 
 				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador_abiertos();
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
+				$this->load->view('_encabezado1');
+				$this->load->view('_menuLateral1');
 				$this->load->view('listas/l_tickets_admin', $datos);
-				$this->load->view('_footer');
+				$this->load->view('_footer1');
 				
 	}
 
@@ -99,21 +99,18 @@ class Ticket extends CI_Controller {
 			case 1:
 				
 				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador();
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
+				$this->load->view('_encabezado1');
+				$this->load->view('_menuLateral1');
 				$this->load->view('listas/l_tickets_admin', $datos);
-				$this->load->view('_footer');
+				$this->load->view('_footer1');
 
 				break;
 			case 2:
 				$datos['tickets'] = $this->m_ticket->lista_tickets_usuario($codigo);
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
+				$this->load->view('_encabezado1');
+				$this->load->view('_menuLateral1');
 				$this->load->view('listas/l_tickets_usuarios', $datos);
-				$this->load->view('_footer');
-				break;
-			default:
-					echo "no tienes autorizado ingresar a esta sección";
+				$this->load->view('_footer1');
 				break;
 		}		
 	}

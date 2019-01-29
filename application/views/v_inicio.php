@@ -9,6 +9,9 @@ $pieAbiertos = $abiertos/$total * 100;
 
           <!-- Main content -->
     <section class="page-content fade-in-up">
+    <? if( $usuario->id_rol == 1 )  {
+    ?> 
+    
       <div class="row mb-4">
                     <div class="col-lg-4 col-md-6 ">
                         <div class="card mb-4 ">
@@ -50,6 +53,9 @@ $pieAbiertos = $abiertos/$total * 100;
                         </div>
                     </div>
                 </div>
+         <?
+               }
+         ?>
 <!-- BOTONES DE ACCION -->
     <div class="row">
         

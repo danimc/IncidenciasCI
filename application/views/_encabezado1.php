@@ -31,6 +31,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <link href="<?=base_url()?>src/assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
     <link href="<?=base_url()?>src/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="<?=base_url()?>src/assets/vendors/dataTables/datatables.min.css" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="<?=base_url()?>src/assets/css/main.min.css" rel="stylesheet" />
 
@@ -58,7 +59,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <div class="page-wrapper">
         <header class="header">
             <div class="page-brand">
-                <a href="index-2.html">
+                <a href="/oagmvc">
                     <span class="brand">sistematización</span>
                     <span class="brand-mini">OAG</span>
                 </a>
