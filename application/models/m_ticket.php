@@ -477,31 +477,31 @@ class m_ticket extends CI_Model {
               function etiqueta($estatus)
     {
         if($estatus == 1){
-            $esta = ' <span class="badge badge-primary badge-pill mb-2"><i class="fa fa-ticket"></i> Abierto</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-primary badge-pill mb-2"><i class="fa fa-ticket"></i> Abierto</span>';
             return $esta;
         }
         if($estatus == 2){
-            $esta = ' <span class="badge badge-pink badge-pill mb-2"><i class="fa fa-user-plus"></i> Asignado</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-pink badge-pill mb-2"><i class="fa fa-user-plus"></i> Asignado</span>';
             return $esta;
         }
           if($estatus == 3){
-            $esta = ' <span class="badge badge-info badge-pill mb-2"><i class="fa fa-spinner"></i> En Proceso</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-info badge-pill mb-2"><i class="fa fa-spinner"></i> En Proceso</span>';
             return $esta;
         }
           if($estatus == 4){
-            $esta = ' <span class="badge badge-success badge-pill mb-2"><i class="fa fa-check-circle"></i> Resuelto</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-success badge-pill mb-2"><i class="fa fa-check-circle"></i> Resuelto</span>';
             return $esta;
         }
             if($estatus == 5){
-            $esta = ' <span class="badge badge-danger badge-pill mb-2"><i class="fa fa-lock"></i> Cerrado</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-danger badge-pill mb-2"><i class="fa fa-lock"></i> Cerrado</span>';
             return $esta;
         }
            if($estatus == 6){
-            $esta = ' <span class="badge badge-secondary badge-pill mb-2"><i class="fa  fa-hourglass-2"></i> Pendiente</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-secondary badge-pill mb-2"><i class="fa  fa-hourglass-2" ></i> Pendiente</span>';
             return $esta;
         }
            if($estatus == 7){
-            $esta = ' <span class="badge badge-warning badge-pill mb-2"><i class="fa  fa-random"></i> Reasignado</span>';
+            $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-warning badge-pill mb-2"><i class="fa  fa-random"></i> Reasignado</span>';
             return $esta;
         }
     }
@@ -509,7 +509,7 @@ class m_ticket extends CI_Model {
     function asignados($id)
     {
         if ($id == '') {
-            $asig = '<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Asignar</button>';
+            $asig = '<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalStatus"><i class="fa fa-plus"></i> Asignar</button>';
         }
         else{
             $asig = '<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal" title="Reasignar Ingeniero"><i class="fa fa-exchange "></i> </button>';
