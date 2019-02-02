@@ -1,92 +1,122 @@
 
 
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Nuevo
-            <small>Ticket de Servicio</small>
-        </h1><br>
-        <ol class="breadcrumb">
-            <li><a href="/index"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>Nuevo Ticket</li>
-        </ol>
-    </section>
+ <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+ <div class="page-heading">
+                <h1 class="page-title">Registrar Nuevo Ticket de Servicio:</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="index-2.html"><i class="la la-home font-20"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">Tickets</li>
+                    <li class="breadcrumb-item">Nuevo Ticket</li>
+                </ol>
+                <br>
+    </div>
 
         <form enctype="multipart/form-data" role="form" action="<?base_url()?>index.php?/ticket/levantar_incidente" method="post" id="form_newsletter">
     <!-- Main content -->
-    <section class="content">
+ <section class="page-content fade-in-up">
         <div class="row">
-        
-            <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-tittle"> Detalles del Reportante </h3>
+            <div class="col-md-6">
+                <div class="ibox ibox-fullheight">
+                    <div class="ibox-head">
+                        <div class="ibox-title">Datos del Reportante</div>
                     </div>
-                    <div class="box-body">    
-                        <input type="hidden" id="codigo" name="codigo" value="<?=$usuario->usuario ?>">
-                            <div class="form-group ">
-                                <h4><strong><i class="fa fa-vcard margin-r-5"></i>¿Que usuario presenta el incidente?: </strong></h4>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <select class="form-control selectpicker" id="usrIncidente" data-live-search="true" name="usrIncidente">
-                                    <option value="<?=$usuario->codigo?>" >
-                                        <?=$usuario->usuario?>
-                                    </option>
-                                <? foreach ($reportante as $repo) {?>
-                                    <option value="<?=$repo->codigo?>">
-                                        <?=$repo->usuario?>
-                                    </option>
-                                              <?  }?>
-                                 </select>
+                    <div class="ibox-body">
+                        <div class="row">
+                            <div class="form-group mb-4 ">
+                                <label class="col-sm-12 col-form-label">Usuario: </label>
+                                <div class="col-sm-12">
+                                    <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
+                                    <select class="form-control selectpicker col-sm-12" id="usrIncidente" data-live-search="true" name="usrIncidente">
+                                        <option value="<?=$usuario->codigo?>" >
+                                            <?=$usuario->usuario?>
+                                        </option>
+                                    <? foreach ($reportante as $repo) {?>
+                                        <option value="<?=$repo->codigo?>">
+                                            <?=$repo->usuario?>
+                                        </option>
+                                    <?  } ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-         
+            </div>
 
-            <div class="col-md-11">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-tittle"> </h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="form-group col-md-4">
-                            <h4><i class="fa fa-box"></i>Descripcion corta del Incidente</h4>
-                            <input required="" class="form-control" type="text" name="incidente" id="incidente" onchange="activar_envio()" placeholder="Ejemplo: mi pc no enciende">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <h4><i class="fa fa-box"></i>Categoria: </h4>
-                            <select name="categoria" id="categoria" class="form-control selectpicker" data-live-search="true">
+            <div class="col-md-10">
+                <div class="ibox ibox-fullheight">
+                    <div class="ibox-body">
+                        <div class="row">
+                            <div class="form-group mb-4 col-sm-5">
+                                <label class="col-sm-12 col-form-label">Descripcion del Incidente: </label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" name="incidente" type="text" placeholder="Ej. Problema con Word ">
+                                </div>
+                            </div>
+                            <div class="form-group mb-4 col-sm-4 ">
+                                <label class="col-sm-12 col-form-label">Categoria: </label>
+                                <div class="col-sm-12">
+                                    <select name="categoria" id="categoria" class="form-control selectpicker" data-live-search="true">
                         <option >Seleccione una categoria</option>
                         <? foreach ($categorias as $cat) {?>
                                                     <option value="<?=$cat->id_cat?>"><?=$cat->categoria?></option>
                                               <?  }?>
                                         </select>
-                            <help>Si no esta seguro de a que categoria pertenece su incidente, seleccione <b> "Otro..."</b></help>
-                        </div>
-                    </div>
-                    <!-- /.box -->
-                    <div class="box-header">
-                        <h3 class="box-title">Detalles del Incidente</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body pad">
-                        <textarea onchange="activar_envio()" required="true" class="textarea" id="chat" name="descripcion" placeholder="Escriba aquí todos los detalles del incidente" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                        <div class="form-group">
-                            <button  id="btn" data-toggle="modal" data-target="#cerrar"  type="submit" class="btn btn-success">
-                                    <i class="fa fa-save"></i>
-                                    Generar Ticket de Servicio</button>
-                            </form>
-                            <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
                             
+                                </div>
+                            </div>
+                            <div class="form-group mb-4 col-sm-2 ">
+                                <label class="col-sm-12 col-form-label">Prioridad: </label>
+                                <div class="col-sm-12">
+                                    <label class="radio radio-success">
+                                        <input type="radio" value="1" name="prioridad">
+                                        <span class="input-span"></span>Baja
+                                    </label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="radio radio-info">
+                                        <input type="radio" value="2" name="prioridad" checked>
+                                        <span class="input-span"></span>Normal
+                                    </label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="radio radio-warning">
+                                        <input type="radio" value="3" name="prioridad">
+                                        <span class="input-span"></span>Alta
+                                    </label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="radio radio-danger">
+                                        <input type="radio" value="4" name="prioridad">
+                                        <span class="input-span"></span>Urgente!
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4 col-sm-12 ">
+                                <label class="col-sm-12 col-form-label">Detalles del Incidente: </label>
+                                <div class="col-sm-12">
+                                    <textarea id="summernote" placeholder="Escriba aquí todos los detalles del incidente" name="descripcion" data-plugin="summernote" data-air-mode="true">
+                        </textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-</section>
+                    <div class="ibox-footer">
+                        <button  id="btn" data-toggle="modal" data-target="#cerrar"  type="submit" class="btn btn-success">
+                            <i class="fa fa-save"></i> Generar Ticket de Servicio
+                        </button>
+                        </form>
+                        <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
+                    </div>
+                </div>
+            </div>
 
+</section>
 
  <div class="modal fade" id="cerrar" role="dialog">
         <div class="modal-dialog col-md">
@@ -104,7 +134,14 @@
       </div>
 
 <!-- /.content -->
-</div>
+
 <!-- /.content-wrapper -->
+    <script>
+        $(function() {
+            $('#summernote').summernote({
+                 height: 100
+            });
+        });
+    </script>
  
 

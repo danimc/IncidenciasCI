@@ -30,6 +30,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <link href="<?=base_url()?>src/assets/vendors/toastr/toastr.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
+    <link href="<?=base_url()?>src/assets/vendors/summernote/dist/summernote.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/dataTables/datatables.min.css" rel="stylesheet" />
     <!-- THEME STYLES-->

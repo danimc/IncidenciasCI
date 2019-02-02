@@ -26,10 +26,10 @@ class Ticket extends CI_Controller {
 		$datos['reportante'] = $this->m_ticket->obt_lista_usuarios();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
 
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_nuevo_ticket', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	}
 
 		function levantar_incidente()
@@ -40,9 +40,10 @@ class Ticket extends CI_Controller {
 		$titulo = $_POST['incidente'];
 		$descripcion = $_POST['descripcion'];
 		$categoria = $_POST['categoria'];
+		$prioridad = $_POST['prioridad'];
 		$estatus = '1';	
 
-		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus);
+		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus, $prioridad);
 		$idIncidente = $this->db->insert_id();
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
