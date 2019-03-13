@@ -16,7 +16,7 @@ $pieAbiertos = $abiertos/$total * 100;
                 <div class="col-lg-4 col-md-6">
                     <div class="card mb-4">
                         <div class="card-body flexbox-b">
-                            <div class="easypie mr-4" data-percent="73" data-bar-color="#a4daff" data-size="80" data-line-width="8">
+                            <div class="easypie mr-4" data-percent="100" data-bar-color="#a4daff" data-size="80" data-line-width="8">
                                 <span class="easypie-data text-blue" style="font-size:32px;"><i class="la la-ticket"></i></span>
                             </div>
                             <div>
@@ -26,34 +26,33 @@ $pieAbiertos = $abiertos/$total * 100;
                         </div>
                     </div>
                 </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body flexbox-b">
-                                <div class="easypie mr-4" data-percent="<?=$pieResuletos?>" data-bar-color="#006815" data-size="80" data-line-width="3">
-                                    <span class="easypie-data font-26 text-success"><i class="ti-check"></i></span>
-                                <canvas height="80" width="80"></canvas></div>
-                                <div>
-                                    <h3 class="font-strong text-success"><?=$cerrados?></h3>
-                                    <div class="text-muted">INCIDENTES RESUELTOS</div>
-                                </div>
+                 <div class="col-lg-4 col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body flexbox-b">
+                            <div class="easypie mr-4" data-percent="<?=$pieResuletos?>" data-bar-color="#006815" data-size="80" data-line-width="8">
+                                <span class="easypie-data text-success" style="font-size:32px;"><i class="la la-check"></i></span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body flexbox-b">
-                                <div class="easypie mr-4" data-percent="<?=$pieAbiertos?>" data-bar-color="#ff4081" data-size="80" data-line-width="3">
-                                    <span class="easypie-data text-pink" style="font-size:32px;"><i class="la la-tags"></i></span>
-                                <canvas height="80" width="80"></canvas></div>
-                                <div>
-                                    <h3 class="font-strong text-pink"><?=$abiertos?></h3>
-                                    <div class="text-muted">TICKETS PENDIENTES</div>
-                                </div>
+                            <div>
+                                <h3 class="font-strong text-success"><?=$cerrados?></h3>
+                                <div class="text-muted">INCIDENTES RESUELTOS</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                 <div class="col-lg-4 col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body flexbox-b">
+                            <div class="easypie mr-4" data-percent="<?=$pieAbiertos?>" data-bar-color="#ff4081" data-size="80" data-line-width="8">
+                                <span class="easypie-data text-pink" style="font-size:32px;"><i class="la la-tags"></i></span>
+                            </div>
+                            <div>
+                                <h3 class="font-strong text-pink"><?=$abiertos?></h3>
+                                <div class="text-muted">TICKETS PENDIENTES</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
          <?
                }
          ?>
