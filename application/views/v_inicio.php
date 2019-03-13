@@ -13,19 +13,20 @@ $pieAbiertos = $abiertos/$total * 100;
     ?> 
     
       <div class="row mb-4">
-                    <div class="col-lg-4 col-md-6 ">
-                        <div class="card mb-4 ">
-                            <div class="card-body flexbox-b ">
-                                <div class="easypie mr-4" data-percent="100" data-bar-color="#a4daff" data-size="80" data-line-width="3">
-                                    <span class="easypie-data text-blue" style="font-size:32px;"><i class="la la-ticket"></i></span>
-                                <canvas height="80" width="80"></canvas></div>
-                                <div>
-                                    <h3 class="font-strong text-info"><?=$total?></h3>
-                                    <div class="text-muted">INCIDENTES REPORTADOS</div>
-                                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body flexbox-b">
+                            <div class="easypie mr-4" data-percent="73" data-bar-color="#a4daff" data-size="80" data-line-width="8">
+                                <span class="easypie-data text-blue" style="font-size:32px;"><i class="la la-ticket"></i></span>
+                            </div>
+                            <div>
+                                <h3 class="font-strong text-blue"><?=$total?></h3>
+                                <div class="text-muted">INCIDENTES REPORTADOS</div>
                             </div>
                         </div>
                     </div>
+                </div>
+
                     <div class="col-lg-4 col-md-6">
                         <div class="card mb-4">
                             <div class="card-body flexbox-b">
@@ -126,7 +127,7 @@ $pieAbiertos = $abiertos/$total * 100;
             }
         ?>
                     <div class="col-lg-3 col-md-6 mb-4">
-                      <a href="<?=base_url()?>index.php?/activos/lista_activos">
+                      <a href="<?=base_url()?>index.php?/inicio/descargar_formatos">
                         <div class="card bg-danger">
                             <div class="card-body">
                                 <h2 class="text-white">Formatos <i class="ti-cloud-down float-right"></i></h2>

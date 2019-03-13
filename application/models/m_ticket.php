@@ -282,6 +282,7 @@ class m_ticket extends CI_Model {
                 ,est.situacion
                 ,fecha_asignado
                 ,hora_asignado
+                ,prioridad
                 ,asignado.usuario usr_asignado
                 ,ticket.estatus
                 from ticket

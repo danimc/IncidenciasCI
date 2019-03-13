@@ -1,74 +1,46 @@
-
 <div class="content-wrapper">
-    <div id="mensaje"></div>
-<section class="content-header">
-        <h1>Busquedas
-            <small>para Marcos Juridicos</small>
-          </h1><br>
-          <ol class="breadcrumb">
-            <li><a href="/index"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>Marcos Juridicos</li><li>Busqueda</li>
-          </ol>
-        </section>
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">     
-          
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="busqueda" class="col-sm-2 control-label">Busqueda</label>
-                  <div class="col-sm-8">
-                    <form class="form-horizontal" id="frmBuscar" >
-                      <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="busqueda por palabras clave">
-                    </form>
-                  </div> 
-                  <button id="btnBuscar" type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>                 
-                </div>               
-              </div>       
-          <div class="col-sm-10">
-            <div class="box">
-              <div class="box-header">
-                <label>Resultados:</label>
-              </div>
-              <div class="box-body">
-                <div id="resultados"></div>
-              </div>
-              
-            </div>
-          </div>    
-          </div>
-        </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
+   <!-- Content Header (Page header) -->
 
-      <script>
-    $("#btnBuscar").click(function()
-    {
-      console.log("entrando en la funcion");
-       var formulario = $("#frmBuscar").serializeArray();
-    $.ajax({
-      type: "POST",
-      dataType: 'json',
-      url: "<?=base_url()?>index.php?/mj/buscar",
-      data: formulario,
-        }).done(function(respuesta){
-         
-            $('#resultados').html(respuesta.mensaje);
-                 $("#example1").DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": true,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": true
-            });
-          });
-      });
+          <!-- Main content -->
+ <div class="page-content fade-in-up">
+                <div class="flexbox-b mb-5">
+                    <span class="mr-4 static-badge badge-pink"><i class="ti-search"></i></span>
+                    <div>
+                        <h5 class="font-strong">Consulta de Marcos</h5>
+                        <div class="text-light"></div>
+                    </div>
+                </div>
+                <div class="input-group-icon input-group-icon-left input-group-lg mb-4 col-sm-6">
+                    <span class="input-icon input-icon-right"><i class="ti-search"></i></span>
+                    <input class="form-control form-control-air font-light font-poppins border-0" id="busqueda" name="busqueda" type="text" placeholder="BUSCAR..." style="box-shadow:0 3px 6px rgba(10,16,20,.15);">
+                </div>
 
-      </script>
+                <div class="ibox col-sm-12">
+                <div class="ibox-body">
+                    <h5 class="font-strong mb-4">Articulos encontrados:</h5>
+                    <div id="tablaServicios"></div>
+                               
+                </div>
+                </div>
 
-       <script src="<?=base_url()?>src/js/wys.js"></script>
-       <script type="text/javascript">
-         $('#chat').wysihtml5();
-       </script>
+
+    </section>
+           
+
+<script>
+    $("#busqueda").change(function () {
+        busqueda = $("#busqueda").val();
+        datos = { busqueda : busqueda };
+
+        $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: '<?=base_url()?>index.php/mj/buscar',
+        data: datos,
+          }).done(function(respuesta){
+            $('#tablaServicios').html(respuesta);
+          })
+     })
+</script> 
+
+

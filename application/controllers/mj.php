@@ -15,10 +15,10 @@ class Mj extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_busqueda_mj');
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 
 	}
 
@@ -36,24 +36,19 @@ class Mj extends CI_Controller {
 
 		//echo json_encode("RESULTADO" . $resultado);
 
-	    $msg = $criterio . '
 
-				<table id="example1" class="table table-hover table-striped">
-                <thead>
-                    <tr>
+        $div = ' <table class="table">
+                                    <thead class="thead-default">
+                                        <tr>
                         
                         <th width="">id</th>
                         <th width="">Articulo</th>
                         <th></th>
                     </tr>
-                </thead>
-                <tbody>';
-
-              	foreach ($resultado as $mensaje){
-
-              //	$texto = $this->m_mj->resaltar($mensaje->articulo, $criterio);          
-
-                  		$msg .=' <tr class="">
+                                    </thead>
+                                    <tbody>';
+           	foreach ($resultado as $mensaje) {
+        $div .=   ' <tr class="">
                     		<td>
                     	   	' .$mensaje->seccion . '
                     	 	</td>
@@ -64,15 +59,14 @@ class Mj extends CI_Controller {
                     	  
                     		</td>
                         </tr>';
-                    
-                }
-        $msg .= '</tbody> </table>';
+           	}
+                                       
+        $div .= 	                '</tbody>
+                                </table>';
 
-       $respuesta = new \stdClass();
-		$respuesta->id = 1;
-		$respuesta->mensaje = $msg;
+		echo json_encode($div);
 
-	echo json_encode($respuesta);
+      
 	}
 	
 }
