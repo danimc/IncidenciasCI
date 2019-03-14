@@ -145,50 +145,50 @@ $pieAbiertos = $abiertos/$total * 100;
                     <div class="col-xl-7">
                         <div class="ibox ibox-fullheight">
                             <div class="ibox-head">
-                                <div class="ibox-title">MIS TICKETS ASIGNADOS</div>
+                                <div class="ibox-title">TICKETS ASIGNADOS</div>
                                 <div class="ibox-tools">
                                     <a class="dropdown-toggle font-18" data-toggle="dropdown"><i class="ti-ticket"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item"><i class="ti-pencil mr-2"></i>Nuevo</a>
+                                        <a class="dropdown-item"><i class="ti-pencil mr-2"></i>Create</a>
                                         <a class="dropdown-item"><i class="ti-pencil-alt mr-2"></i>Edit</a>
                                         <a class="dropdown-item"><i class="ti-close mr-2"></i>Remove</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="ibox-body">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 470px;">
-                                  <ul class="media-list media-list-divider scroller mr-2" data-height="470px" style="overflow: hidden; width: auto; height: 470px;">
-        <?  foreach ($tPendientes as $pendiente) {
+                                <ul class="media-list media-list-divider scroller mr-2" data-height="470px">
+ <?
+        foreach ($tPendientes as $pendiente) {
             $estatus = $this->m_inicio->etiqueta($pendiente->estatus);
             $datetime = $pendiente->fecha_inicio . ' ' . $pendiente->hora_inicio;
             $hora = $this->m_ticket->fecha_text($datetime); 
             ?>
-                                    <li class="media">
-                                        <div class="media-body d-flex">
-                                            <div class="flex-1">
-                                                <h5 class="media-heading">
-                                                    <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">#<?=$pendiente->folio?>: <?=$pendiente->titulo?></a>
-                                                </h5>
-                                                <p class="font-13 text-light mb-1"><?=$pendiente->descripcion?></p>
-                                                <div class="d-flex align-items-center font-13">
-                                                    <img class="img-circle mr-2" src="<?=base_url()?>src/img/usr/team.png" alt="" width="22">
-                                                    <a class="mr-2 text-success" href="javascript:;"><?=$pendiente->usuario?></a>
-                                                    <span class="text-muted"><?=$hora?></span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right" style="width:100px;">
-                                              <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><?=$estatus?>
-                                              </a>                                               
-                                                
-                                            </div>
+                            <li class="media">
+                                <div class="media-body d-flex">
+                                    <div class="flex-1">
+                                        <h5 class="media-heading">
+                                            <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">#<?=$pendiente->folio?>: <?=$pendiente->titulo?></a>
+                                        </h5>
+                                        <p class="font-13 text-light mb-1"><?=$pendiente->descripcion?></p>
+                                        <div class="d-flex align-items-center font-13">
+                                            <img class="img-circle mr-2" src="<?=base_url()?>src/img/usr/team.png" alt="image" width="22" />
+                                            <a class="mr-2 text-success" href="javascript:;"><?=$pendiente->usuario?></a>
+                                            <span class="text-muted"><?=$hora?></span>
                                         </div>
-                                    </li>
+                                    </div>
+                                    <div class="text-right" style="width:100px;">
+                                         <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>"><?=$estatus?>
+                                      </a>  
+                                       
+                                    </div>
+                                </div>
+                            </li>
         <?
-            }
+          }
         ?>
+
+
                                 </ul>
-                                <div class="slimScrollBar" style="background: rgb(113, 128, 143) none repeat scroll 0% 0%; width: 4px; position: absolute; top: 44px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 426.448px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.9; z-index: 90; right: 1px;"></div>
-                              </div>
                             </div>
                         </div>
                     </div>
