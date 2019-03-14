@@ -102,7 +102,7 @@ class Ticket extends CI_Controller {
 				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador();
 				$this->load->view('_encabezado1');
 				$this->load->view('_menuLateral1');
-				$this->load->view('listas/l_tickets_admin', $datos);
+				$this->load->view('listas/l_tickets_usuarios', $datos);
 				$this->load->view('_footer1');
 
 				break;
