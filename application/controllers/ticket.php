@@ -43,8 +43,22 @@ class Ticket extends CI_Controller {
 		$prioridad = $_POST['prioridad'];
 		$estatus = '1';	
 
+		$ticket = array(
+			'fecha_inicio'		=> $this->m_ticket->fecha_actual(),
+			'hora_inicio'		=> $this->m_ticket->hora_actual(),
+			'usr_reportante' 	=> $reportante,
+			'usr_incidente'		=> $usuarioIncidente,
+			'categoria'			=> $categoria,
+			'titulo'			=> $titulo,
+			'descripcion'		=> $descripcion,
+			'estatus'			=> $estatus,
+			'prioridad'			=> $prioridad,			
+			 );
+
 		$this->m_ticket->nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus, $prioridad);
 		$idIncidente = $this->db->insert_id();
+
+		$this->m_ticket->SendTelegram($ticket, $idIncidente);
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
 
@@ -295,5 +309,11 @@ class Ticket extends CI_Controller {
 
 	}
 
+
+	function sendTelegram1()
+	{
+		$this->m_ticket->sendTelegram1();
+	}
+
 	
-}
+} 

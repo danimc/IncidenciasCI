@@ -590,4 +590,54 @@ class m_ticket extends CI_Model {
         }
     }
 
+      public function SendTelegram($ticket, $idIncidente)
+    {
+        //Roland IA
+        $apiToken = "867232459:AAGRKQwjqdeXFENj_b0okBwI9-ai1WeMGqY";
+        $horario = $this->m_ticket->hora_actual();
+        $fechaHora = $ticket['fecha_inicio']. ' ' . $ticket['hora_inicio'];
+        $fecha = $this->m_ticket->fecha_text($fechaHora);
+        $saludo = '';
+        if($horario <= '11:59:59'){
+            $saludo = 'Buenos días.';
+        }
+        elseif ($horario <= '19:59:59') {
+            $saludo = 'Buenas tardes.';
+        }
+        elseif ($horario <= '23:59:59') {
+            $saludo = 'Buenas noches.';
+        }
+        $mensaje = $saludo .'
+Se ha levantado un nuevo Incidente con la siguiente información:
+
+<b>FOLIO:</b> ' . $idIncidente . '
+<b>ASUNTO:</b> ' . $ticket['titulo'] . '
+<b>FECHA DE REPORTE: </b>' . $fecha .'
+
+Se Agradece su atención.';
+        $data = [
+            'chat_id' => '-373978603',  
+            //'chat_id' => '591531437_6135385119973428661',
+            'text' => $mensaje,
+            'parse_mode' => 'HTML'
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot".$apiToken."/sendMessage?" . http_build_query($data) );
+    }
+
+          public function SendTelegram1()
+    {
+        //Roland IA
+        $apiToken = "867232459:AAGRKQwjqdeXFENj_b0okBwI9-ai1WeMGqY";
+        
+      
+        $mensaje = 'hola lola';
+        $data = [
+            'chat_id' => '-373978603',  
+            //'chat_id' => '591531437_6135385119973428661',
+            'text' => $mensaje,
+            'parse_mode' => 'HTML'
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot".$apiToken."/sendMessage?" . http_build_query($data) );
+    }
+
 }
