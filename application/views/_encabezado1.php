@@ -36,6 +36,8 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <!-- THEME STYLES-->
     <link href="<?=base_url()?>src/assets/css/main.min.css" rel="stylesheet" />
 
+    
+
         <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
     </head>    
 

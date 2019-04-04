@@ -142,10 +142,10 @@ class Ticket extends CI_Controller {
 
 		if ($rol == 1) {
 			
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
+				$this->load->view('_encabezado1');
+				$this->load->view('_menuLateral1');
 				$this->load->view('formularios/v_seguimiento_admin', $datos);
-				$this->load->view('_footer');
+				$this->load->view('_footer1');
 				}
 		else{
 				$this->load->view('_encabezado');
