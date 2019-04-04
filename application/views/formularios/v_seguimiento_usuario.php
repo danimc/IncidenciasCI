@@ -25,13 +25,13 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
           <? if($ticket->situacion != 5){?>
           <a href="#" data-toggle="modal" data-target="#cerrar" class="btn btn-app bg-red"><span class="fa fa-lock"></span> Cerrar Ticket</a>
           <?}else{?>
-             <a disabled="true" class="btn btn-app bg-red" ><i class="fa fa-lock"></i> Cerrar Ticket</a>
+             <a disabled="true" class="btn btn-app bg-secondary" ><i class="fa fa-lock"></i> Cerrar Ticket</a>
           <?}?>
     <!-- Main content -->
   <section class="page-content fade-in-up">
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div class="ibox ibox-fullheight">
           <div class="ibox-head">
             <div class="ibox-title">Datos de Atención</div>
@@ -93,23 +93,16 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
                       <?=$mensaje?>
               </ul>
           </div>
-        </div>
+          <div class="ibox-footer">
 
+            <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
+              <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+              <input type="hidden" name="folio" value="<?=$ticket->folio?>">
+              <br>
+              <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+            </form>
 
-        <div class="ibox ibox-fullheight">
-          <div class="ibox-head">
-            <div class="ibox-title">Seguimiento Ticket</div>
-          </div> 
-          <div class="ibox-body">
-           
-
-              <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
-                <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <br>
-                <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
-              </form>
-            </div>
+          </div>
         </div>
       </div>
     </div>
