@@ -64,6 +64,7 @@ class m_inicio extends CI_Model {
                 ,categoria_ticket.categoria
                 ,est.situacion
                 ,fecha_asignado
+                ,ticket.descripcion
                 ,hora_asignado
                 ,asignado.usuario usr_asignado
                 ,ticket.estatus

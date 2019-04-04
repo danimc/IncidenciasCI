@@ -100,7 +100,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
       </div>
 
       <div id="mensaje"></div>
-
+      <div class="col-md-1"></div>
       <div class="col-md-10">
         <div class="ibox">
           <div class="ibox-body">
