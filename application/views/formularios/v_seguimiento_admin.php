@@ -123,23 +123,14 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
                       <?=$mensaje?>
               </ul>
           </div>
-        </div>
-
-
-        <div class="ibox ibox-fullheight">
-          <div class="ibox-head">
-            <div class="ibox-title">Seguimiento Ticket</div>
-          </div> 
-          <div class="ibox-body">
-           
-
-              <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
-                <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <br>
-                <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
-              </form>
-            </div>
+          <div class="ibox-footer">
+            <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
+              <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+              <input type="hidden" name="folio" value="<?=$ticket->folio?>">
+              <br>
+              <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
