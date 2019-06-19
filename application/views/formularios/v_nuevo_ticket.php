@@ -1,4 +1,17 @@
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $( function(){
+        var remi = <?=$reportante?>;
+      
+       
+        $("#nombre").autocomplete({
+            source: remi
+        });
+    });
+    </script>
 
 
  <div class="content-wrapper">
@@ -26,22 +39,32 @@
                     </div>
                     <div class="ibox-body">
                         <div class="row">
-                            <div class="form-group mb-4 ">
-                                <label class="col-sm-12 col-form-label">Usuario: </label>
+                            <div class="form-group mb-6 col-md-12 ">
+                                <label class="col-sm-12 col-form-label">Nombre: </label>
                                 <div class="col-sm-12">
+                                    <input type="text"  required="true" name="nombre" id="nombre" placeholder="PEREZ RODRIGUEZ JUAN" class="form-control-sm col-md-12">
+                                    <help>Iniciar por Apellidos</help>
                                     <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
-                                    <select class="form-control selectpicker col-sm-12" id="usrIncidente" data-live-search="true" name="usrIncidente">
-                                        <option value="<?=$usuario->codigo?>" >
-                                            <?=$usuario->usuario?>
-                                        </option>
-                                    <? foreach ($reportante as $repo) {?>
-                                        <option value="<?=$repo->codigo?>">
-                                            <?=$repo->usuario?>
-                                        </option>
-                                    <?  } ?>
-                                    </select>
+                                    <input type="hidden" id="usrIncidente"  name="usrIncidente">
+                                    <input type="hidden" name="dependencia" id="dependencia">
                                 </div>
                             </div>
+                            <div class="form-group mb-6 col-md-6 ">
+                                <label class="col-sm-12 col-form-label">Extensión: </label>
+                                <div class="col-sm-12">
+                                    <input type="number" max="9999999999" min="0" name="extension" id="extension" class="form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group mb-6  col-md-6 ">
+                                <label class="col-sm-12 col-form-label">Correo: </label>
+                                <div class="col-sm-12">
+                                    <input type="mail" name="correo" id="correo" class="form-control-sm">
+                                </div>
+                            </div>
+
+
+
+      
                         </div>
                     </div>
                 </div>
@@ -144,4 +167,23 @@
         });
     </script>
  
+ <script>
+    $("#nombre").change(function () {   
+        busqueda = $("#nombre").val();
+        datos = { busqueda : busqueda,
+                  tipo     : 2   };
+        $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: '<?=base_url()?>index.php/usuario/obt_usuario',
+        data: datos,
+          }).done(function(respuesta){
+            $("#usrIncidente").val(respuesta.codigo);
+            $("#extension").val(respuesta.extension);
+            $("#correo").val(respuesta.correo);
+            $("#extension").val(respuesta.extension);
+            $("#dependencia").val(respuesta.depId);
+          })
+     })
+</script>
 

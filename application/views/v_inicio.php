@@ -109,7 +109,7 @@ $pieAbiertos = $abiertos/$total * 100;
             $accesoActivos = $this->m_seguridad->acceso_modulo(2);
             if ($accesoActivos != 0) {
         ?>
-                  <div class="col-lg-3 col-md-6 mb-4">
+                 <!-- <div class="col-lg-3 col-md-6 mb-4">
                       <a href="<?=base_url()?>index.php?/activos/lista_activos">
                         <div class="card bg-pink">
                             <div class="card-body">
@@ -121,11 +121,11 @@ $pieAbiertos = $abiertos/$total * 100;
                             </div>
                         </div>
                           </a>
-                    </div>
+                    </div>-->
         <?
             }
         ?>
-                    <div class="col-lg-3 col-md-6 mb-4">
+                   <!-- <div class="col-lg-3 col-md-6 mb-4">
                       <a href="<?=base_url()?>index.php?/inicio/descargar_formatos">
                         <div class="card bg-danger">
                             <div class="card-body">
@@ -137,7 +137,7 @@ $pieAbiertos = $abiertos/$total * 100;
                             </div>
                         </div>
                           </a>
-                    </div>
+                    </div>-->
 
     </div> 
 <!-- TABLAS --->
@@ -161,13 +161,20 @@ $pieAbiertos = $abiertos/$total * 100;
         foreach ($tPendientes as $pendiente) {
             $estatus = $this->m_inicio->etiqueta($pendiente->estatus);
             $datetime = $pendiente->fecha_inicio . ' ' . $pendiente->hora_inicio;
-            $hora = $this->m_ticket->fecha_text($datetime); 
+            $hora = $this->m_ticket->fecha_text($datetime);
+             $badge = '';
+                    if ($pendiente->prioridad == 4) {
+                        $badge = '<small><span style="color: red"><i class="fa fa-exclamation-circle" ></i> Urgente!</span></small>';
+                        } 
+                    if ($pendiente->prioridad == 3) {
+                        $badge = '<small><span style="color:orange"><i class="fa fa-warning" ></i> Alta!</span></small>';
+                        } 
             ?>
                             <li class="media">
                                 <div class="media-body d-flex">
                                     <div class="flex-1">
                                         <h5 class="media-heading">
-                                            <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">#<?=$pendiente->folio?>: <?=$pendiente->titulo?></a>
+                                            <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">#<?=$pendiente->folio?>: <?=$pendiente->titulo?>  <?=$badge?></a>
                                         </h5>
                                         <p class="font-13 text-light mb-1"><?=$pendiente->descripcion?></p>
                                         <div class="d-flex align-items-center font-13">
@@ -196,29 +203,29 @@ $pieAbiertos = $abiertos/$total * 100;
         <?
             if ($usuario->id_rol == 1 ){
         ?>
-                    <div class="col-lg-5">
-                        <div class="ibox ibox-fullheight">
-                            <div class="ibox-head">
-                                <div class="ibox-title">TICKETS ABIERTOS </div>
-                                <div class="ibox-tools">
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item"><i class="ti-pencil"></i>Create</a>
-                                        <a class="dropdown-item"><i class="ti-pencil-alt"></i>Edit</a>
-                                        <a class="dropdown-item"><i class="ti-close"></i>Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-body">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 470px;">
-                                  <ul class="timeline scroller" data-height="470px" style="overflow: hidden; width: auto; height: 470px;">
+<div class="col-lg-5">
+            <div class="ibox ibox-fullheight">
+                <div class="ibox-head">
+                    <div class="ibox-title">TICKETS ABIERTOS </div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="timeline scroller" data-height="470px"> 
         <? 
                     foreach ($tGeneral as $pendiente) {
-                      $estatus = $this->m_inicio->etiqueta($pendiente->estatus); ?>
+                        $estatus = $this->m_inicio->etiqueta($pendiente->estatus);
+                        $badge1 = "";
+                        if ($pendiente->prioridad == 4) {
+                            $badge1 = '<small><span style="color: red"><i class="fa fa-exclamation-circle" ></i> Urgente!</span></small>';
+                            }
+                        if ($pendiente->prioridad == 3) {
+                            $badge1 = '<small><span style="color:orange"><i class="fa fa-warning" ></i> Alta!</span></small>';
+                            } 
+                         ?>
                                     <li class="timeline-item">
                                         <span class="timeline-point"></span>
                                         <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">
-                                        #<?=$pendiente->folio?>: <?=$pendiente->titulo?></a><a><small class="float-right text-muted ml-2 nowrap">
+                                        #<?=$pendiente->folio?>: <?=$pendiente->titulo?>  <?=$badge1?> </a>
+                                        <a><small class="float-right text-muted ml-2 nowrap">
                                         <a href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$pendiente->folio?>">
                                           <?=$estatus?>
                                           </a>
@@ -229,7 +236,6 @@ $pieAbiertos = $abiertos/$total * 100;
                                      }
         ?>
                                 </ul>
-                                <div class="slimScrollBar" style="background: rgb(113, 128, 143) none repeat scroll 0% 0%; width: 4px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 446.263px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.9; z-index: 90; right: 1px;"></div>
                               </div>
                             </div>
                         </div>

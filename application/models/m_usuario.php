@@ -64,6 +64,41 @@ class m_usuario extends CI_Model {
     	
     	return $this->db->query($qry)->row();
     }
+
+        function obt_usuarios_like()
+    {
+        $qry = "";
+        $qry = "SELECT
+                 CONCAT(apellido, ' ',nombre ) as nombre
+                 FROM usuario
+                 WHERE nombre != '' 
+                 AND nombre IS NOT NULL";
+        $remitente = $this->db->query($qry)->result();
+        $array = array();
+        foreach ($remitente as $rem) {
+            $array[] = 
+                $rem->nombre;
+        }
+        return json_encode($array);
+    }
+
+       function obt_usuario_ticket_nombre($nombre)
+    {
+        $qry = "SELECT 
+                codigo
+                ,nombre_completo
+                ,dependencias.id_dependencia as depId
+                , dependencias.nombre_dependencia as nom_dependencia
+                , extension
+                , correo
+                FROM crm.usuario
+                INNER JOIN dependencias
+                WHERE usuario.dependencia = dependencias.id_dependencia
+                AND nombre_completo = '$nombre'";
+        
+        return $this->db->query($qry)->row();
+    }
+
     function obt_usuario_ticket($id)
     {
         $this->db->where('codigo',$id);

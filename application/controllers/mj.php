@@ -68,5 +68,22 @@ class Mj extends CI_Controller {
 
       
 	}
+
+	function clima()
+	{
+		$respuesta = file_get_contents("https://api.openweathermap.org/data/2.5/weather?id=8133378&APPID=731ac0d3caf3cd694ce7a8df5d1c278b&units=metric&lang=es");
+
+		$clima = json_decode($respuesta);
+		$datosClima = $clima->main;
+		$temperatura = $datosClima->temp;
+		$tempMin	= $datosClima->temp_min;
+		$tempMax	= $datosClima->temp_max;
+
+		echo "Buen dia compañero, hoy tenemos una temperatura de ".$temperatura . "° C. con una minima de ". $tempMin. " y hasta una 
+		temperatura maxima de " .$tempMax;
+
+
+
+	}
 	
 }

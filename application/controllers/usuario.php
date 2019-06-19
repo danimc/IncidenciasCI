@@ -42,6 +42,20 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer');
 	}
 
+	function obt_usuario()
+	{
+		$codigo = $_POST['busqueda'];
+		$tipo   = $_POST['tipo'];
+		if ($tipo == 1) {
+			$usuario = $this->m_usuario->obt_usuario_ticket($codigo);
+		}
+		if ($tipo == 2) {
+			$usuario = $this->m_usuario->obt_usuario_ticket_nombre($codigo);
+		}
+		
+		echo json_encode($usuario);
+	}
+
 	function cambiar_contra()
 	{
 		$usuario 	= $_POST['usuario'];

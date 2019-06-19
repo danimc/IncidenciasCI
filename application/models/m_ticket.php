@@ -31,25 +31,9 @@ class m_ticket extends CI_Model {
         return $this->db->get("situacion_ticket")->result();
     }
 
-    function nuevo_incidente($reportante, $usuarioIncidente, $titulo, $descripcion, $categoria, $estatus, $prioridad)
+    function nuevo_incidente($ticket)
     {
-        $fecha = $this->fecha_actual();
-        $hora = $this->hora_actual();
-
-        $this->fecha_inicio = $fecha;
-        $this->hora_inicio = $hora;
-        $this->usr_reportante = $reportante;
-        $this->usr_incidente = $usuarioIncidente;
-        $this->categoria = $categoria;
-        $this->titulo = $titulo;
-        $this->descripcion = $descripcion;
-        $this->estatus = $estatus;
-        $this->prioridad = $prioridad;
-
-        $this->db->insert("ticket", $this);
-
-       
-
+        $this->db->insert("ticket", $ticket);
     }
 
     function seguimiento_ticket($folio)
@@ -626,13 +610,28 @@ Se Agradece su atención.';
 
           public function SendTelegram1()
     {
+        $clima = json_decode(file_get_contents("https://api.openweathermap.org/data/2.5/weather?id=8133378&APPID=731ac0d3caf3cd694ce7a8df5d1c278b&units=metric&lang=es"));
+
+        //$clima = json_decode($respuesta);
+        $datosClima = $clima->main;
+        $datosGen   = $clima->weather;
+        $temperatura = $datosClima->temp;
+        $descripcion    = $datosGen->description;
+
+        $despertador = "Buen dia compañero.
+La temperatura al momento es de ".$temperatura . "° C. con una minima de ". $descripcion;
+
+
+
+
+
         //Roland IA
         $apiToken = "867232459:AAGRKQwjqdeXFENj_b0okBwI9-ai1WeMGqY";
         
       
-        $mensaje = 'hola lola';
+        $mensaje = $despertador;
         $data = [
-            'chat_id' => '-373978603',  
+            'chat_id' => '913700',  
             //'chat_id' => '591531437_6135385119973428661',
             'text' => $mensaje,
             'parse_mode' => 'HTML'

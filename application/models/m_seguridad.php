@@ -5,6 +5,7 @@ class m_seguridad extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        date_default_timezone_set("America/Mexico_City");
     }
     
 	//////////////////////////////////////////////////////// VALIDAR ACCESOS
@@ -60,13 +61,15 @@ class m_seguridad extends CI_Model {
 	
 	
 	function log_general($controlador, $funcion, $objeto)
-    {        
+    {   	        
 
 		$this->sistema = 1;
 		$this->controlador = $controlador;
 		$this->funcion = $funcion;
 		$this->objeto = $objeto;
 		$this->usuario = $this->session->userdata("codigo");
+		$this->fecha = date("Y-m-d");
+		$this->hora = date("H:i:s");
 		
         $this->db->insert("log_general",$this);
 

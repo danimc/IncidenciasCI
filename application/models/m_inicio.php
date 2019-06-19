@@ -22,6 +22,12 @@ class m_inicio extends CI_Model {
         return $this->db->get('ticket')->num_rows();
     }
 
+    function obt_diaHoy($fecha)
+    {
+        $this->db->where('fecha', $fecha);
+        return $this->db->get('log_general')->num_rows();
+    }
+
     function tickets_pendientes_sis($usr)
     {
     	$qry = "";
@@ -39,6 +45,7 @@ class m_inicio extends CI_Model {
 				,asignado.usuario usr_asignado
 				,ticket.estatus
                 ,ticket.descripcion
+                ,ticket.prioridad
 				from ticket
 				LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
 				LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
@@ -46,7 +53,7 @@ class m_inicio extends CI_Model {
 				LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
 				where usr_asignado = '$usr'
 				and est.id != 5
-				LIMIT 10";
+                ORDER BY prioridad DESC, folio DESC";
 
 		return $this->db->query($qry)->result();
     }
@@ -68,6 +75,7 @@ class m_inicio extends CI_Model {
                 ,hora_asignado
                 ,asignado.usuario usr_asignado
                 ,ticket.estatus
+                ,ticket.prioridad
                 from ticket
                 LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
                 LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
@@ -75,7 +83,7 @@ class m_inicio extends CI_Model {
                 LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
                 where usr_incidente = '$usr'
                 and est.id != 5
-                LIMIT 10";
+                ORDER BY prioridad DESC, folio DESC";
 
         return $this->db->query($qry)->result();
     }
@@ -97,14 +105,14 @@ class m_inicio extends CI_Model {
                 ,hora_asignado
                 ,asignado.usuario usr_asignado
                 ,ticket.estatus
+                ,ticket.prioridad
                 from ticket
                 LEFT JOIN  usuario us on us.codigo = ticket.usr_incidente
                 LEFT JOIN categoria_ticket on categoria_ticket.id_cat = ticket.categoria
                 LEFT JOIN situacion_ticket est on est.id = ticket.estatus
                 LEFT JOIN usuario asignado on ticket.usr_asignado = asignado.codigo
                 where est.id != 5
-                ORDER BY folio DESC
-                LIMIT 10";
+                ORDER BY prioridad DESC, folio DESC";
 
         return $this->db->query($qry)->result();
     }

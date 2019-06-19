@@ -14,6 +14,13 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
+		$fecha = $this->m_ticket->fecha_actual();
+		$comprobador =	$this->m_inicio->obt_diaHoy($fecha);
+
+		if($comprobador == 0) {
+			$this->m_ticket->sendTelegram1();
+		}
+
 		$codigo = $this->session->userdata("codigo");
 		$usuario = $this->m_usuario->obt_usuario($codigo);	
 		$datos['usuario'] = $usuario;
@@ -33,6 +40,8 @@ class Inicio extends CI_Controller {
 		$this->load->view('_menuLateral1');
 		$this->load->view('v_inicio', $datos);
 		$this->load->view('_footer1');
+
+
 	
 	}
 
