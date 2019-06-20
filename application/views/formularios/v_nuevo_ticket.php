@@ -15,6 +15,9 @@
 
 
  <div class="content-wrapper">
+     <? if ($this->uri->segment(3) == 'e') {?>
+       <div class="col-md-4 alert alert-warning pull-right"><p><i class="fa fa-warning"></i> Atención! debe Capturar un usuario valido.</p></div>
+    <?}?>
   <!-- Content Header (Page header) -->
  <div class="page-heading">
                 <h1 class="page-title">Registrar Nuevo Ticket de Servicio:</h1>
@@ -27,6 +30,8 @@
                 </ol>
                 <br>
     </div>
+
+   
 
         <form enctype="multipart/form-data" role="form" action="<?base_url()?>index.php?/ticket/levantar_incidente" method="post" id="form_newsletter">
     <!-- Main content -->
@@ -45,7 +50,7 @@
                                     <input type="text"  required="true" name="nombre" id="nombre" placeholder="PEREZ RODRIGUEZ JUAN" class="form-control-sm col-md-12">
                                     <help>Iniciar por Apellidos</help>
                                     <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
-                                    <input type="hidden" id="usrIncidente"  name="usrIncidente">
+                                    <input type="hidden" id="usrIncidente" value="<?=$usuario->codigo?>"  name="usrIncidente">
                                     <input type="hidden" name="dependencia" id="dependencia">
                                 </div>
                             </div>

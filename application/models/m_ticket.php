@@ -581,6 +581,16 @@ class m_ticket extends CI_Model {
         $horario = $this->m_ticket->hora_actual();
         $fechaHora = $ticket['fecha_inicio']. ' ' . $ticket['hora_inicio'];
         $fecha = $this->m_ticket->fecha_text($fechaHora);
+        $escribiente = $this->session->userdata("usuario");
+        $prioridad = '';
+
+        if ($ticket['prioridad'] == 4) {
+            $prioridad = "<b> SE PRECISA URGENTE! </b>";
+        }
+        if ($ticket['prioridad'] == 3) {
+            $prioridad = "<b> DE IMPORTANCIA ALTA! </b>";
+        }
+
         $saludo = '';
         if($horario <= '11:59:59'){
             $saludo = 'Buenos días.';
@@ -592,11 +602,15 @@ class m_ticket extends CI_Model {
             $saludo = 'Buenas noches.';
         }
         $mensaje = $saludo .'
-Se ha levantado un nuevo Incidente con la siguiente información:
+Se ha levantado un nuevo servicio con la siguiente información:
 
 <b>FOLIO:</b> ' . $idIncidente . '
 <b>ASUNTO:</b> ' . $ticket['titulo'] . '
+<b>DESCRIPCION:</b> ' . strip_tags($ticket['descripcion']) . '
 <b>FECHA DE REPORTE: </b>' . $fecha .'
+<b>CAPTURADO POR: </b>' . $escribiente .'
+
+'. $prioridad .'
 
 Se Agradece su atención.';
         $data = [

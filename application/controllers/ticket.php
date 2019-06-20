@@ -21,7 +21,7 @@ class Ticket extends CI_Controller {
 
 	function nuevo_ticket()
 	{
-		 $codigo = $this->session->userdata("codigo");	
+		$codigo = $this->session->userdata("codigo");	
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['reportante'] = $this->m_ticket->obt_lista_usuarios();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
@@ -35,6 +35,10 @@ class Ticket extends CI_Controller {
 
 	function levantar_incidente()
 	{
+		if ($_POST['usrIncidente'] == 0) {
+			redirect(base_url().'index.php?/ticket/nuevo_ticket/e');
+			
+		}
 		$reportante = $_POST['codigo'];
 		$usuarioIncidente = $_POST['usrIncidente'];
 	    $notificacion = 1;
