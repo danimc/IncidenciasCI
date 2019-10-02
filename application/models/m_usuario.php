@@ -38,7 +38,7 @@ class m_usuario extends CI_Model {
                 ,usuario
                 ,nombre as nombres
                 ,apellido
-                , CONCAT(nombre, ' ', apellido) as nombre
+                , nombre_completo
                 ,dependencias.id_dependencia as depId
                 , dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
@@ -105,6 +105,15 @@ class m_usuario extends CI_Model {
         return $this->db->get('usuario')->row();
     }
 
+    function obt_dependencia_usuario($codigo)
+    {
+        $this->db->where("codigo", $codigo);
+        $this->db->select("dependencia");
+
+        return $this->db->get("usuario")->row();
+
+    }
+
     function obt_dependencias()
     {
         return $this->db->get('dependencias')->result();
@@ -148,7 +157,6 @@ class m_usuario extends CI_Model {
     function obt_tickets_reportados($codigo)
     {
         $this->db->where('usr_incidente', $codigo);
-
        return $this->db->get('ticket')->num_rows();
     }
 
@@ -157,9 +165,7 @@ class m_usuario extends CI_Model {
         $this->db->set('puesto', $plaza);
         $this->db->set('estatus', $situacion);
         $this->db->set('rol', $rol);
-
         $this->db->where('codigo', $codigo);
-
         $this->db->update('usuario');
     }
 }

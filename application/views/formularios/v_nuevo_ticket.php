@@ -2,17 +2,6 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-    $( function(){
-        var remi = <?=$reportante?>;
-      
-       
-        $("#nombre").autocomplete({
-            source: remi
-        });
-    });
-    </script>
-
 
  <div class="content-wrapper">
      <? if ($this->uri->segment(3) == 'e') {?>
@@ -36,40 +25,30 @@
         <form enctype="multipart/form-data" role="form" action="<?base_url()?>index.php?/ticket/levantar_incidente" method="post" id="form_newsletter">
     <!-- Main content -->
  <section class="page-content fade-in-up">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="ibox ibox-fullheight">
-                    <div class="ibox-head">
-                        <div class="ibox-title">Datos del Reportante</div>
-                    </div>
-                    <div class="ibox-body">
-                        <div class="row">
-                            <div class="form-group mb-6 col-md-12 ">
-                                <label class="col-sm-12 col-form-label">Nombre: </label>
-                                <div class="col-sm-12">
-                                    <input type="text"  required="true" name="nombre" id="nombre" placeholder="PEREZ RODRIGUEZ JUAN" class="form-control-sm col-md-12">
-                                    <help>Iniciar por Apellidos</help>
-                                    <input type="hidden" name="codigo" value="<?=$usuario->codigo?>">
-                                    <input type="hidden" id="usrIncidente" value="<?=$usuario->codigo?>"  name="usrIncidente">
-                                    <input type="hidden" name="dependencia" id="dependencia">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox ibox-fullheight">
+                <div class="ibox-head">
+                    <div class="ibox-title">Datos del Solicitante</div>
+                </div>
+                <div class="ibox-body">
+                    <div class="row">
+                        <div class="form-group mb-6 col-md-12 ">
+                            <label class="col-sm-12 col-form-label">Nombre: </label>
+                            <div class="col-sm-12">
+                                <select class="form-control selectpicker col-sm-12" id="usrIncidente" data-live-search="true" name="usrIncidente">
+                                    <option value="<?=$usuario->codigo?>" >
+                                        <?=$usuario->usuario?> => <?=$usuario->nombre_completo?>
+                                    </option>
+                                    <? foreach ($reportantes as $reportante) {?>
+                                        <option value="<?=$reportante->codigo?>">
+                                            <?=$reportante->usuario?> => <?=$reportante->nombre_completo?>
+                                        </option>
+                                    <?  } ?>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-group mb-6 col-md-6 ">
-                                <label class="col-sm-12 col-form-label">Extensión: </label>
-                                <div class="col-sm-12">
-                                    <input type="number" max="9999999999" min="0" name="extension" id="extension" class="form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group mb-6  col-md-6 ">
-                                <label class="col-sm-12 col-form-label">Correo: </label>
-                                <div class="col-sm-12">
-                                    <input type="mail" name="correo" id="correo" class="form-control-sm">
-                                </div>
-                            </div>
+                            </div> 
 
-
-
-      
                         </div>
                     </div>
                 </div>
@@ -172,7 +151,7 @@
         });
     </script>
  
- <script>
+<!-- <script>
     $("#nombre").change(function () {   
         busqueda = $("#nombre").val();
         datos = { busqueda : busqueda,
@@ -191,7 +170,7 @@
           })
      })
 </script>
-
+ script de la impresora
 <script>
    $(function() {       
         busqueda = $("#nombre").val();
@@ -208,6 +187,6 @@
           
           })  
    })
- </script>
+ </script> -->
  
 

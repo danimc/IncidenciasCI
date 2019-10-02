@@ -23,10 +23,9 @@ class Ticket extends CI_Controller {
 	{
 		$codigo = $this->session->userdata("codigo");	
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
-		$datos['reportante'] = $this->m_ticket->obt_lista_usuarios();
+		$datos['reportantes'] = $this->m_ticket->obt_lista_usuarios();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
-		$datos['reportante'] = $this->m_usuario->obt_usuarios_like();
-
+		
 		$this->load->view('_encabezado1');
 		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_nuevo_ticket', $datos);
@@ -36,17 +35,17 @@ class Ticket extends CI_Controller {
 	function levantar_incidente()
 	{
 		if ($_POST['usrIncidente'] == 0) {
-			redirect(base_url().'index.php?/ticket/nuevo_ticket/e');
-			
+			redirect(base_url().'index.php?/ticket/nuevo_ticket/e');			
 		}
-		$reportante = $_POST['codigo'];
+
+		$reportante = $this->session->userdata("codigo");
 		$usuarioIncidente = $_POST['usrIncidente'];
 	    $notificacion = 1;
 		$titulo = $_POST['incidente'];
 		$descripcion = $_POST['descripcion'];
 		$categoria = $_POST['categoria'];
 		$prioridad = $_POST['prioridad'];
-		$dependencia = $_POST['dependencia'];
+		$dependencia = $this->m_usuario->obt_dependencia_usuario($usuarioIncidente);
 		$estatus = '1';	
 
 		$ticket = array(			
@@ -54,7 +53,7 @@ class Ticket extends CI_Controller {
 			'hora_inicio'		=> $this->m_ticket->hora_actual(),
 			'usr_reportante' 	=> $reportante,
 			'usr_incidente'		=> $usuarioIncidente,
-			'dependencia'		=> $dependencia,
+			'dependencia'		=> $dependencia->dependencia,
 			'categoria'			=> $categoria,
 			'titulo'			=> $titulo,
 			'descripcion'		=> $descripcion,

@@ -8,7 +8,7 @@ class m_ticket extends CI_Model {
     }
 
     function obt_lista_usuarios(){
-
+// modificar consulta para que solo se obtengan los datons necesarios
      return $this->db->get("usuario")->result();   
     }
 

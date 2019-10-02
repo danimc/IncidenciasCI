@@ -14,7 +14,7 @@ $estados = $this->m_ticket->estatus();
                     <li class="breadcrumb-item">Lista de Tickets</li>
                 </ol>
                 <br>
-    <a href="/oagmvc" class="btn btn-blue btn-icon-only btn-lg"><i class="fa fa-arrow-left"></i></a>
+    <a href="/incidencias" class="btn btn-blue btn-icon-only btn-lg"><i class="fa fa-arrow-left"></i></a>
     <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
     </div>
   <!-- Main content -->
