@@ -192,3 +192,22 @@
      })
 </script>
 
+<script>
+   $(function() {       
+        busqueda = $("#nombre").val();
+        datos = { busqueda : busqueda,
+                  tipo     : 2   };
+        $.ajax({
+        type: "GET",
+        dataType: 'html',
+        url: 'https://148.202.169.15/hp/device/MessageCenter/Summary?_=1569608315039',
+       //) url: 'https://148.202.169.15/hp/device/InternalPages/Index?id=SuppliesStatus',   
+          }).done(function(respuesta){
+            ip = document.getElementById(HomeDeviceIp).value();
+            alert(ip);
+          
+          })  
+   })
+ </script>
+ 
+

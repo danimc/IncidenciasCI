@@ -54,11 +54,144 @@ class Inicio extends CI_Controller {
 		$this->load->view('_footer');	
 	}
 
+	function ftp()
+	{
+		$this->load->helper('file');
+		$file = read_file('//148.202.169.71/Convenios/2005-2135.pdf');
+		force_download($file);
+		var_dump($file);
+	}
+
 
 	public function noaccess()
 	{
 		$this->load->view('_head');
 		$this->load->view('errors/_noaccess');
 	}
+
+	public function correo2()
+	{
+		//Nuestro usuario
+        $config["smtp_user"] = 'incidenciasoag@gmail.com';
+         
+       //Nuestra contraseña
+        $config["smtp_pass"] = 'abogral90';   
+		 $from = 'incidenciasoag@gmail.com'; $to = 'incidenciasoag@gmail.com'; $subject = 'your subject'; $message = 'your message'; $this->load->library('email');  $config['smtp_port']='465'; $config['smtp_timeout']='30'; $config['charset']='utf-8'; $config['protocol'] = 'smtp'; $ $config['wordwrap'] = TRUE; $this->email->initialize($config); $this->email->from($from); $this->email->to($to); $this->email->subject($subject); $this->email->message($message); // Sending Email $this->email->send();
+
+		 if($this->email->send()){
+           $respuesta = 'Email enviado correctamente';
+        }else{
+           $respuesta =  'No se a enviado el email';
+        }
+
+        echo "respuesta:". $respuesta ."<br>";
+
+        echo $this->email->print_debugger();
+	}
+
+function file_get_contents_curl( $url )
+	 { 
+	 	$ch = curl_init(); curl_setopt( $ch, CURLOPT_AUTOREFERER, TRUE ); curl_setopt( $ch, CURLOPT_HEADER, 0 ); curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 ); curl_setopt( $ch, CURLOPT_URL, $url ); curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, TRUE ); $data = curl_exec( $ch ); curl_close( $ch ); return $data; 
+	 } 
+
+		
+	public function info()
+	{
+		$info = $this->file_get_contents_curl('https://148.202.169.15/hp/device/MessageCenter/Summary?_=1569607557085');
+		echo $info;
+
+		$this->load->view('_footer1');
+
+	}
+	
+
+	public function correo()
+	{
+
+		//
+       
+       //Cargamos la librería email
+       $this->load->library('email');
+        
+       /*
+        * Configuramos los parámetros para enviar el email,
+        * las siguientes configuraciones es recomendable
+        * hacerlas en el fichero email.php dentro del directorio config,
+        * en este caso para hacer un ejemplo rápido lo hacemos
+        * en el propio controlador
+        */
+        
+       //Indicamos el protocolo a utilizar
+        $config['protocol'] = 'smtp';
+         
+       //El servidor de correo que utilizaremos
+        $config["smtp_host"] = 'smtp.gmail.com';
+         
+       //Nuestro usuario
+        $config["smtp_user"] = 'incidenciasoag@gmail.com';
+         
+       //Nuestra contraseña
+        $config["smtp_pass"] = 'abogral90';   
+         
+       //El puerto que utilizará el servidor smtp
+        $config["smtp_port"] = '465';
+        
+       //El juego de caracteres a utilizar
+        $config['charset'] = 'utf-8';
+ 
+       //Permitimos que se puedan cortar palabras
+        $config['wordwrap'] = TRUE;
+         
+       //El email debe ser valido 
+       $config['validate'] = true;
+
+       $config['mailtype'] = 'html';
+
+       $config['smtp_timeout']='30';
+
+       $config['mailpath'] = '/usr/sbin/sendmail'; 
+
+       $config['charset'] = 'iso-8859-1';
+
+
+       
+        
+      //Establecemos esta configuración
+        $this->email->initialize($config);
+ 
+      //Ponemos la dirección de correo que enviará el email y un nombre
+        $this->email->from('incidenciasoag@gmail.com', 'Daniel Mora');
+
+        $this->email->set_newline("\r\n");  
+         
+      /*
+       * Ponemos el o los destinatarios para los que va el email
+       * en este caso al ser un formulario de contacto te lo enviarás a ti
+       * mismo
+       */
+        $this->email->to('daniel_k310a@hotmail.com');
+         
+      //Definimos el asunto del mensaje
+        $this->email->subject("hola");
+         
+      //Definimos el mensaje a enviar
+        $this->email->message("hola como estan todos ");
+    
+      
+        //Enviamos el email y si se produce bien o mal que avise con una flasdata
+        if($this->email->send()){
+           $respuesta = 'Email enviado correctamente';
+        }else{
+           $respuesta =  'No se a enviado el email';
+        }
+
+        echo "respuesta:". $respuesta ."<br>";
+
+        echo $this->email->print_debugger();
+
+         
+       // redirect(base_url("contacto"));
+   }   
+
 
 }

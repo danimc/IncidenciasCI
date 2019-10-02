@@ -54,7 +54,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     if($this->m_seguridad->acceso_sistema() == 0)
     {
 
-        redirect('/Inicio/noaccess');
+        redirect('/inicio/noaccess');
     }
     ?>
 
@@ -62,7 +62,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <div class="page-wrapper">
         <header class="header">
             <div class="page-brand">
-                <a href="/oagmvc">
+                <a href="/incidencias">
                     <span class="brand">sistematización</span>
                     <span class="brand-mini">OAG</span>
                 </a>

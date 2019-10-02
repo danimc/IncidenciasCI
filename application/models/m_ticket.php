@@ -630,10 +630,10 @@ Se Agradece su atención.';
         $datosClima = $clima->main;
         $datosGen   = $clima->weather;
         $temperatura = $datosClima->temp;
-        $descripcion    = $datosGen->description;
+       // $descripcion    = $datosGen->description;
 
         $despertador = "Buen dia compañero.
-La temperatura al momento es de ".$temperatura . "° C. con una minima de ". $descripcion;
+        La temperatura al momento es de ".$temperatura . "° C.";
 
 
 

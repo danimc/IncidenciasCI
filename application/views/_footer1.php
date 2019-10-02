@@ -38,5 +38,7 @@
     <script src="<?=base_url()?>src/assets/js/scripts/dashboard_visitors.js"></script>
     <script src="<?=base_url()?>src/assets/vendors/dataTables/datatables.min.js"></script>
 
+
+
     </body>
     <html>

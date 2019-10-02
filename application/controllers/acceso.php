@@ -45,6 +45,6 @@ class Acceso extends CI_Controller {
 	function verifica_logeado()
 	{
 		if($this->session->userdata("logged_in"))
-			redirect("/Inicio");
+			redirect("/inicio");
 	}
 }
