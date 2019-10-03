@@ -60,7 +60,7 @@
                         <div class="col-md-12">
                             <div class="box box-widget widget-user">
                                 <div class="widget-user-header bg-aqua-active">
-                                    <h3 class="widget-user-username"><?=$usuario->nombre?></h3>
+                                    <h3 class="widget-user-username"><?=$usuario->nombre_completo?></h3>
                                     <h5 class="widget-user-desc"><?=$usuario->nom_dependencia?></h5>
                                 </div>
                                 <div class="widget-user-image">
@@ -107,7 +107,7 @@
                                 </div>
 
                                 <div class="box-body">
-                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong><?=$usuario->nombre?> </h4>
+                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong><?=$usuario->nombre_completo?> </h4>
                                     <hr>
                                     <h4><strong><i class="fa  fa-star margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
                                     <hr>

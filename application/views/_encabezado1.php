@@ -112,7 +112,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                                     <img src="<?=base_url()?>src/img/usr/team.png" class="user-image" alt="foto Perfil">
                                 </div>
                                 <div>
-                                    <h5 class="font-strong text-white"><?=$usuario->nombre?></h5>
+                                    <h5 class="font-strong text-white"><?=$usuario->nombre_completo?></h5>
                                     <div>                    
                                         <span class="admin-badge"><i class="ti-lock mr-2"></i><?=$usuario->dependencia?></span>
                                     </div>
