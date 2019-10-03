@@ -11,6 +11,10 @@ class Ticket extends CI_Controller {
 		$this->load->model('m_ticket',"",TRUE);
 		$this->load->model('m_correos',"",TRUE);
 
+		$ci = get_instance();	
+		$this->ftp_ruta = $ci->config->item("f_ruta");
+		$this->dir = $ci->config->item("oficios");
+
 	}
 
 	public function index()
@@ -64,12 +68,38 @@ class Ticket extends CI_Controller {
 
 		$this->m_ticket->nuevo_incidente($ticket);
 		$idIncidente = $this->db->insert_id();
-
 		$this->m_ticket->SendTelegram($ticket, $idIncidente);
+		$this->subir_adjuntos($idIncidente);
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
 
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
+	}
+
+		function subir_adjuntos($idIncidente){
+
+		for($i=0;$i<count($_FILES["imagen"]["name"]);$i++)
+        {
+        	if($_FILES['imagen']['name'][$i] != ""){
+
+			
+				$x = $i+1;
+				$origen=$_FILES["imagen"]["tmp_name"][$i];
+				$ext = explode('.',$_FILES['imagen']['name'][$i]);
+				$ext = $ext[count($ext) - 1];
+				$ruta ='att_' . $idIncidente .'_' . $x .'.' . $ext; 				
+				move_uploaded_file($origen , $this->ftp_ruta . 'src/att/'. $ruta );
+
+				$attach = array('id_ticket' 	=> $idIncidente,
+								'tipo'			=> 3,
+								'ruta'			=> $ruta,
+								'ext'			=> $ext
+								 );
+
+				$this->m_ticket->subir_pdf($attach);
+			}
+		}
+
 	}
 
 	function lista_tickets_cerrados()
@@ -146,6 +176,7 @@ class Ticket extends CI_Controller {
 		$datos['asignados'] = $this->m_ticket->obt_asignados();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
 		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
+		$datos['attach'] = $this->m_ticket->obtAdjunto($folio);
 
 		if ($rol == 1) {
 			
@@ -310,7 +341,7 @@ class Ticket extends CI_Controller {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
-		redirect('ticket/seguimiento/'. $incidente);
+		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
 
 	//	echo $this->email->print_debugger();
 

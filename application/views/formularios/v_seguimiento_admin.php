@@ -54,6 +54,16 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
                   <td><strong><i class="fa fa-envelope margin-r-5"></i> Correo: </strong></td>
                   <td><a href='mailto:<?=$ticket->correo?>'> <?=$ticket->correo?></a></td>
                 </tr>
+                <tr>
+                  <td><strong><i class="fa fa-paperclip margin-r-5"></i> Adjuntos:</strong></td>
+                <td>
+              <?
+                foreach ($attach as $att) {
+                  $ext = $this->m_ticket->ext($att->ext);?>
+                  <a target="_blank" href="src/att/<?=$att->ruta?>"><?=$ext?></a>
+              <?}?>
+                </td>
+              </tr>
               </table>
             </div>
           </div>

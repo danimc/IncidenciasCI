@@ -103,13 +103,13 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <span><?=$usuario->usuario?></span>
-                            <img src="<?=base_url()?>src/img/usr/team.png" class="user-image" alt="foto Perfil">
+                            <img src="<?=base_url()?>src/img/usr/<?=$usuario->img?>" class="user-image" alt="foto Perfil">
                         </a>
                         <div class="dropdown-menu dropdown-arrow dropdown-menu-right admin-dropdown-menu">
                             <div class="dropdown-arrow"></div>
                             <div class="dropdown-header">
                                 <div class="admin-avatar">
-                                    <img src="<?=base_url()?>src/img/usr/team.png" class="user-image" alt="foto Perfil">
+                                    <img src="<?=base_url()?>src/img/usr/<?=$usuario->img?>" class="user-image" alt="foto Perfil">
                                 </div>
                                 <div>
                                     <h5 class="font-strong text-white"><?=$usuario->nombre_completo?></h5>

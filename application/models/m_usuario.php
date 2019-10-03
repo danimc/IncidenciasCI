@@ -51,6 +51,7 @@ class m_usuario extends CI_Model {
                 , extension
                 , correo
                 , password
+                , if(foto != '' , foto, 'team.png') as img
                 FROM crm.usuario
                 INNER JOIN dependencias
                 INNER JOIN crm.puesto_usr p
@@ -141,6 +142,13 @@ class m_usuario extends CI_Model {
         $this->db->update('usuario');
 
     }
+
+     function cambiar_img($ruta, $usr){
+        $this->db->set('foto', $ruta);
+        $this->db->where('codigo', $usr);
+        $this->db->update('usuario');
+    }       //die(var_dump($_FILES['img']));
+    
 
     function editar_usuario($nombre, $apellido, $dependencia, $extension, $correo, $codigo)
     {

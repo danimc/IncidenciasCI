@@ -88,7 +88,13 @@ class m_ticket extends CI_Model {
         return $this->db->query($qry)->result();
     }
 
+      function obtAdjunto($folio)
+    {
+        $this->db->where('id_ticket', $folio);
+        $this->db->where('tipo', 3);
 
+        return $this->db->get('Tb_Adjuntos')->result();
+    }
 
     function asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
     {
@@ -134,6 +140,11 @@ class m_ticket extends CI_Model {
         $this->hora = $hora;
 
         $this->db->insert('h_ticket', $this);
+    }
+
+    function subir_pdf($nuevoPdf)
+    {
+        $this->db->insert('Tb_Adjuntos', $nuevoPdf); 
     }
 
     function h_cambiar_categoria($folio, $categoria, $fecha, $hora)
@@ -489,6 +500,32 @@ class m_ticket extends CI_Model {
             $esta = ' <span data-toggle="modal" data-target="#modalStatus" class="btn badge btn-warning badge-pill mb-2"><i class="fa  fa-random"></i> Reasignado</span>';
             return $esta;
         }
+    }
+
+     function ext($ext)
+    {
+        if ($ext == "pdf" OR $ext == "PDF") {
+            $src = '<img width="" src="src/img/pdf.png">';
+            return $src;
+        }
+        if ($ext == "jpg" OR $ext == "JPG") {
+            $src = '<img width="" src="src/img/jpg.png">';
+            return $src;
+        }
+        if ($ext == "doc" OR $ext == "DOC" OR $ext == "docx" OR $ext == "DOCX") {
+            $src = '<img width="" src="src/img/doc.png">';
+            return $src;
+        }
+        if ($ext == "xls" OR $ext == "XLS" OR $ext == "xlsx" OR $ext == "XLSX") {
+            $src = '<img width="" src="src/img/xls.png">';
+            return $src;
+        }
+        if ($ext == 'ppt'OR $ext == "PPT" OR $ext == 'pptx' or $ext == "PPTX") {
+           $src = '<img width="" src="src/img/ppt.png">';
+            return $src; 
+        }
+
+
     }
 
     function asignados($id)

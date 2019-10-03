@@ -36,10 +36,10 @@ class Usuario extends CI_Controller {
 		$datos['ticketR'] = $this->m_usuario->obt_tickets_reportados($codigo);
 		$datos['rol'] = $this->session->userdata("rol");
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);	
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('v_perfil', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	}
 
 	function obt_usuario()
@@ -82,10 +82,10 @@ class Usuario extends CI_Controller {
 		
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['dependencias'] = $this->m_usuario->obt_dependencias();	
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_perfil_edit', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	}
 
 	function editar_info_personal()
@@ -104,10 +104,10 @@ class Usuario extends CI_Controller {
 		$datos['situaciones'] = $this->m_usuario->obt_situacion_usuarios();
 		$datos['plazas'] = $this->m_usuario->obt_plazas();
 		$datos['roles'] = $this->m_usuario->obt_roles();
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_perfil_editPersonal', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	}
 
 	function editar_datos_personal()
@@ -137,14 +137,37 @@ class Usuario extends CI_Controller {
 
 	}
 
+	function cambiar_img()
+    {
+        $img = $_FILES['img'];
+        $ext = explode('.', $img['name']);
+        $ext = strtolower($ext[count($ext) - 1]);
+        if ($img['error'] == 0) {
+            if ($ext != 'jpg' AND $ext != 'png' AND $ext != 'jpeg') {
+                redirect('usuario/perfil/i1');
+            }else {
+                //$usr = md5($_POST['usuario']);
+                $usr = $_POST['usuario'];
+                move_uploaded_file($img['tmp_name'], $this->ftp_ruta . 'src/img/usr/us_'.$usr.'.' . $ext);
+                $ruta = 'us_'.$usr.'.' . $ext;
+                $this->m_usuario->cambiar_img($ruta, $usr);
+                redirect('usuario/perfil');
+            }
+        }else {
+            redirect('usuario/perfil/i2');
+        }
+    }
+        
+
+
 	function lista_usuarios()
 	{ 
 		$datos['usuario'] = $this->m_usuario->obt_usuarios();
 
-		$this->load->view('_encabezado');
-		$this->load->view('_menuLateral');
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
 		$this->load->view('listas/l_listaUsuarios', $datos);
-		$this->load->view('_footer');
+		$this->load->view('_footer1');
 	}
 }
 

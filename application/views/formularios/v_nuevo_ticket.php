@@ -54,6 +54,28 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="ibox ibox-fullheight">
+                    <div class="ibox-head">
+                        <div class="ibox-title">
+                            Archivos Adjuntos
+                        </div>
+                    </div>
+                        <div class="ibox-body">
+                            <div id="dvEmail" class="form-group mb-12 col-md-12">
+                                <div class="form-group mb-12 col-md-12 " >
+                                    <label class="col-sm-12 col-form-label">Subir Archivos  </label>
+                                    <div class="col-sm-12">
+                                        <input id="imagen" name="imagen[]" type="file" class="btn btn-secondary" multiple="multiple" />                   
+                                    </div>
+                                    <help>(Max. 10 Mb. Por Archivo)</help>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
             <div class="col-md-10">
                 <div class="ibox ibox-fullheight">
                     <div class="ibox-body">
@@ -61,14 +83,14 @@
                             <div class="form-group mb-4 col-sm-5">
                                 <label class="col-sm-12 col-form-label">Descripcion del Incidente: </label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" name="incidente" type="text" placeholder="Ej. Problema con Word ">
+                                    <input class="form-control" name="incidente" type="text" required="" placeholder="Ej. Problema con Word ">
                                 </div>
                             </div>
                             <div class="form-group mb-4 col-sm-4 ">
                                 <label class="col-sm-12 col-form-label">Categoria: </label>
                                 <div class="col-sm-12">
                                     <select name="categoria" id="categoria" class="form-control selectpicker" data-live-search="true">
-                        <option >Seleccione una categoria</option>
+                        <option value="0">Seleccione una categoria</option>
                         <? foreach ($categorias as $cat) {?>
                                                     <option value="<?=$cat->id_cat?>"><?=$cat->categoria?></option>
                                               <?  }?>
@@ -118,7 +140,7 @@
                             <i class="fa fa-save"></i> Generar Ticket de Servicio
                         </button>
                         </form>
-                        <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
+                        <a class="btn btn-danger" href="/incidencias">Cancelar</a>
                     </div>
                 </div>
             </div>

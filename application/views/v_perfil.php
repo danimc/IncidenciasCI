@@ -40,120 +40,133 @@
   }
 </script>
 
- <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        Perfil
-                        <small>De usuario</small>
-                    </h1><br>
-                    <ol class="breadcrumb">
-                        <li><a href="/index"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li>Perfil</li>
-                    </ol>
-                </section>
 
-                <!-- Main content -->
-                <section class="content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box box-widget widget-user">
-                                <div class="widget-user-header bg-aqua-active">
-                                    <h3 class="widget-user-username"><?=$usuario->nombre_completo?></h3>
-                                    <h5 class="widget-user-desc"><?=$usuario->nom_dependencia?></h5>
-                                </div>
-                                <div class="widget-user-image">
-                                    <img class="img-circle" src="<?=base_url()?>src/img/usr/team.png" alt="imagen de perfil">
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row">
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                <h5 class="description-header"><?=$ticketR?></h5>
-                                                <span class="description-text"> Tickets Reportados</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                <h5 class="description-header">0</h5>
-                                                <span class="description-text">Tickets abiertos</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-block">
-                                                <h5 class="description-header"> <?=$usuario->extension?> </h5>
-                                                <span class="description-text">Contacto</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+ <div class="content-wrapper">
 
-                            </div>
+  <!-- Content Header (Page header) -->
+  <div class="page-heading">
+        <div class="col-md-12">
+  
  <?
-                                if ($this->uri->segment(3) == 'e') {?>
-                                    <div align="center" class="alert alert-success"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
-                                <?}
-                            ?>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <a href="<?=base_url()?>index.php?/usuario/editar/<?=$usuario->codigo?>" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
-                                    <h3 class="box-tittle"> Información de Usuario</h3>
-
-                                </div>
-
-                                <div class="box-body">
-                                    <h4><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong><?=$usuario->nombre_completo?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa  fa-star margin-r-5"></i> Username: </strong><?=$usuario->usuario?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-legal margin-r-5"></i> Dependencia: </strong> <?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-phone margin-r-5"></i>Extension: </strong><?=$usuario->extension?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-envelope margin-r-5"></i> Correo: </strong><?=$usuario->correo?></h4>
-                                    <hr>
-                                    <a href="#" data-toggle="modal" data-target="#myModal""><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
-                                    <h4><strong><i class="fa fa-lock margin-r-5"></i> Contraseña: </strong>*******</h4>
-
-
-                                </div>
+    if ($this->uri->segment(3) == 'e') {?>
+        <div id="alerta" class="alert alert-success col-md-4 pull-right"><p><i class="fa fa-check"></i> La contraseña se cambio Satisfactoriamente</p></div>
+    <?}
+    if ($this->uri->segment(3) == 'i1') {?>
+        <div div="alerta" class="alert alert-danger col-md-4 pull-right"><p><i class="fa fa-close"></i> Error: solo puede subir imagenes</p></div>
+    <?}
+    if ($this->uri->segment(3) == 'i2') {?>
+        <div div="alerta" class="alert alert-warning col-md-4 pull-right"><p><i class="fa fa-warning"></i> Atención: Debe seleccionar una imagen</p></div>
+    <?} ?>
+      </div>
+    <h1 class="page-title">Perfil de usuario</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index-2.html"><i class="la la-home font-20"></i></a>
+      </li>
+      <li class="breadcrumb-item">Usuario</li>
+      <li class="breadcrumb-item">Perfil</li>
+    </ol>
+    <br>
+  </div>
+          <a href="<?=base_url()?>index.php?/inicio/" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
+         
+         
+    <!-- Main content -->
+  <section class="page-content fade-in-up">
+    <div class="card card-air text-center centered mb-4 col-md-10" >
+          <a href="#" data-toggle="modal" data-target="#cambiarFoto"><span class="pull-right badge badge-pill bg-blue"><i class="fa fa-image"></i> Cambiar Imagen</span></a>
+                        <div class="card-body">
+                            <div class="card-avatar mt-1 mb-4">
+                              <img class="img-circle" src="<?=base_url()?>src/img/usr/<?=$usuario->img?>" alt="fPerfil">                             
                             </div>
+                            <h4 class="card-title mb-1"><?=$usuario->nombre_completo?></h4>
+                            <div class="text-info"><i class="ti-location-pin mr-2"></i><?=$usuario->nom_dependencia?></div>
                         </div>
+                    </div>
 
-                        <!-- sección 2 -->
-                        <div class="col-md-6">
-                            <div class="box ">
-                                <div class="box-header with-border">
-                                    <? if($rol == 1) {?>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="ibox ibox-fullheight">
+          <div class="ibox-head">
+            <div class="ibox-title">Información de Usuario</div>
+          </div> 
+          <div class="ibox-body">
+            <div class="row">
+              <table class="table table-condensed">
+                <tr>
+                  <td><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong></td>
+                  <td><?=$usuario->nombre_completo?></td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa  fa-at margin-r-5"></i> Username:</strong></td>
+                  <td> <?=$usuario->usuario?></td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-building margin-r-5"></i> Adscripción:</strong></td>
+                  <td><?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>)  </td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-phone margin-r-5"></i> Extension: </strong></td>
+                  <td><?=$usuario->extension?></td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-envelope margin-r-5"></i> Correo:</strong></td>
+                  <td><a href='mailto:<?=$usuario->correo?>'>  <?=$usuario->correo?></a></td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-asterisk margin-r-5"></i> Contraseña:</strong></td>
+                  <td>
+                      <a href="#" data-toggle="modal" data-target="#myModal"><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
+                      *******
+                  </td>
+                                      
+                </tr>
+                <tr><td></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="ibox ibox-fullheight">
+          <div class="ibox-head">
+            <div class="ibox-title">Datos de Personal:</div>
+            <? if($rol == 1) {?>
                                     <a href="<?=base_url()?>index.php?/usuario/editar_info_personal/<?=$usuario->codigo?>" class="btn btn-default pull-right">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                     <?}?>
-                                    <h3 class="box-tittle"> Datos de Personal:</h3>                                   
-                                </div>
+          </div>
+          <div class="ibox-body">
+            <div class="row">
+                 <table class="table table-condensed">
+                <tr>
+                  <td><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong></td>
+                  <td><?=$usuario->situacion?></td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-black-tie margin-r-5"></i> Plaza: </strong></td>
+                  <td><? if (isset($usuario->puesto)) {?>
+                                            <?=$usuario->puesto;
+                                        }?> </td>
+                </tr>
+                <tr>
+                  <td><strong><i class="fa fa-hand-o-right  margin-r-5"></i> Rol de Usuario: </strong></td>
+                  <td> <?=$usuario->rol?></td>
+                </tr>        
+              
+              </table>
 
-                                <div class="box-body">
-                                   <h4><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong><?=$usuario->situacion?> </h4>
-                                    <hr>
-                                    <h4><strong><i class="fa fa-black-tie margin-r-5"></i> Plaza: </strong><?=$usuario->puesto?> </h4>
-                                    <hr>                                   
-                                    <h4><strong><i class="fa  fa-exclamation-circle  margin-r-5"></i> Puesto: </strong> No hay información actual </h4>
-                                     <hr>                                   
-                                    <h4><strong><i class="fa   fa-hand-o-right  margin-r-5"></i> Rol de Usuario: </strong> <?=$usuario->rol?> </h4>                                     
-                                </div>
-                             </div>
-                        </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                    </div>
+    </div>
+  </section>
 
-                </section>
-                
-                <!-- /.content -->
+             <!-- /.content -->
             </div>
 
 
@@ -193,3 +206,30 @@
         </div>
       </div>
 </form>
+
+<form id="frmCambiarImg" enctype="multipart/form-data" method="POST" action="<?=base_url()?>index.php?/usuario/cambiar_img">
+     <div class="modal fade" id="cambiarFoto" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-blue">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
+            </div>
+            <div class="modal-body">
+                <h3 align="center" class="title">Cambiar imagen de Perfil</h3>                  
+              <p align="center">Suba una nueva foto de perfil </p>
+                <div id="mensaje"></div>
+              <br>
+              <input type="file" name="img">
+              <input type="hidden" name="usuario" value="<?=$usuario->codigo?>">
+                
+                </div>
+              <div class="modal-footer">
+                <button type="submit" id="cambiarFoto"   class="btn btn-success"  ><i class="fa fa-check"></i> Cambiar Foto</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"> Cancelar</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+<script src="<?=base_url()?>src/js/md5.js"></script>
