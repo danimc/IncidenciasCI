@@ -78,6 +78,7 @@ class m_ticket extends CI_Model {
         ,mensaje
         ,fecha
         ,hora
+        ,h_ticket.img
         FROM h_ticket
         LEFT JOIN categoria_ticket cat ON cat.id_cat = h_ticket.categoria
         LEFT JOIN situacion_ticket situ ON situ.id = h_ticket.estatus
@@ -95,6 +96,15 @@ class m_ticket extends CI_Model {
 
         return $this->db->get('Tb_Adjuntos')->result();
     }
+
+        function obt_imagenesChat($folio)
+    {
+        $this->db->where('img !=', '');
+        $this->db->where('folio', $folio);
+
+        return $this->db->get('h_ticket')->num_rows();
+    }
+
 
     function asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
     {
@@ -185,13 +195,14 @@ class m_ticket extends CI_Model {
         
     }
 
-    function mensaje($folio, $mensaje, $fecha, $hora)
+    function mensaje($folio, $mensaje, $fecha, $hora, $nImg)
     {
         $this->folio = $folio;
         $this->usr = $this->session->userdata("codigo");
         $this->mensaje = $mensaje;
         $this->fecha = $fecha;
         $this->hora =  $hora;
+        $this->img = $nImg;
 
         $this->db->insert('h_ticket', $this);
     }
@@ -540,74 +551,129 @@ class m_ticket extends CI_Model {
         return $asig;
     }
 
-    function timeline($mensaje, $fecha)
-    {        
-        if ($fecha != 1)
-            {
-                $fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
-              ?>
-                    <li class="time-label">
-                    <span class="bg-red">
-                    <?=$fecha?>
-                    </span>
-                    </li>
-<?   
-        
-            }
-            else{
-               
+      function timeline($mensaje, $fecha)
+    {
+        if ($fecha != 1) {
+            $fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha); ?>
             
-            } 
-    if (isset($mensaje->mensaje)){
-?>
-    <li>
-        <i class="fa fa-comment bg-purple"></i>
-        <div class="timeline-item bg-default ">
-            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
-            <h3 class="timeline-header btn-default"><a href="">Mensaje:</a> <b> <?=$mensaje->usuario?></b> Dice: </h3>
-            <div class="timeline-body bg-gray ">
-                <?=$mensaje->mensaje?>                
-            </div>
-        </div>
-    </li>
-        <?}
+            <li class="time-label">
+                <span class="bg-red">
+                    <?=$fecha?>
+                </span>
+            </li> <?   
+        }
+        else{} 
+        if (isset($mensaje->categoria)) { ?>
+            <li>
+                <i class="fa fa-tags bg-orange"></i>
+                <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                    <h3 class="timeline-header"><a href="#">Cambio de Categoria:</a> <b> <?=$mensaje->usuario?></b> Cambio la categoria a <b><?=$mensaje->categoria?> </b>
+                </div>
+            </li> <?
+        }
 
-        if (isset($mensaje->categoria)) {
-            ?>
-    <li>
-        <!-- timeline icon -->
-        <i class="fa fa-tags bg-orange"></i>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
-
-            <h3 class="timeline-header"><a href="#">Cambio de Categoria:</a> <b> <?=$mensaje->usuario?></b> Cambio la categoria a <b><?=$mensaje->categoria?> </b>
-        </div>
-    </li> 
-
-        <?}
         if (isset($mensaje->situacion)) {
             if (isset($mensaje->asignado)) {
-?>
-        <li>
-            <i class="fa fa-user bg-blue"></i>
-            <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o">    </i> <?=$mensaje->hora?></span>
-            <h3 class="timeline-header"><a href="#">El ticket ha sido Asignado a: <?=$mensaje->asignado?> </a></h3>          
-            </div>
-        </li>
-           <? }
-           else{
-?>
-        <li>
-        <!-- timeline icon -->
-        <i class="fa fa-info-circle bg-green"></i>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                if ($mensaje->situacion != 'Resuelto') { ?>
+                    <li>
+                        <i class="fa fa-user bg-pink"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o">    </i> <?=$mensaje->hora?></span>
+                            <h3 class="timeline-header"><a href="#">El ticket ha sido Asignado a: <?=$mensaje->asignado?> </a></h3>          
+                        </div>
+                    </li><?
+                }
+            }
+            if ($mensaje->situacion == 'Cerrado') { ?>
+                <li>
+                    <i class="fa fa-lock bg-red"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                        <h3 class="timeline-header"><a href="#"></a> <b> <?=$mensaje->usuario?></b> Cerró el ticket<b>mensaje: </b> </h3>
+                        <div class="timeline-body bg-gray ">
+                            <?=$mensaje->mensaje?>                
+                        </div>
+                    </div>
+                </li> <?
+            }
+            if ($mensaje->situacion == 'Canalizado') { ?>
+                <li>
+                    <i class="fa fa-map-signs bg-green"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                        <h3 class="timeline-header"><a href="#"></a> <b> <?=$mensaje->usuario?></b> Canalizo el incidente a <b> <?=$mensaje->nombre_canal?> </b> </h3>
+                        <div class="timeline-body bg-gray ">
+                            <?=$mensaje->mensaje?>                
+                        </div>
+                    </div>
+                </li> <?
+            }
+            if ($mensaje->situacion == 'Resuelto') { ?>
+                    <li>
+                        <i class="fa fa-check-circle bg-success"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                            <h3 class="timeline-header"><a href="#">Cambio de Estatus</a> <b> <?=$mensaje->usuario?></b> Cambio es estatus del incidente a <b> <?=$mensaje->situacion?> </b> </h3>
+                        </div>
+                    </li> <?
+                }
+            if ($mensaje->situacion == 'En Proceso') { ?>
+                    <li>
+                        <i class="fa fa-spinner bg-info"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                            <h3 class="timeline-header"><a href="#">Cambio de Estatus</a> <b> <?=$mensaje->usuario?></b> Cambio es estatus del incidente a <b> <?=$mensaje->situacion?> </b> </h3>
+                        </div>
+                    </li> <?
+                }
+            if ($mensaje->situacion == 'Pendiente') { ?>
+                    <li>
+                        <i class="fa fa-hourglass-2 bg-grey"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                            <h3 class="timeline-header"><a href="#"></a> <b> <?=$mensaje->usuario?></b> marcó <b> <?=$mensaje->situacion?> </b> el servicio </h3>
+                        </div>
+                    </li> <?
+                }
+            if ($mensaje->situacion == 'Cancelado') { ?>
+                    <li>
+                        <i class="fa fa-close bg-red"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                            <h3 class="timeline-header"><a href="#"></a> <b> <?=$mensaje->usuario?></b> <b>Canceló </b> el servicio </h3>
+                        </div>
+                    </li> <?
+                }
+            else {
 
-            <h3 class="timeline-header"><a href="#">Cambio de Estatus</a> <b> <?=$mensaje->usuario?></b> Cambio es estatus del incidente a <b> <?=$mensaje->situacion?> </b> </h3>
-        </div>
-    </li>
-    <?      }
+            }
+        }
+        else {
+            if (isset($mensaje->mensaje)) { ?>
+                <li>
+                    <i class="fa fa-comment bg-purple"></i>
+                    <div class="timeline-item bg-default ">
+                        <span class="time"><i class="fa fa-clock-o"></i> <?=$mensaje->hora?></span>
+                        <h3 class="timeline-header btn-default"><a href="">Mensaje:</a> <b> <?=$mensaje->usuario?></b> Dice: </h3>
+                        <div class="timeline-body bg-gray ">
+                            <? if($mensaje->img != '') {
+                                    $ext = explode('.',$mensaje->img);
+                                    $ext = $ext[count($ext) - 1];
+                                    if($ext != 'jpg' AND $ext != 'png' AND $ext != 'jpeg') {
+                                        $loguito = $this->m_ticket->ext($ext); 
+                                    ?> <b>Archivos Adjuntos:</b>  <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver archivo"><?=$loguito?></a><hr>
+                                <?  } else{ 
+                                      ?>
+                                    <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver imagen">
+                                     <img width="200px" src="src/att/<?=$mensaje->img?>"></a> <hr> 
+                                    <?}
+                                 }?>
+                            <?=$mensaje->mensaje?>                
+                        </div>
+                    </div>
+                </li> <?
+            }
         }
     }
 
@@ -687,6 +753,51 @@ Se Agradece su atención.';
             'text' => $mensaje,
             'parse_mode' => 'HTML'
         ];
+        $response = file_get_contents("https://api.telegram.org/bot".$apiToken."/sendMessage?" . http_build_query($data) );
+    }
+
+    public function sendTelegram_asignado($tg, $folio) //-----//
+    {
+
+        //Roland IA
+        $apiToken = "867232459:AAGRKQwjqdeXFENj_b0okBwI9-ai1WeMGqY";
+        $horario = $this->m_ticket->hora_actual();    
+        $id_tg = $tg->tg_user;  
+        $ticket = $this->m_ticket->seguimiento_ticket($folio);
+        $saludo = '';
+        if($horario <= '11:59:59'){
+            $saludo = 'Buenos días.';
+        }
+        elseif ($horario <= '19:59:59') {
+            $saludo = 'Buenas tardes.';
+        }
+        elseif ($horario <= '23:59:59') {
+            $saludo = 'Buenas noches.';
+        }
+
+        $mensaje = $saludo .'
+Se te ha asignado el ticket de servicio <b> #' . $folio . ' </b>:
+    
+<b>SOLICITA: </b>' . $ticket->usuario .'
+<b>ÁREA: </b> '. $ticket->nombre_dependencia .'
+<b>EXTENSIÓN: </b>' .$ticket->extension .'
+
+-------------------------------
+Datos de Servicio:
+
+<b>ASUNTO: </b> '. $ticket->titulo . '
+<b>DESCRIPCIÓN: </b> '.  strip_tags($ticket->descripcion) .' 
+
+Saludos :)';
+
+
+        $data = [
+            'chat_id' => $id_tg,  
+            //'chat_id' => '591531437_6135385119973428661',
+            'text' => $mensaje,
+            'parse_mode' => 'HTML'
+        ];
+
         $response = file_get_contents("https://api.telegram.org/bot".$apiToken."/sendMessage?" . http_build_query($data) );
     }
 

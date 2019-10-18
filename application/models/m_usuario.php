@@ -176,4 +176,16 @@ class m_usuario extends CI_Model {
         $this->db->where('codigo', $codigo);
         $this->db->update('usuario');
     }
+
+
+    function obt_telegramID($ingeniero)
+    {
+
+        $this->db->where('usuario', $ingeniero);
+        return  $this->db->get('Tb_CatTelegram')->row();
+
+    }
+
+    
+
 }

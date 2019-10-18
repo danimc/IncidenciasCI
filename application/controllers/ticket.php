@@ -52,6 +52,8 @@ class Ticket extends CI_Controller {
 		$dependencia = $this->m_usuario->obt_dependencia_usuario($usuarioIncidente);
 		$estatus = '1';	
 
+		
+
 		$ticket = array(			
 			'fecha_inicio'		=> $this->m_ticket->fecha_actual(),
 			'hora_inicio'		=> $this->m_ticket->hora_actual(),
@@ -66,14 +68,16 @@ class Ticket extends CI_Controller {
 			 );
 
 
+		
+
 		$this->m_ticket->nuevo_incidente($ticket);
 		$idIncidente = $this->db->insert_id();
 		$this->m_ticket->SendTelegram($ticket, $idIncidente);
 		$this->subir_adjuntos($idIncidente);
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
-
-		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
+		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
+		//redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
 		function subir_adjuntos($idIncidente){
@@ -199,11 +203,17 @@ class Ticket extends CI_Controller {
 	function asignar_usuario()
 	{
 
-		if($_POST['antAsignado'] == ''){
+		if ($_POST['antAsignado'] == $_POST['ingeniero']) {
+			$msg = '<div class="alert alert-danger"><p><i class="fa fa-close"></i>El usuario seleccionado ya esta asignado e este ticket de servicio </p></div>';
+		}else{
+
+		if($_POST['antAsignado'] == '' or $_POST['antAsignado'] == '0'){
 			$estatus = 2; 
 		}else{
 			$estatus = 7;
 		}
+
+
 		  $notificacion = 2;
 		  $codigo = $this->session->userdata("codigo");	
 		  $ingeniero = $_POST['ingeniero'];
@@ -211,14 +221,18 @@ class Ticket extends CI_Controller {
 		  $fecha= $this->m_ticket->fecha_actual();
 		  $hora= $this->m_ticket->hora_actual();
 		  $usr = $this->m_usuario->obt_usuario($codigo);
-
+		  $tg = $this->m_usuario->obt_telegramID($ingeniero);//-------//
 		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
 		  $this->m_ticket->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
+			
+		if ($tg != null) {
+		  	$response = $this->m_ticket->sendTelegram_asignado($tg, $folio); //-------//
+		  }	
 		
-
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
  		  echo json_encode($msg);
+		}
 	}
 
 	function cambiar_categoria()
@@ -301,11 +315,27 @@ class Ticket extends CI_Controller {
 		$mensaje = $_POST['chat'];
 		$fecha= $this->m_ticket->fecha_actual();
 		$hora= $this->m_ticket->hora_actual();
+		$x = $this->m_ticket->obt_imagenesChat($folio);
 
-		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora);
+		if($_FILES['imgComentario']['name'] != ""){			
+			$ext = explode('.',$_FILES['imgComentario']['name']);
+			$ext = $ext[count($ext) - 1];
+			$x = $x+1;
+			$pdf = 'c' . $folio . '_'. $x;			
+			move_uploaded_file($_FILES['imgComentario']['tmp_name'], $this->ftp_ruta . 'src/att/' . $pdf .'.' . $ext);
+			$nImg = $pdf .'.' . $ext;
+			$this->resize($nImg);
 
-		redirect('ticket/seguimiento/'. $folio .'/#chat');
+		}else {
+			$nImg = null;
+		} 
+
+		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora, $nImg);
+		//$this->m_ticket->sendTelegram_chat($folio, $mensaje);
+
+		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$folio);
 	}
+
 
 
 	function correo_ticket_levantado()
@@ -341,7 +371,7 @@ class Ticket extends CI_Controller {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
-		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
+		
 
 	//	echo $this->email->print_debugger();
 

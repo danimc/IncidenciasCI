@@ -136,6 +136,9 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
           <div class="ibox-footer">
             <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
               <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+              <div class="form-group">
+                <input class="form-control" type="file" name="imgComentario">
+              </div>
               <input type="hidden" name="folio" value="<?=$ticket->folio?>">
               <br>
               <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>

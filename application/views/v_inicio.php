@@ -145,7 +145,7 @@ $pieAbiertos = $abiertos/$total * 100;
                     <div class="col-xl-7">
                         <div class="ibox ibox-fullheight">
                             <div class="ibox-head">
-                                <div class="ibox-title">TICKETS ASIGNADOS  <a href="file:///148.202.169.71/cloud/public/escaner1/2019/10.pdf">bajar oficio</a></div>
+                                <div class="ibox-title">TICKETS ASIGNADOS  </div>
                                 <div class="ibox-tools">
                                     <a class="dropdown-toggle font-18" data-toggle="dropdown"><i class="ti-ticket"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
