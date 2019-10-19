@@ -660,7 +660,7 @@ class m_ticket extends CI_Model {
                             <? if($mensaje->img != '') {
                                     $ext = explode('.',$mensaje->img);
                                     $ext = $ext[count($ext) - 1];
-                                    if($ext != 'jpg' AND $ext != 'png' AND $ext != 'jpeg') {
+                                    if(strtolower($ext) != 'jpg' AND strtolower($ext) != 'png' AND strtolower($ext) != 'jpeg') {
                                         $loguito = $this->m_ticket->ext($ext); 
                                     ?> <b>Archivos Adjuntos:</b>  <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver archivo"><?=$loguito?></a><hr>
                                 <?  } else{ 

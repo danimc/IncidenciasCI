@@ -330,12 +330,31 @@ class Ticket extends CI_Controller {
 			$nImg = null;
 		} 
 
+		//die(var_dump($this->ftp_ruta . 'src/att/' . $pdf .'.' . $ext));
+
 		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora, $nImg);
 		//$this->m_ticket->sendTelegram_chat($folio, $mensaje);
 
 		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$folio);
 	}
 
+	function resize($nImg)
+	{
+		$this->load->library('image_lib');
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = 'src/oficios/att/'. $nImg;
+		$config['new_image'] = 'src/oficios/att/'. $nImg;
+		$config['maintain_ratio'] = TRUE;
+		$config['create_thumb'] = FALSE;
+		$config['width'] = 800;
+		$config['height'] = 800;
+
+		$this->image_lib->initialize($config);
+
+if (!$this->image_lib->resize()) {
+	echo $this->image_lib->display_errors('', '');
+}
+	}
 
 
 	function correo_ticket_levantado()
