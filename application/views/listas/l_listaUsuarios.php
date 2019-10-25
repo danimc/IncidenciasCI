@@ -1,120 +1,97 @@
 
  <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Panel de control
-      <small>Administración de Usuarios</small>
-    </h1><br>
+  <div class="page-heading">
+    <h1 class="page-title">Lista de Usuarios</h1>
     <ol class="breadcrumb">
-      <li><a href="/oag"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#"><i class="fa fa-users"></i> Usuarios</a></li>
+      <li class="breadcrumb-item">
+        <a href="index-2.html"><i class="la la-home font-20"></i></a>
+      </li>
+      <li class="breadcrumb-item">Usuarios</li>
+      <li class="breadcrumb-item">Lista de usuarios</li>
     </ol>
-  </section>
-
-  <!-- Main content -->
-  <section class="content">
-    <a href="/oagmvc" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
-    <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-app bg-green"><span class="fa fa-user-plus"></span>Nuevo Usuario</a>
-   <div id="form_newsletter_result"></div>
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Lista de Usuarios</h3>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <div class="table-responsive col-md-12">
-         <table id="example1" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>username</th>
-              <th>Nombre</th>
-              <th>Unidad</th>
-              <th>puesto</th>
-              <th>contacto</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-           <? foreach ($usuario as $user) 
-           {
-             //$estatus = $this->m_ticket->etiqueta($user->id_situacion);
-            ?>
-            <tr class="">
-              <td ><?=$user->codigo?></td>
-              <td ><?=$user->usuario?></td>
-              <td ><?=$user->nombre . ' ' . $user->apellido?></td>
-              <td ><?=$user->nombre_dependencia?></td>
-              <td ><?=$user->puesto?></td>
-              <td align="center" ><?=$user->extension?></td>
-
-
-              <td align="center">
-                <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/perfil/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
-              </td>
-            </tr>
-            <?
-          }
-          ?>
-
-        </tbody>            
-      </table> 
-    </div>
+    <br>
+    
+    <a href="<?=base_url()?>" class="btn btn-blue btn-icon-only btn-lg"><i class="fa fa-arrow-left"></i></a>
+    <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
+    
   </div>
-</div>
-  </section>
-
-
-<!-------MODAL PARA CAMBIAR EL ESTATUS---->
-<!--
-<form id="frmStatus">
-     <div class="modal fade" id="modalStatus" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-maroon">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cambiar Status </h4>
-            </div>
-            <div class="modal-body">
-              <p>Cambie el estatus actual del ticket de servicio.</p>
-                <select name="estado" class="form-control">
-                  <option disabled>Seleccione el estatus del ticket</option>
-                  <?
-                  foreach ($estados as $estado) {?>
-                    <option value="<?=$estado->id?>"><?=$estado->situacion?></option>
-                           <?}?>         
-                </select>
-                <input type="hidden" name="folio" value="<?=$ticket->folio?>">
-                <input type="hidden" name="antStatus" value="<?=$ticket->situacion?>">
-                </div>
-              <div class="modal-footer">
-                <button type="button" id="cambiarStatus"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
-            </div>
+  
+  <section class="page-content fade-in-up">
+    <div class="ibox">
+      <div class="ibox-body">
+        <div class="flexbox mb-4">
+          <div class="flexbox">
+            <div class="btn-group bootstrap-select show-tick form-control" style="width: 150px;"></div>
+          </div>
+          <div class="input-group-icon input-group-icon-left mr-3">
+            <span class="input-icon input-icon-right font-16"><i class="ti-search"></i></span>
+            <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Buscar ...">
+          </div>
+        </div>
+        <div class="table-responsive row">
+          <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+            <table class="table table-bordered table-hover dataTable no-footer dtr-inline" id="datatable" role="grid" aria-describedby="datatable_info" >
+              <thead class="thead-default thead-lg">
+                <tr>
+                  <th>Codigo</th>
+                  <th>username</th>
+                  <th>Nombre</th>
+                  <th>Unidad</th>
+                  <th>puesto</th>
+                  <th>contacto</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              <? foreach ($usuario as $user)
+                {
+               ?>
+                <tr class="">
+                  <td ><?=$user->codigo?></td>
+                  <td ><?=$user->usuario?></td>
+                  <td ><?=$user->nombre . ' ' . $user->apellido?></td>
+                  <td ><?=$user->nombre_dependencia?></td>
+                  <td ><?=$user->puesto?></td>
+                  <td align="center" ><?=$user->extension?></td>
+                  <td align="center">
+                    <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/perfil/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
+                  </td>
+                </tr>
+              <?}?>
+              </tbody>
+            </table>
+            
+            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"></div>
           </div>
         </div>
       </div>
-</form>
+    </div>
+  </section>
 
 
- BLOQUEADO HASTA REPARAR ERROR EN EL FORMULARIO
-<script type="text/javascript">
-  $("#cambiarStatus").click(function(){
-    var formulario = $("#frmStatus").serializeArray();
-    $.ajax({
-      type: "POST",
-      dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cambiar_estatus",
-      data: formulario,
-    }).done(function(respuesta){
-       $("#mensaje").html(respuesta.mensaje);
-       if (respuesta.id == 1) {
 
-       // setTimeout('document.location.reload()',1000);
-       }     
-    });
-   });
-  </script> -->
 
-        <!-- /.
+
+ <script>
+        $(function() {
+            $('#datatable').DataTable({
+                pageLength: 10,
+                fixedHeader: true,
+                responsive: true,
+                "sDom": 'rtip',
+                columnDefs: [{
+                    targets: 'no-sort',
+                    orderable: false
+                }]
+            });
+            var table = $('#datatable').DataTable();
+            $('#key-search').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+            $('#type-filter').on('change', function() {
+                table.column(2).search($(this).val()).draw();
+            });
+        });
+    </script>
+

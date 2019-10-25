@@ -26,7 +26,8 @@ class Inicio extends CI_Controller {
 		$datos['usuario'] = $usuario;
 		$datos['total'] = $this->m_inicio->obt_contador_total();
 		$datos['cerrados'] = $this->m_inicio->obt_contador_cerrados();
-		$datos['abiertos'] = $this->m_inicio->obt_contador_abiertos(); 
+		$datos['abiertos'] = $this->m_inicio->obt_contador_abiertos();
+		$datos['noasig'] = $this->m_inicio->obt_contador_noAsignados();  
 		$datos['tGeneral'] = $this->m_inicio->tickets_pendientes_general();
 
 		if ( $usuario->id_rol == 1) {

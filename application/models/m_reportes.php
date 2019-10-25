@@ -4,7 +4,7 @@ class m_reportes extends CI_Model {
 
     function __construct()
     {
-        parent::__construct();
+        parent::__construct(); 
     }
 
      function exportar_tickets_general()
@@ -62,8 +62,9 @@ class m_reportes extends CI_Model {
                     SUM(CASE WHEN MONTH(ticket.fecha_inicio) = 11 THEN 1 ELSE 0 END) AS '11',
                     SUM(CASE WHEN MONTH(ticket.fecha_inicio) = 12 THEN 1 ELSE 0 END) AS '12'
                     FROM ticket
-                    WHERE ticket.fecha_inicio BETWEEN '2019-01-01' AND '2021-12-31'
-                    GROUP BY year";
+                    WHERE ticket.fecha_inicio BETWEEN '2018-01-01' AND '2021-12-31'
+                    GROUP BY year
+                    ORDER BY year DESC";
 
         return $this->db->query($qry)->result();
     }
@@ -73,18 +74,21 @@ class m_reportes extends CI_Model {
         $qry = '';
 
         $qry = "SELECT 
-                p.nombrePuesto as canal,
+                p.categoria as canal,
                 count(folio) as cuenta
                 FROM ticket
-                LEFT JOIN tb_Cat_puestos p ON p.id_puesto = ticket.canal_atencion
-                GROUP BY p.nombrePuesto
-                ORDER BY p.id_puesto";
+                LEFT JOIN categoria_ticket p ON p.id_cat = ticket.categoria
+                WHERE ticket.categoria != 0
+                GROUP BY p.categoria
+                ORDER BY cuenta DESC
+                LIMIT 4";
 
         $result = $this->db->query($qry)->result();
 
         $array = array();
         foreach ($result as $r) {
             $array[] = $r->cuenta;
+           
         }
 
         return json_encode($array); 
@@ -94,20 +98,22 @@ class m_reportes extends CI_Model {
     {
         $qry = '';
 
-        $qry = "SELECT 
-                p.nombrePuesto as canal,
+        $qry = "SELECT
+                p.categoria as canal,
                 count(folio) as cuenta
                 FROM ticket
-                LEFT JOIN tb_Cat_puestos p ON p.id_puesto = ticket.canal_atencion
-                where month(fecha_inicio) = '$mes'
-                GROUP BY p.nombrePuesto
-                ORDER BY p.id_puesto";
+                LEFT JOIN categoria_ticket p ON p.id_cat = ticket.categoria
+                where month(fecha_inicio) = 9
+                GROUP BY p.categoria
+                ORDER BY cuenta DESC
+                LIMIT 4";
 
         $result = $this->db->query($qry)->result();
 
         $array = array();
         foreach ($result as $r) {
-            $array[] = $r->cuenta;
+            $array['canal'] = $r->canal;
+            $array['cuenta'] = $r->cuenta;
         }
 
         return json_encode($array); 
@@ -121,29 +127,9 @@ class m_reportes extends CI_Model {
         $qry .= "SELECT 
                 weekday(fecha_inicio) as numero,
                 dayname(fecha_inicio) as dia,
-                count(dayname(fecha_inicio)) as contador,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 1
-                    and weekday(t.fecha_inicio) = numero) as Direccion,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 2
-                    and weekday(t.fecha_inicio) = numero) as Desarrollo,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 3
-                    and weekday(t.fecha_inicio) = numero) as COT,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 4
-                    and weekday(t.fecha_inicio) = numero) as Soporte
-                 FROM crm.ticket
-                 group by NUMERO";
+                count(dayname(fecha_inicio)) as contador
+                FROM crm.ticket
+                group by numero";
 
         $this->db->query($qry1);
 
@@ -151,17 +137,13 @@ class m_reportes extends CI_Model {
         $array = array();
         $i = 0;
         foreach ($result as $r) {
-            $direccion[] = $r->Direccion;
-            $desarrollo[] = $r->Desarrollo;
-            $cot[] = $r->COT;
-            $soporte[] = $r->Soporte; 
+            $direccion[] = $r->contador;
+          
             $etiquetas[] = $r->dia;
         }
         $array['etiquetas'] = $etiquetas;
         $array['direccion'] = $direccion;
-        $array['desarrollo'] = $desarrollo;
-        $array['cot'] = $cot;
-        $array['soporte'] = $soporte; 
+       
         return json_encode($array); 
     }
 
@@ -173,31 +155,8 @@ class m_reportes extends CI_Model {
         $qry .= "SELECT 
                 weekday(fecha_inicio) as numero,
                 dayname(fecha_inicio) as dia,
-                count(dayname(fecha_inicio)) as contador,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 1
-                    and month(fecha_inicio) = '$mes'
-                    and weekday(t.fecha_inicio) = numero) as Direccion,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 2
-                    and month(fecha_inicio) = '$mes'
-                    and weekday(t.fecha_inicio) = numero) as Desarrollo,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 3
-                    and month(fecha_inicio) = '$mes'
-                    and weekday(t.fecha_inicio) = numero) as COT,
-                ( SELECT    
-                    count(dayname(t.fecha_inicio)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 4
-                    and month(fecha_inicio) = '$mes'
-                    and weekday(t.fecha_inicio) = numero) as Soporte
+                count(dayname(fecha_inicio)) as contador
+                
                  FROM crm.ticket
                  where month(fecha_inicio) = '$mes'
                  group by NUMERO";
@@ -230,30 +189,10 @@ class m_reportes extends CI_Model {
         $qry = "SELECT 
                 weekday(fecha_inicio) as numero,
                 dayname(fecha_inicio) as d,
-                count(dayname(fecha_cierre)) as dia_cierre,
-                ( SELECT    
-                    count(dayname(t.fecha_cierre)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 1
-                    and weekday(t.fecha_cierre) = numero) as Direccion,
-                ( SELECT    
-                    count(dayname(t.fecha_cierre)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 2
-                    and weekday(t.fecha_cierre) = numero) as Desarrollo,
-                ( SELECT    
-                    count(dayname(t.fecha_cierre)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 3
-                    and weekday(t.fecha_cierre) = numero) as COT,
-                ( SELECT    
-                    count(dayname(t.fecha_cierre)) 
-                    FROM ticket t
-                    WHERE t.canal_atencion = 4
-                    and weekday(t.fecha_cierre) = numero) as Soporte
-                 FROM crm.ticket
-                 where estatus = 5
-                 group by NUMERO";
+                count(dayname(fecha_cierre)) as dia_cierre
+                FROM crm.ticket
+                where estatus = 5
+                group by NUMERO";
 
         $this->db->query($qry1);
 
@@ -262,16 +201,12 @@ class m_reportes extends CI_Model {
         $i = 0;
         foreach ($result as $r) {
             $etiquetas[] = $r->d;
-            $direccion[] = $r->Direccion;
-            $desarrollo[] = $r->Desarrollo;
-            $cot[] = $r->COT;
-            $soporte[] = $r->Soporte; 
+            $direccion[] = $r->dia_cierre;
+           
         }
         $array['etiquetas'] = $etiquetas;
         $array['direccion'] = $direccion;
-        $array['desarrollo'] = $desarrollo;
-        $array['cot'] = $cot;
-        $array['soporte'] = $soporte; 
+      
         return json_encode($array); 
 
     }
@@ -341,15 +276,14 @@ class m_reportes extends CI_Model {
 
         $qry = "SELECT
                 usr.codigo,
-                usr.nombre_completo,
-                p.nombrePuesto as canal,
+                usr.nombre_completo,                
                 count(distinct t.folio) as cuenta,
                 if(usr.foto != '' , usr.foto, 'team.png') as img
                 from ticket t
                 INNER JOIN situacion_ticket s
                 left join h_ticket h ON h.estatus = s.id
                 left join usuario usr ON usr.codigo = h.asignado 
-                LEFT JOIN tb_Cat_puestos p ON p.id_puesto = usr.puesto
+               
                 where usr > 1
                 and h.folio = t.folio
                 AND h.estatus = 4

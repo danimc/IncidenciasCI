@@ -16,9 +16,15 @@ class m_inicio extends CI_Model {
         $this->db->where('estatus', 5);
         return $this->db->get('ticket')->num_rows();
     }
-        function obt_contador_abiertos()
+    function obt_contador_abiertos()
     {
         $this->db->where('estatus !=', 5);
+        return $this->db->get('ticket')->num_rows();
+    }
+    function obt_contador_noAsignados()
+    {
+        $this->db->where('estatus', 1);
+        $this->db->or_where('estatus', 9);
         return $this->db->get('ticket')->num_rows();
     }
 
