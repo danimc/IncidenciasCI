@@ -730,7 +730,7 @@ Se Agradece su atención.';
         $clima = json_decode(file_get_contents("https://api.openweathermap.org/data/2.5/weather?id=8133378&APPID=731ac0d3caf3cd694ce7a8df5d1c278b&units=metric&lang=es"));
 
         //$clima = json_decode($respuesta);
-        $datosClima = $clima->main;
+        $datosClima = $clima->main; 
         $datosGen   = $clima->weather;
         $temperatura = $datosClima->temp;
        // $descripcion    = $datosGen->description;

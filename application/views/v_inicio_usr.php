@@ -274,9 +274,18 @@ $pieNoasig      =   $noasig/$total   * 100;
         <?
                  }
         ?>
-        </section>
-          
 
+
+                </div>
+
+
+
+
+    <div class="row"> 
+             
+              </div>
+  
+              </section>
             
 
 

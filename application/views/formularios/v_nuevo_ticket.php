@@ -192,7 +192,7 @@
           })
      })
 </script>
- script de la impresora
+ script de la impresora-->
 <script>
    $(function() {       
         busqueda = $("#nombre").val();
@@ -204,8 +204,8 @@
         url: 'https://148.202.169.15/hp/device/MessageCenter/Summary?_=1569608315039',
        //) url: 'https://148.202.169.15/hp/device/InternalPages/Index?id=SuppliesStatus',   
           }).done(function(respuesta){
-            ip = document.getElementById(HomeDeviceIp).value();
-            alert(ip);
+            
+           // alert(respuesta);
           
           })  
    })

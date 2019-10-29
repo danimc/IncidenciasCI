@@ -18,7 +18,7 @@ class Inicio extends CI_Controller {
 		$comprobador =	$this->m_inicio->obt_diaHoy($fecha);
 
 		if($comprobador == 0) {
-			$this->m_ticket->sendTelegram1();
+			$this->m_ticket->SendTelegram1();
 		}
 
 		$codigo = $this->session->userdata("codigo");
@@ -89,16 +89,10 @@ class Inicio extends CI_Controller {
 
         echo $this->email->print_debugger();
 	}
-
-function file_get_contents_curl( $url )
-	 { 
-	 	$ch = curl_init(); curl_setopt( $ch, CURLOPT_AUTOREFERER, TRUE ); curl_setopt( $ch, CURLOPT_HEADER, 0 ); curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 ); curl_setopt( $ch, CURLOPT_URL, $url ); curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, TRUE ); $data = curl_exec( $ch ); curl_close( $ch ); return $data; 
-	 } 
-
 		
 	public function info()
 	{
-		$info = $this->file_get_contents_curl('https://148.202.169.15/hp/device/MessageCenter/Summary?_=1569607557085');
+		$info = file_get_contents('https://148.202.169.15/hp/device/MessageCenter/Summary?_=1569607557085');
 		echo $info;
 
 		$this->load->view('_footer1');

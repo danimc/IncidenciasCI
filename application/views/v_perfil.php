@@ -116,7 +116,10 @@
                 <tr>
                   <td><strong><i class="fa fa-asterisk margin-r-5"></i> Contraseña:</strong></td>
                   <td>
-                      <a href="#" data-toggle="modal" data-target="#myModal"><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
+                      <a href="#" data-toggle="modal" data-target="#myModal">
+                         <? if($rol == 1 OR $this->session->userdata('codigo') == $usuario->codigo) {?>
+                          <span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
+                          <?}?>
                       *******
                   </td>
                                       
@@ -167,7 +170,7 @@
   </section>
 
              <!-- /.content -->
-            </div>
+     
 
 
 <!-------MODAL PARA CAMBIAR LA CONTRASEÑA ------>
