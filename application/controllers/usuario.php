@@ -88,7 +88,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer1');
 	}
 
-	function editar_info_personal()
+	function editar_perfil()
 	{
 		$editar = $this->uri->segment(3);
 
@@ -102,11 +102,14 @@ class Usuario extends CI_Controller {
 		
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['situaciones'] = $this->m_usuario->obt_situacion_usuarios();
+		$datos['rol'] = $this->session->userdata("rol");
+		$datos['dependencias'] = $this->m_usuario->obt_dependencias();
+		$datos['estatus'] = $this->m_usuario->obt_situacion_usuarios(); 
 		$datos['plazas'] = $this->m_usuario->obt_plazas();
 		$datos['roles'] = $this->m_usuario->obt_roles();
 		$this->load->view('_encabezado1');
 		$this->load->view('_menuLateral1');
-		$this->load->view('formularios/v_perfil_editPersonal', $datos);
+		$this->load->view('formularios/v_perfil_edit', $datos);
 		$this->load->view('_footer1');
 	}
 

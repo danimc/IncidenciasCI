@@ -136,7 +136,7 @@
           <div class="ibox-head">
             <div class="ibox-title">Datos de Personal:</div>
             <? if($rol == 1) {?>
-                                    <a href="<?=base_url()?>index.php?/usuario/editar_info_personal/<?=$usuario->codigo?>" class="btn btn-default pull-right">
+                                    <a href="<?=base_url()?>index.php?/usuario/editar_perfil/<?=$usuario->codigo?>" class="btn btn-default pull-right">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                     <?}?>

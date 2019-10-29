@@ -34,12 +34,12 @@ class m_usuario extends CI_Model {
     	$usr = $codigo;
 
     	$qry = "SELECT 
-                codigo
-                ,usuario
-                ,nombre as nombres
-                ,apellido
+                  codigo
+                , usuario
+                , nombre as nombres
+                , apellido
                 , nombre_completo
-                ,dependencias.id_dependencia as depId
+                , dependencias.id_dependencia as depId
                 , dependencias.abreviatura as dependencia
                 , dependencias.nombre_dependencia as nom_dependencia
                 , foto
