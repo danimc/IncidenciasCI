@@ -150,16 +150,10 @@ class m_usuario extends CI_Model {
     }       //die(var_dump($_FILES['img']));
     
 
-    function editar_usuario($nombre, $apellido, $dependencia, $extension, $correo, $codigo)
+    function editar_usuario($codigo, $usuario)
     {
-        $this->db->set('nombre', $nombre);
-        $this->db->set('apellido', $apellido);
-        $this->db->set('dependencia', $dependencia);
-        $this->db->set('extension', $extension);
-        $this->db->set('correo', $correo);
         $this->db->where('codigo', $codigo);
-
-        $this->db->update('usuario');
+        $this->db->update('usuario', $usuario);
     }
 
     function obt_tickets_reportados($codigo)
