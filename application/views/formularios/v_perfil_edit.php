@@ -93,12 +93,14 @@
           </div> 
           <div class="ibox-body">
             <div class="row">
-            <form>
+            <form method="POST" action="<?=base_url()?>index.php?/usuario/modificar_perfil">
               <table class="table table-condensed">
                 <tr>
                   <td><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong></td>
-                  <td><input type="text" id="nombres" name="nombres" value="<?=$usuario->nombres?>" class="form-control-sm col-md-6">
-                      <input type="text" id="apellido" name="apellido" value="<?=$usuario->apellido?>" class="form-control-sm col-md-5">
+                  <td>
+                    <input type="hidden" name="codigo" id="codigo" value="<?=$usuario->codigo?>">
+                    <input type="text" id="nombres" name="nombres" value="<?=$usuario->nombres?>" class="form-control-sm col-md-6">
+                    <input type="text" id="apellido" name="apellido" value="<?=$usuario->apellido?>" class="form-control-sm col-md-5">
                   </td>
                 </tr>
                 <tr>
@@ -108,7 +110,7 @@
                 <tr>
                   <td><strong><i class="fa fa-building margin-r-5"> </i> Unidad:</strong></td>
                   <td>
-                    <select name="unidad" id="unidad" class="form-control ">
+                    <select name="dependencia" id="dependencia" class="form-control ">
                         <option value="<?=$usuario->depId?>"><?=$usuario->nom_dependencia?> (<?=$usuario->dependencia?>) </option>
                         <? foreach ($dependencias as $unidad ) {?>
                            <option value="<?=$unidad->id_dependencia?>"><?=$unidad->nombre_dependencia?> (<?=$unidad->abreviatura?>) </option>
@@ -178,7 +180,7 @@
                             <tr>
                                 <td><strong><i class="fa fa-hand-o-right  margin-r-5"></i> Rol de Usuario: </strong></td>
                                 <td>
-                                     <select name="plaza" id="plaza" class="form-control">
+                                     <select name="rol" id="rol" class="form-control">
                                         <option value="<?=$usuario->estatus?>"><?=$usuario->rol?></option>
                                         <? foreach ($roles as $rol) {?>
                                             <option value="<?=$rol->id_rol?>"><?=$rol->rol?></option>
@@ -186,14 +188,20 @@
                                     </select> 
                                 </td>
                             </tr>        
-                        </table>
-                        </form>
+                        </table>                        
                     </div>
                 </div>
             </div>
         </div>
         <?}?>
     </div>
+
+    <div class="ibox">
+        <div class="ibox-head">
+            <button class="btn btn-success" id="btnGuardarPerfil"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+    </div>
+</form>
   </section>
 
              <!-- /.content -->

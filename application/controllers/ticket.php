@@ -76,8 +76,8 @@ class Ticket extends CI_Controller {
 		$this->subir_adjuntos($idIncidente);
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
-		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
-		//redirect('ticket/correo_ticket_levantado/'. $idIncidente);
+	//	redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
+		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 
 		function subir_adjuntos($idIncidente){
@@ -356,6 +356,31 @@ if (!$this->image_lib->resize()) {
 }
 	}
 
+	public function correo()
+	{
+	 
+	  $receiver_email = 'daniel_k310a@hotmail.com';
+	  $username = 'daniel';
+	  $subject = 'prueba';
+	  $message = 'aiuuuuda';
+
+	
+	  $this->load->library('email');
+	  $this->email->set_newline("rn");
+
+	  $this->email->from($recie, $username);
+	   // Receiver email address 
+	  $this->email->to($receiver_email); 
+	  // Subject of email 
+	  $this->email->subject($subject); 
+	  // Message in email 
+	  $this->email->message($message); 
+	  $this->email->send();
+	  $this->email->print_debugger();
+
+	   
+	}
+
 
 	function correo_ticket_levantado()
 	{
@@ -390,6 +415,7 @@ if (!$this->image_lib->resize()) {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
+		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$incidente);
 		
 
 	//	echo $this->email->print_debugger();

@@ -23,5 +23,5 @@ $dia = $this->m_ticket->fecha_text($fecha);
 </tr>
 </table>
 <br><br>
-<p>Para dar Seguimiento a este Ticket de servicio, habra su sistema de Incidencias OAG, o bien, de click en el siguiente boton: </p>
+<p>Para dar Seguimiento a este Ticket de servicio, abra su sistema de Incidencias OAG, o bien, de click en el siguiente boton: </p>
 <a class="btn btn-info">Seguimiento de Incidente</a>

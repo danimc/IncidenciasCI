@@ -19,7 +19,16 @@ class Usuario extends CI_Controller {
 
 	function nuevo_usuario()
 	{
-
+		$datos['rol'] = $this->session->userdata("rol");
+		$datos['dependencias'] = $this->m_usuario->obt_dependencias();
+		$datos['estatus'] = $this->m_usuario->obt_situacion_usuarios(); 
+		$datos['plazas'] = $this->m_usuario->obt_plazas();
+		$datos['roles'] = $this->m_usuario->obt_roles();
+		
+		$this->load->view('_encabezado1');
+		$this->load->view('_menuLateral1');
+		$this->load->view('v_perfil', $datos);
+		$this->load->view('_footer1');
 	}
 
 	function perfil()
@@ -125,18 +134,25 @@ class Usuario extends CI_Controller {
 		redirect('usuario/perfil/'. $codigo);
 	}
 
-	function editar_usuario()
+	function modificar_perfil()
 	{
 		$codigo			= $_POST['codigo'];
-		$nombre 		= $_POST['nombre'];
-		$apellido		= $_POST['apellido'];
-		$dependencia 	= $_POST['dependencia'];
-		$extension 		= $_POST['extension'];
-		$correo			= $_POST['correo'];
+		$usuario = array(
+						'nombre' 			=> $this->input->post('nombres'),
+						'apellido'			=> $this->input->post('apellido'),
+						'nombre_completo'	=> $this->input->post('apellido'). 
+											   ' '. $this->input->post('nombres'),
+						'dependencia'		=> $this->input->post('dependencia'),
+						'extension'			=> $this->input->post('extension'),
+						'correo'			=> $this->input->post('email'),
+						'estatus'			=> $this->input->post('estatus'),
+						'puesto'			=> $this->input->post('plaza'),
+						'rol'				=> $this->input->post('rol')
+					);
 
-		$this->m_usuario->editar_usuario($nombre, $apellido, $dependencia, $extension, $correo, $codigo);
+		$this->m_usuario->editar_usuario($codigo, $usuario);
 
-		redirect('usuario/editar/'. $codigo);
+		redirect('usuario/editar_perfil/'. $codigo);
 
 	}
 
