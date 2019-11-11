@@ -27,7 +27,7 @@ class Usuario extends CI_Controller {
 		
 		$this->load->view('_encabezado1');
 		$this->load->view('_menuLateral1');
-		$this->load->view('v_perfil', $datos);
+		$this->load->view('formularios/v_nuevo_usuario', $datos);
 		$this->load->view('_footer1');
 	}
 
