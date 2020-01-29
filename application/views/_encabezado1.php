@@ -22,7 +22,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <title> Incidencias OAG</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-      <link href="<?=base_url()?>src/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?=base_url()?>src/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />

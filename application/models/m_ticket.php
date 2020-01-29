@@ -45,6 +45,7 @@ class m_ticket extends CI_Model {
                 ,fecha_inicio
                 ,hora_inicio
                 ,us.usuario
+                ,us.nombre
                 ,dependencias.nombre_dependencia
                 ,us.extension
                 ,us.correo

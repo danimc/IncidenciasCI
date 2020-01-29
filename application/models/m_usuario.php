@@ -7,6 +7,16 @@ class m_usuario extends CI_Model {
         parent::__construct();
     }
 
+    function alta_usuario($usuario)
+    {
+        $this->db->insert('usuario', $usuario);
+    }
+
+    function acceso_sistemas($sistema)
+    {
+        $this->db->insert('acceso_sistemas', $sistema);
+    }
+
     function obt_usuarios()
     {
         $qry = '';
