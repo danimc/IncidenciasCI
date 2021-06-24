@@ -14,7 +14,7 @@ class m_usuario extends CI_Model {
 
     function acceso_sistemas($sistema)
     {
-        $this->db->insert('acceso_sistemas', $sistema);
+        $this->db->insert('accesos_sistemas', $sistema);
     }
 
     function obt_usuarios()
