@@ -406,9 +406,9 @@ if (!$this->image_lib->resize()) {
 		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
 
 		$this->load->library('email');
-		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
+		$this->email->from('incidenciasoag@gmail.com', 'HelpDesk OAG');
 		$this->email->to($infoCorreo->correo);
-		$this->email->cc('incidenciasoag@gmail.com');
+		$this->email->bcc('luis.mora@redudg.udg.mx');
 		//$this->email->bcc('them@their-example.com');
 
 		$this->email->subject('Registro de Incidente | incidenciasOAG');

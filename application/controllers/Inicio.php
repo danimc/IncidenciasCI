@@ -10,6 +10,7 @@ class Inicio extends CI_Controller {
 		$this->load->model('m_usuario',"",TRUE);
 		$this->load->model('m_inicio',"",TRUE);
 		$this->load->model('m_ticket',"",TRUE);
+		$this->load->model('m_correos',"",TRUE);
 	}
 
 	public function index()
@@ -69,6 +70,11 @@ class Inicio extends CI_Controller {
 	{
 		$this->load->view('_head');
 		$this->load->view('errors/_noaccess');
+	}
+
+	public function pruebaEmail()
+	{
+		$this->m_correos->correo();
 	}
 
 	
