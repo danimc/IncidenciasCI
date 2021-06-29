@@ -55,7 +55,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         <header class="header">
             <div class="page-brand">
                 <a href="/incidencias">
-                    <span class="brand">sistematización</span>
+                    <span class="brand">HelpDesk</span>
                     <span class="brand-mini">OAG</span>
                 </a>
             </div>

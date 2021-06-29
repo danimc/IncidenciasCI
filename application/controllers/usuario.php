@@ -165,6 +165,8 @@ class Usuario extends CI_Controller {
 
 		$this->m_usuario->acceso_sistemas($sistema);
 
+		redirect('/');
+
 	}
 
 	
@@ -223,5 +225,3 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer1');
 	}
 }
-
-?>
