@@ -4,14 +4,6 @@ $codigo = $this->session->userdata("codigo");
 $usuario = $this->m_usuario->obt_usuario($codigo);
 
 ?>
-    <!--
-    ###########################################
-    #                                         #
-    #  CARGANDO TODAS LAS LIBRERIAS CSS Y JS  #
-    #       NECESARIAS PARA EL PROYECTO       #
-    #                                         #
-    ###########################################
--->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -19,10 +11,10 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Incidencias OAG</title>
+    <title> HelpDesk OAG</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-      <link href="<?=base_url()?>src/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?=base_url()?>src/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>src/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
@@ -63,7 +55,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         <header class="header">
             <div class="page-brand">
                 <a href="/incidencias">
-                    <span class="brand">sistematización</span>
+                    <span class="brand">HelpDesk</span>
                     <span class="brand-mini">OAG</span>
                 </a>
             </div>

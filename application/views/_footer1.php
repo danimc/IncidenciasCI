@@ -1,5 +1,5 @@
              <footer class="page-footer">
-                <div class="font-13"> <strong>Incidencias OAG</strong> Desarrollado por L. Daniel Mora C.</div>
+                <div class="font-13"> <strong>HelpDesk OAG</strong> Desarrollado por L. Daniel Mora </div>
                 <div>
                     <a class="px-3 pl-4" href="#" target=""></a>
                 </div>
