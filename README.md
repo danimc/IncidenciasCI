@@ -1,2 +1,2 @@
-# IncidenciasCI
-Version 2.0 basado en el proyecto de CRM, realizado en CI aplicando PHP7 y buenas practicas
+# HelpDesk Min
+Sistema realizado parael desahogo de tickets de servicios para el area de de sistemas, con diferentes opciones adminstrativas adhoc
