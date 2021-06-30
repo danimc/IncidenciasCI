@@ -34,12 +34,31 @@
                 <canvas id="myCanvas" width="600px" height="250px" style=" background-color: #fff;">
                 </canvas>
             </div>
+
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">
+                        Descargar Tipografia
+                    </div>
+                   
+                </div>
+                <div class="ibox-body">
+                <a href="<?=base_url()?>src/fonts/Trajan.ttf"> <i class="fa fa-download fa-5x txt-center"></i></a>
+                </div>
+            </div>
+
         </div>
+
+       
+
 
 
 
 </div>
 </section>
+
+
+
 
 
 
