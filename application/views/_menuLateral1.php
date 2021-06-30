@@ -49,7 +49,23 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                     </li>
 		<?
 					}
+
+                
+            $accesoUsr = $this->m_seguridad->acceso_modulo(2);
+                if($accesoUsr != 0)
+                    {
+        ?>
+                    <li>
+                        <a href="<?=base_url()?>index.php?/uppi"><i class="sidebar-item-icon ti-book"></i>
+                            <span class="nav-label">UPPI</span></a>
+                    </li>
+        <?
+                    }
+                    
+        ?>
+
 		?>
+
                 </ul>
                 <div class="sidebar-footer">
 <!--                     <a href="javascript:;"><i class="ti-announcement"></i></a>

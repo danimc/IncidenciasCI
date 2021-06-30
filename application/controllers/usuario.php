@@ -27,7 +27,7 @@ class Usuario extends CI_Controller {
 		
 		$this->load->view('_encabezado1');
 		$this->load->view('_menuLateral1');
-		$this->load->view('v_perfil', $datos);
+		$this->load->view('formularios/v_nuevo_usuario', $datos);
 		$this->load->view('_footer1');
 	}
 
@@ -134,6 +134,42 @@ class Usuario extends CI_Controller {
 		redirect('usuario/perfil/'. $codigo);
 	}
 
+	function alta_usuario()
+	{
+		$codigo = $this->input->post('codigo');
+		
+		$usuario = array(
+						'codigo' 			=> intval($this->input->post('codigo')),
+						'nombre' 			=> $this->input->post('nombre'),
+						'apellido'			=> $this->input->post('apellido'),
+						'usuario'			=> $this->input->post('userid'),
+						'nombre_completo'	=> $this->input->post('apellido'). 
+											   ' '. $this->input->post('nombre'),
+						'password'			=> md5($this->input->post('password')),
+						'dependencia'		=> $this->input->post('dependencia'),
+						'extension'			=> $this->input->post('extension'),
+						'correo'			=> $this->input->post('email'),
+						'estatus'			=> $this->input->post('estatus'),
+						'puesto'			=> $this->input->post('plaza'),
+						'rol'				=> $this->input->post('rol'),
+						'fecha_alta'		=> $this->m_ticket->fecha_actual()
+					);
+		
+		$this->m_usuario->alta_usuario($usuario);
+
+		$sistema = array(
+			'sistema' 	=> 1,
+			'usuario'	=> $codigo,
+			'fecha'		=> $this->m_ticket->fecha_actual(), 
+		);
+
+		$this->m_usuario->acceso_sistemas($sistema);
+
+		redirect('/');
+
+	}
+
+	
 	function modificar_perfil()
 	{
 		$codigo			= $_POST['codigo'];
@@ -189,5 +225,3 @@ class Usuario extends CI_Controller {
 		$this->load->view('_footer1');
 	}
 }
-
-?>

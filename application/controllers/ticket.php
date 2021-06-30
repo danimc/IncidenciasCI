@@ -106,6 +106,7 @@ class Ticket extends CI_Controller {
 
 	}
 
+
 	function lista_tickets_cerrados()
 	{
 		$codigo = $this->session->userdata("codigo");
@@ -405,9 +406,9 @@ if (!$this->image_lib->resize()) {
 		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
 
 		$this->load->library('email');
-		$this->email->from('incidenciasoag@gmail.com', 'incidenciasOAG');
+		$this->email->from('incidenciasoag@gmail.com', 'HelpDesk OAG');
 		$this->email->to($infoCorreo->correo);
-		$this->email->cc('incidenciasoag@gmail.com');
+		$this->email->bcc('luis.mora@redudg.udg.mx');
 		//$this->email->bcc('them@their-example.com');
 
 		$this->email->subject('Registro de Incidente | incidenciasOAG');
@@ -420,6 +421,25 @@ if (!$this->image_lib->resize()) {
 
 	//	echo $this->email->print_debugger();
 
+	}
+
+	function correo_prueba()
+	{
+
+		$this->load->library('email');
+		$this->email->from('incidenciasoag@gmail.com', 'FE');
+		$this->email->to('daniel_k310a@hotmail.com');
+		$this->email->cc('incidenciasoag@gmail.com');
+		//$this->email->bcc('them@their-example.com');
+
+		$this->email->subject('Registro de Incidente | incidenciasOAG');
+		$this->email->message("prueba");
+		$this->email->set_mailtype('html');
+		$this->email->send();
+
+		//redirect('ticket/seguimiento/'. $incidente);
+
+		echo $this->email->print_debugger();
 	}
 
 
