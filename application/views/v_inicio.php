@@ -160,7 +160,7 @@ $pieNoasig      =   $noasig / $total   * 100;
             <?
             }
             ?>
-             <div class="col-lg-3 col-md-6 mb-4">
+             <!--<div class="col-lg-3 col-md-6 mb-4">
                       <a href="<?= base_url() ?>index.php?/inicio/descargar_formatos">
                         <div class="card bg-danger">
                             <div class="card-body">
@@ -173,6 +173,7 @@ $pieNoasig      =   $noasig / $total   * 100;
                         </div>
                           </a>
                     </div>
+        -->
 
         </div>
         <!-- TABLAS --->

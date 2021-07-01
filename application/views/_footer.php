@@ -4,7 +4,7 @@
                         +info
                     </div>
                     <!-- Default to the left -->
-                    <strong>Incidencias OAG</strong> Desarrollado por L. Daniel Mora C.
+                    <strong>HelpDesk</strong> Desarrollado por L. Daniel Mora C.
   </footer>
 
   

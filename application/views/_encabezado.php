@@ -65,8 +65,8 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <header class="main-header">
         <!--logo-->
         <a href="<?php echo base_url();?>index.php?/Inicio" class="logo">
-            <span class="logo-mini"><b>OAG</b></span>
-            <span class="logo-lg">Incidencias <b>OAG</b></span>
+            <span class="logo-mini"><b>HelpDesk</b></span>
+            <span class="logo-lg">Incidencias <b>HelpDesk</b></span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation">                  
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
