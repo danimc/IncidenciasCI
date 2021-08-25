@@ -33,7 +33,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(117, 54, 230, .1);
+            
         }
 
         .login-content {

@@ -23,6 +23,10 @@ class Ticket extends CI_Controller {
 
 	}
 
+	/**
+	 * Front end para levantar un nuevo ticket.
+	 * @version 1.0
+	 */
 	function nuevo_ticket()
 	{
 		$codigo = $this->session->userdata("codigo");	
@@ -36,6 +40,10 @@ class Ticket extends CI_Controller {
 		$this->load->view('_footer1');
 	}
 
+	/**
+	 *Registro de los datos del ticket.
+
+	 */
 	function levantar_incidente()
 	{
 		if ($_POST['usrIncidente'] == 0) {
@@ -79,7 +87,9 @@ class Ticket extends CI_Controller {
 	//	redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
-
+		/**
+		 * Funcion que sube los adjuntos al servidor.
+		 */
 		function subir_adjuntos($idIncidente){
 
 		for($i=0;$i<count($_FILES["imagen"]["name"]);$i++)

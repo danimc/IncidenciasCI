@@ -1,4 +1,4 @@
-
+ 
 <script>
      function desactiva_enlace(input)
   {
@@ -83,6 +83,9 @@
                             <h4 class="card-title mb-1"><?=$usuario->nombre_completo?></h4>
                             <div class="text-info"><i class="ti-location-pin mr-2"></i><?=$usuario->nom_dependencia?></div>
                         </div>
+
+                          
+
                     </div>
 
     <div class="row">
@@ -95,6 +98,11 @@
             <div class="row">
             <form method="POST" action="<?=base_url()?>index.php?/usuario/modificar_perfil">
               <table class="table table-condensed">
+                
+                <tr> <td><strong><i class="fa fa-building margin-r-5"> </i> Tratamiento:</strong></td>
+                     <selct name=""> </selct>
+                </tr>
+                
                 <tr>
                   <td><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong></td>
                   <td>

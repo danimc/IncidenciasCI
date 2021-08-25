@@ -41,7 +41,7 @@ class m_usuario extends CI_Model {
 
     function obt_usuario($codigo) 
     {
-    	$usr = $codigo;
+        $qry = "";
 
     	$qry = "SELECT 
                   codigo
@@ -62,16 +62,18 @@ class m_usuario extends CI_Model {
                 , correo
                 , password
                 , if(foto != '' , foto, 'team.png') as img
+                , gd.GradoAcademico as prefijo
                 FROM crm.usuario
                 INNER JOIN dependencias
                 INNER JOIN crm.puesto_usr p
                 INNER JOIN situacion_usuarios e
                 INNER JOIN rol
+                LEFT JOIN Tb_Cat_GradoAcademico gd ON usuario.prefijo = gd.id
                 WHERE usuario.dependencia = dependencias.id_dependencia
                 AND usuario.puesto = p.id
                 AND usuario.estatus = e.id
                 AND rol.id_rol = usuario.rol
-                AND codigo = '$usr'";
+                AND codigo = {$codigo}";
     	
     	return $this->db->query($qry)->row();
     }
