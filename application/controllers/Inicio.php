@@ -15,6 +15,12 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
+		$codigo = $this->session->userdata("codigo");
+		if($this->session->userdata("codigo") == null){
+			redirect('/acceso/logout');
+		}
+
+
 		$fecha = $this->m_ticket->fecha_actual();
 		$comprobador =	$this->m_inicio->obt_diaHoy($fecha);
 
@@ -22,7 +28,7 @@ class Inicio extends CI_Controller {
 			$this->m_ticket->SendTelegram1();
 		}
 
-		$codigo = $this->session->userdata("codigo");
+		
 		$usuario = $this->m_usuario->obt_usuario($codigo);	
 		$datos['usuario'] = $usuario;
 		$datos['total'] = $this->m_inicio->obt_contador_total();
