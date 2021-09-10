@@ -14,7 +14,7 @@
   <!-- Main content -->
   <section class="content">
     <a href="/oagmvc" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
-    <a href="<?=base_url()?>index.php?/expedientes/solicitar_expediente" class="btn btn-app bg-green"><span class="fa fa-plus"></span>Solicitar Expediente</a>
+    <a href="<?=base_url()?>expedientes/solicitar_expediente" class="btn btn-app bg-green"><span class="fa fa-plus"></span>Solicitar Expediente</a>
     		   
     <div id="form_newsletter_result"></div>
     <div class="box">
@@ -43,7 +43,7 @@
 
               $dependencia = $this->m_expedientes->etiqueta_dependencia($exp->id_dependencia);           
             ?>         
-            <tr onclick="location='<?=base_url()?>index.php?/expedientes/seguimiento_expediente/<?=$exp->id?>'">
+            <tr onclick="location='<?=base_url()?>expedientes/seguimiento_expediente/<?=$exp->id?>'">
               <td class="<?=$dependencia?>"><?=$exp->abreviatura?></td>
               <td ><?=$exp->usuario?></td>
               <td ><?=$exp->caja?></td>

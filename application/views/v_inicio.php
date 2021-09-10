@@ -74,7 +74,7 @@ $pieNoasig      =   $noasig / $total   * 100;
         <div class="row">
 
             <div class="col-lg-3 col-md-6 mb-4">
-                <a href="<?= base_url() ?>index.php?/ticket/nuevo_ticket">
+                <a href="<?= base_url() ?>ticket/nuevo_ticket">
                     <div class="card bg-warning">
                         <div class="card-body">
                             <h2 class="text-white">Nuevo Ticket <i class="ti-ticket float-right"></i></h2>
@@ -89,7 +89,7 @@ $pieNoasig      =   $noasig / $total   * 100;
             </div>
 
             <div class="col-lg-3 col-md-6 mb-4">
-                <a href="<?= base_url() ?>index.php?/ticket/lista_tickets">
+                <a href="<?= base_url() ?>ticket/lista_tickets">
                     <div class="card bg-info">
                         <div class="card-body">
                             <h2 class="text-white">Mis Tickets <i class="ti-list float-right"></i></h2>
@@ -107,7 +107,7 @@ $pieNoasig      =   $noasig / $total   * 100;
             if ($accesoUsr != 0) {
             ?>
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <a href="<?= base_url() ?>index.php?/usuario/lista_usuarios">
+                    <a href="<?= base_url() ?>usuario/lista_usuarios">
                         <div class="card bg-success">
                             <div class="card-body">
                                 <h2 class="text-white">Ctrl Usuarios <i class="ti-user float-right"></i></h2>
@@ -123,7 +123,7 @@ $pieNoasig      =   $noasig / $total   * 100;
 
 
                 <div class="col-lg-3 col-md-3 mb-4">
-                    <a href="<?= base_url() ?>index.php?/reportes">
+                    <a href="<?= base_url() ?>reportes">
                         <div class="card bg-danger">
                             <div class="card-body">
                                 <h2 class="text-white">Reportes <i class="ti-bar-chart  float-right"></i></h2>
@@ -145,7 +145,7 @@ $pieNoasig      =   $noasig / $total   * 100;
             if ($accesoActivos != 0) {
             ?>
                 <!-- <div class="col-lg-3 col-md-6 mb-4">
-                      <a href="<?= base_url() ?>index.php?/activos/lista_activos">
+                      <a href="<?= base_url() ?>activos/lista_activos">
                         <div class="card bg-pink">
                             <div class="card-body">
                                 <h2 class="text-white">Ctrl Activos <i class="ti-desktop float-right"></i></h2>
@@ -161,7 +161,7 @@ $pieNoasig      =   $noasig / $total   * 100;
             }
             ?>
              <!--<div class="col-lg-3 col-md-6 mb-4">
-                      <a href="<?= base_url() ?>index.php?/inicio/descargar_formatos">
+                      <a href="<?= base_url() ?>inicio/descargar_formatos">
                         <div class="card bg-danger">
                             <div class="card-body">
                                 <h2 class="text-white">Formatos <i class="ti-cloud-down float-right"></i></h2>
@@ -203,7 +203,7 @@ $pieNoasig      =   $noasig / $total   * 100;
                                     <div class="media-body d-flex">
                                         <div class="flex-1">
                                             <h5 class="media-heading">
-                                                <a href="<?= base_url() ?>index.php?/ticket/seguimiento/<?= $pendiente->folio ?>">#<?= $pendiente->folio ?>:
+                                                <a href="<?= base_url() ?>ticket/seguimiento/<?= $pendiente->folio ?>">#<?= $pendiente->folio ?>:
                                                     <?= $pendiente->titulo ?> <?= $badge ?></a>
                                             </h5>
                                             <p class="font-13 text-light mb-1"><?= $pendiente->descripcion ?></p>
@@ -214,7 +214,7 @@ $pieNoasig      =   $noasig / $total   * 100;
                                             </div>
                                         </div>
                                         <div class="text-right" style="width:100px;">
-                                            <a href="<?= base_url() ?>index.php?/ticket/seguimiento/<?= $pendiente->folio ?>"><?= $estatus ?>
+                                            <a href="<?= base_url() ?>ticket/seguimiento/<?= $pendiente->folio ?>"><?= $estatus ?>
                                             </a>
 
                                         </div>
@@ -253,10 +253,10 @@ $pieNoasig      =   $noasig / $total   * 100;
                                 ?>
                                     <li class="timeline-item">
                                         <span class="timeline-point"></span>
-                                        <a href="<?= base_url() ?>index.php?/ticket/seguimiento/<?= $pendiente->folio ?>">
+                                        <a href="<?= base_url() ?>ticket/seguimiento/<?= $pendiente->folio ?>">
                                             #<?= $pendiente->folio ?>: <?= $pendiente->titulo ?> <?= $badge1 ?> </a>
                                         <a><small class="float-right text-muted ml-2 nowrap">
-                                                <a href="<?= base_url() ?>index.php?/ticket/seguimiento/<?= $pendiente->folio ?>">
+                                                <a href="<?= base_url() ?>ticket/seguimiento/<?= $pendiente->folio ?>">
                                                     <?= $estatus ?>
                                                 </a>
                                             </small>

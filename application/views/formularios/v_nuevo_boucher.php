@@ -22,7 +22,7 @@
 
    
 
-<form enctype="multipart/form-data" role="form" action="<?base_url()?>index.php?/uppi/registrar" method="post" id="form_newsletter">
+<form enctype="multipart/form-data" role="form" action="<?base_url()?>uppi/registrar" method="post" id="form_newsletter">
     <!-- Main content -->
  <section class="page-content fade-in-up">
     <div class="row">

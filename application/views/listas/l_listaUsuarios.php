@@ -13,7 +13,7 @@
     <br>
     
     <a href="<?=base_url()?>" class="btn btn-blue btn-icon-only btn-lg"><i class="fa fa-arrow-left"></i></a>
-    <a href="<?=base_url()?>index.php?/usuario/nuevo_usuario" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
+    <a href="<?=base_url()?>usuario/nuevo_usuario" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
     
   </div>
   
@@ -55,7 +55,7 @@
                   <td ><?=$user->puesto?></td>
                   <td align="center" ><?=$user->extension?></td>
                   <td align="center">
-                    <a class="btn btn-xs btn-warning" href="<?=base_url()?>index.php?/usuario/perfil/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
+                    <a class="btn btn-xs btn-warning" href="<?=base_url()?>usuario/perfil/<?=$user->codigo?>" title="Revisa y edita la Información del Usuario"><i class="fa fa-pencil"></i> Editar</a>
                   </td>
                 </tr>
               <?}?>

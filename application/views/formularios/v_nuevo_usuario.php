@@ -26,7 +26,7 @@
     </ol>
     <br>
   </div>
-          <a href="<?=base_url()?>index.php?/usuario/lista_usuarios" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
+          <a href="<?=base_url()?>usuario/lista_usuarios" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
          
          
     <!-- Main content -->
@@ -40,7 +40,7 @@
           </div> 
           <div class="ibox-body">
             <div class="row">
-            <form method="POST" action="<?=base_url()?>index.php?/usuario/alta_usuario">
+            <form method="POST" action="<?=base_url()?>usuario/alta_usuario">
               <table class="table table-condensed">
                  <tr>
                   <td><strong><i class="fa fa-code margin-r-5"></i> Codigo: </strong></td>

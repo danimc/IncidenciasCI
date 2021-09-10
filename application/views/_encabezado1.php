@@ -111,13 +111,13 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                                 </div>
                             </div>
                             <div class="admin-menu-features">
-                                <a class="admin-features-item" href="<?=base_url()?>index.php?/usuario/perfil"><i class="ti-user"></i>
+                                <a class="admin-features-item" href="<?=base_url()?>usuario/perfil"><i class="ti-user"></i>
                                     <span>PERFIL</span>
                                 </a>
                                 <a class="admin-features-item" href="javascript:;"><i class="ti-settings"></i>
                                     <span>AJUSTES</span>
                                 </a>                                
-                                <a class="admin-features-item" href="<?=base_url()?>index.php?/acceso/logout"><i class="ti-shift-right"></i>
+                                <a class="admin-features-item" href="<?=base_url()?>acceso/logout"><i class="ti-shift-right"></i>
                                     <span>CERRAR SESIÓN</span>
                                 </a>
                             </div>

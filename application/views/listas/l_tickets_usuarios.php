@@ -15,7 +15,7 @@ $estados = $this->m_ticket->estatus();
                 </ol>
                 <br>
     <a href="/incidencias" class="btn btn-blue btn-icon-only btn-lg"><i class="fa fa-arrow-left"></i></a>
-    <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
+    <a href="<?=base_url()?>ticket/nuevo_ticket" class="btn btn-warning btn-icon-only btn-lg "><span class="fa fa-plus"></span></a>
     </div>
   <!-- Main content -->
   <section class="page-content fade-in-up">
@@ -86,7 +86,7 @@ $estados = $this->m_ticket->estatus();
               <td ><?=$ticket->categoria?></td>
 
 
-             <td width="10" align="center"><a class="btn btn-primary " href="<?=base_url()?>index.php?/ticket/seguimiento/<?=$ticket->folio?>"  title="Información y seguimiento del Ticket de servicio"><i class="fa fa-info"></i> </a>
+             <td width="10" align="center"><a class="btn btn-primary " href="<?=base_url()?>ticket/seguimiento/<?=$ticket->folio?>"  title="Información y seguimiento del Ticket de servicio"><i class="fa fa-info"></i> </a>
                                       </td>
                                     </tr>
                                   <?

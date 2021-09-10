@@ -390,7 +390,7 @@
         $.ajax({       
         type: "POST",
         dataType: 'json',
-        url: '<?base_url()?>index.php?/oficios/capturar_oficio',
+        url: '<?base_url()?>oficios/capturar_oficio',
         data: datos,
         }).done(function(respuesta){
             if (respuesta > 0) {

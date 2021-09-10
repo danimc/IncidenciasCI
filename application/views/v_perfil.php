@@ -71,7 +71,7 @@ function verifica_contra() {
         </ol>
         <br>
     </div>
-    <a href="<?=base_url()?>index.php?/inicio/" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i>
+    <a href="<?=base_url()?>inicio/" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i>
         Regresar</a>
 
 
@@ -150,7 +150,7 @@ function verifica_contra() {
                     <div class="ibox-head">
                         <div class="ibox-title">Datos de Personal:</div>
                         <? if($rol == 1) {?>
-                        <a href="<?=base_url()?>index.php?/usuario/editar_perfil/<?=$usuario->codigo?>"
+                        <a href="<?=base_url()?>usuario/editar_perfil/<?=$usuario->codigo?>"
                             class="btn btn-default pull-right">
                             <i class="fa fa-pencil"></i>
                         </a>
@@ -223,132 +223,132 @@ function verifica_contra() {
 
 
 
-                <!-- /.content -->
+    <!-- /.content -->
 
 
 
-                <!-------MODAL PARA CAMBIAR LA CONTRASEÑA ------>
-                <form id="frmcambiarContra" method="POST" action="<?=base_url()?>index.php?/usuario/cambiar_contra">
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-red">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Cambiar Contraseña</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <h3 align="center" class="title">Cambiar Contraseña</h3>
-
-                                    <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor
-                                        ingrese los datos necesarios en el siguiente formulario </p>
-
-                                    <div id="mensaje"></div>
-                                    <br>
-                                    <label for="contraAnterior">Su contraseña Actual:</label>
-                                    <input required id="encripta" onchange="desactiva_enlace(this)" class="form-control"
-                                        type="password" name="contraAnterior">
-                                    <br>
-                                    <label for="contraAnterior">Contraseña Nueva:</label>
-                                    <input onchange="verifica_contra()" class="form-control" disabled id="nueva"
-                                        type="password" name="contraNueva">
-                                    <br>
-                                    <label for="contraAnterior">Repetir nueva contraseña</label>
-                                    <input onchange="verifica_contra()" id="verifica" disabled class="form-control"
-                                        type="password" name="contraVerifica">
-
-                                    <input type="hidden" name="usuario" value="<?=$usuario->codigo?>">
-                                    <input type="hidden" id="contra" name="contra" value="<?=$usuario->password?>">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="cambiarPass" class="btn btn-success" disabled><i
-                                            class="fa fa-check"></i> Cambiar Contraseña</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i
-                                            class="fa fa-close"> Cancelar</i></button>
-                                </div>
-                            </div>
-                        </div>
+    <!-------MODAL PARA CAMBIAR LA CONTRASEÑA ------>
+    <form id="frmcambiarContra" method="POST" action="<?=base_url()?>usuario/cambiar_contra">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-red">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cambiar Contraseña</h4>
                     </div>
-                </form>
+                    <div class="modal-body">
+                        <h3 align="center" class="title">Cambiar Contraseña</h3>
 
-                <form id="frmCambiarImg" enctype="multipart/form-data" method="POST"
-                    action="<?=base_url()?>index.php?/usuario/cambiar_img">
-                    <div class="modal fade" id="cambiarFoto" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-blue">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <h3 align="center" class="title">Cambiar imagen de Perfil</h3>
-                                    <p align="center">Suba una nueva foto de perfil </p>
-                                    <div id="mensaje"></div>
-                                    <br>
-                                    <input type="file" name="img">
-                                    <input type="hidden" name="usuario" value="<?=$usuario->codigo?>">
+                        <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor
+                            ingrese los datos necesarios en el siguiente formulario </p>
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="cambiarFoto" class="btn btn-success"><i
-                                            class="fa fa-check"></i> Cambiar Foto</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i
-                                            class="fa fa-close"> Cancelar</i></button>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="mensaje"></div>
+                        <br>
+                        <label for="contraAnterior">Su contraseña Actual:</label>
+                        <input required id="encripta" onchange="desactiva_enlace(this)" class="form-control"
+                            type="password" name="contraAnterior">
+                        <br>
+                        <label for="contraAnterior">Contraseña Nueva:</label>
+                        <input onchange="verifica_contra()" class="form-control" disabled id="nueva" type="password"
+                            name="contraNueva">
+                        <br>
+                        <label for="contraAnterior">Repetir nueva contraseña</label>
+                        <input onchange="verifica_contra()" id="verifica" disabled class="form-control" type="password"
+                            name="contraVerifica">
+
+                        <input type="hidden" name="usuario" value="<?=$usuario->codigo?>">
+                        <input type="hidden" id="contra" name="contra" value="<?=$usuario->password?>">
                     </div>
-                </form>
-                <script src="<?=base_url()?>src/js/md5.js"></script>
+                    <div class="modal-footer">
+                        <button type="submit" id="cambiarPass" class="btn btn-success" disabled><i
+                                class="fa fa-check"></i> Cambiar Contraseña</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">
+                                Cancelar</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
-                <script>
-                (() => {
-                    // variables de BD
-                    const nombre = "<?= $usuario->nombres?> <?=$usuario->apellido?>";
-                    const area = "<?= $usuario->nom_dependencia?>";
-                    const ext = "<?= $usuario->extension?>";
-                    const correo = "<?= $usuario->correo?>";
-                    const prefijo = "<?= $usuario->prefijo?>";
+    <form id="frmCambiarImg" enctype="multipart/form-data" method="POST"
+        action="<?=base_url()?>usuario/cambiar_img">
+        <div class="modal fade" id="cambiarFoto" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-blue">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 align="center" class="title">Cambiar imagen de Perfil</h3>
+                        <p align="center">Suba una nueva foto de perfil </p>
+                        <div id="mensaje"></div>
+                        <br>
+                        <input type="file" name="img">
+                        <input type="hidden" name="usuario" value="<?=$usuario->codigo?>">
 
-                    var c = document.getElementById("myCanvas");
-                    var img = new Image();
-                    var ctx = c.getContext("2d");
-                    img.src = "https://fototeca.comsoc.udg.mx/theme_static/images/logo-udg-gris-mediagoblin.png";
-                    img.onload = function() {
-                        ctx.drawImage(img, 20, 20, 100, 120);
-                    }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="cambiarFoto" class="btn btn-success"><i class="fa fa-check"></i>
+                            Cambiar Foto</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">
+                                Cancelar</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="<?=base_url()?>src/js/md5.js"></script>
 
-                    ctx.font = "24px Trajan pro";
-                    ctx.fillStyle = "#0e2d43";
-                    ctx.fillText("Universidad de Guadalajara", 130, 50);
+    <script>
+    (() => {
+        // variables de BD
+        const nombre = "<?= $usuario->nombres?> <?=$usuario->apellido?>";
+        const area = "<?= $usuario->nom_dependencia?>";
+        const ext = "<?= $usuario->extension?>";
+        const correo = "<?= $usuario->correo?>";
+        const prefijo = "<?= $usuario->prefijo?>";
 
-                    ctx.font = "14px Trajan pro";
-                    ctx.fillStyle = "#304357";
-                    ctx.fillText("Secretaría General", 130, 70);
-                    ctx.fillText("Oficina de la Abogacía General", 130, 85);
-                    ctx.fillText(`${area}`, 130, 100);
+        var c = document.getElementById("myCanvas");
+        var img = new Image();
+        var ctx = c.getContext("2d");
+        img.src = "https://fototeca.comsoc.udg.mx/theme_static/images/logo-udg-gris-mediagoblin.png";
+        img.onload = function() {
+            ctx.drawImage(img, 20, 20, 100, 120);
+        }
 
-                    ctx.font = "18px Trajan pro";
-                    ctx.fillStyle = "#0e2d43";
-                    ctx.fillText(`${prefijo} ${nombre}`, 130, 130);
+        ctx.font = "24px Trajan pro";
+        ctx.fillStyle = "#0e2d43";
+        ctx.fillText("Universidad de Guadalajara", 130, 50);
 
-                    ctx.font = "15px Trajan pro";
-                    ctx.fillStyle = "#0e2d43";
-                    //ctx.fillText("Jefe de Área", 130, 150);
+        ctx.font = "14px Trajan pro";
+        ctx.fillStyle = "#304357";
+        ctx.fillText("Secretaría General", 130, 70);
+        ctx.fillText("Oficina de la Abogacía General", 130, 85);
+        ctx.fillText(`${area}`, 130, 100);
 
-                    ctx.font = "14px Times New Roman";
-                    ctx.fillStyle = "#304357";
-                    ctx.fillText("Av. Juárez 976, Edificio de la Rectoría General, Piso 3,", 130, 180);
-                    ctx.fillText("Col. Centro C.P. 44170, Guadalajara, Jalisco, México.", 130, 195);
-                    ctx.fillText(`Tel: [52] 33 3134 4661, 33 3134 2222 Ext. ${ext}`, 130, 210);
+        ctx.font = "18px Trajan pro";
+        ctx.fillStyle = "#0e2d43";
+        ctx.fillText(`${prefijo} ${nombre}`, 130, 130);
 
-                    ctx.font = "bold 15px Times";
-                    ctx.fillStyle = "#0e2d43";
-                    ctx.fillText(`${correo}`, 130, 235);
+        ctx.font = "15px Trajan pro";
+        ctx.fillStyle = "#0e2d43";
+        //ctx.fillText("Jefe de Área", 130, 150);
 
-                })();
+        ctx.font = "14px Times New Roman";
+        ctx.fillStyle = "#304357";
+        ctx.fillText("Av. Juárez 976, Edificio de la Rectoría General, Piso 3,", 130, 180);
+        ctx.fillText("Col. Centro C.P. 44170, Guadalajara, Jalisco, México.", 130, 195);
+        ctx.fillText(`Tel: [52] 33 3134 4661, 33 3134 2222 Ext. ${ext}`, 130, 210);
+
+        ctx.font = "bold 15px Times";
+        ctx.fillStyle = "#0e2d43";
+        ctx.fillText(`${correo}`, 130, 235);
+
+    })();
 
 
-                const firma = () => {
+    const firma = () => {
 
-                }
-                </script>
+    }
+    </script>

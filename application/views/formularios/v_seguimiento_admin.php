@@ -21,7 +21,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
     </ol>
     <br>
   </div>
-          <a href="<?=base_url()?>index.php?/ticket/lista_tickets" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
+          <a href="<?=base_url()?>ticket/lista_tickets" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
           <? if($ticket->situacion != 5){?>
           <a href="#" data-toggle="modal" data-target="#cerrar" class="btn btn-app bg-red"><span class="fa fa-lock"></span> Cerrar Ticket</a>
           <?}else{?>
@@ -134,7 +134,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
               </ul>
           </div>
           <div class="ibox-footer">
-            <form  enctype="multipart/form-data" id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
+            <form  enctype="multipart/form-data" id="seguimiento" method="POST" action="<?=base_url()?>ticket/mensaje">
               <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
               <div class="form-group">
                 <input class="form-control" type="file" name="imgComentario">
@@ -292,7 +292,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/asignar_usuario",
+      url: "<?=base_url()?>ticket/asignar_usuario",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta);
@@ -305,7 +305,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cambiar_categoria",
+      url: "<?=base_url()?>ticket/cambiar_categoria",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
@@ -324,7 +324,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cerrar_ticket",
+      url: "<?=base_url()?>ticket/cerrar_ticket",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
@@ -340,7 +340,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cambiar_estatus",
+      url: "<?=base_url()?>ticket/cambiar_estatus",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);

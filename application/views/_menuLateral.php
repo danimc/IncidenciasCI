@@ -31,7 +31,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 						</li>
 						<!-- Optionally, you can add icons to the links -->
 						<li class="active">
-							<a href="<?php echo base_url();?>index.php?/Inicio"><i class="fa fa-home"></i> <span>Inicio</span></a>
+							<a href="<?php echo base_url();?>Inicio"><i class="fa fa-home"></i> <span>Inicio</span></a>
 						</li>
 						<!--<li ><a href="menuUsuarios"><i class="fa fa-user"></i> <span>Usuarios</span></a></li>-->
 						 <li class="treeview">
@@ -44,7 +44,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					          </a>
 					          <ul class="treeview-menu">
 					          	<li>
-					          		<a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="fa fa-plus"></i> Nuevo Ticket</a>
+					          		<a href="<?=base_url()?>ticket/nuevo_ticket"><i class="fa fa-plus"></i> Nuevo Ticket</a>
 					          	</li>
 
 					          	<?
@@ -53,17 +53,17 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					          	 ?>
 
 					            <li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_abiertos"><i class="fa fa-ticket"></i> <span>Tickets Abiertos</span></a>
+									<a href="<?php echo base_url();?>ticket/lista_tickets_abiertos"><i class="fa fa-ticket"></i> <span>Tickets Abiertos</span></a>
 								</li>
 								<li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_cerrados"><i class="fa fa-lock"></i> <span>Tickets Cerrados</span></a>
+									<a href="<?php echo base_url();?>ticket/lista_tickets_cerrados"><i class="fa fa-lock"></i> <span>Tickets Cerrados</span></a>
 								</li>
 
 								<?
 									}
 								?>
 								<li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Lista de Tickets</span></a>
+									<a href="<?php echo base_url();?>ticket/lista_tickets"><i class="fa fa-barcode"></i> <span>Lista de Tickets</span></a>
 								</li>
 					          </ul>
 					        </li>
@@ -71,7 +71,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 
 				              	  if($accesoUsr != 0){ ?>
 							    <li class=>
-									<a href="<?=base_url()?>index.php?/usuario/lista_usuarios"><i class="fa fa-user"></i> <span>Ctrl de Usuarios</span></a>
+									<a href="<?=base_url()?>usuario/lista_usuarios"><i class="fa fa-user"></i> <span>Ctrl de Usuarios</span></a>
 								</li>
 								<?}?>
 
@@ -91,19 +91,19 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					          </a>
 					          <ul class="treeview-menu">
 					          	<li>
-					          		<a href="<?=base_url()?>index.php?/expedientes/solicitar_expediente"><i class="fa fa-plus"></i> Solicitar Expediente</a>
+					          		<a href="<?=base_url()?>expedientes/solicitar_expediente"><i class="fa fa-plus"></i> Solicitar Expediente</a>
 					          	</li>
 					          	<?
 					          		if($this->m_seguridad->acceso_modulo(3) != 0)
 					          			{?>
 					          	  <li>
-									<a href="<?php echo base_url();?>index.php?/expedientes/archivo_muerto_oficialia"><i class="fa fa-toggle-right"></i> <span>Atender Solicitudes</span></a>
+									<a href="<?php echo base_url();?>expedientes/archivo_muerto_oficialia"><i class="fa fa-toggle-right"></i> <span>Atender Solicitudes</span></a>
 								</li>
 									<?
 										}
 									?>
 					            <li>
-									<a href="<?php echo base_url();?>index.php?/expedientes/archivo_muerto_usr"><i class="fa fa-barcode"></i> <span>Exp. Pedidos</span></a>
+									<a href="<?php echo base_url();?>expedientes/archivo_muerto_usr"><i class="fa fa-barcode"></i> <span>Exp. Pedidos</span></a>
 								</li>
 
 					          </ul>

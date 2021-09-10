@@ -7,7 +7,7 @@
         <div class="text-center">
             <span class="auth-head-icon"><img class="img-circle" src="<?=base_url()?>src/img/escudoazul.jpg"></span>
         </div>
-        <form class="ibox-body"  action="<?php echo base_url();?>index.php?/acceso/login" method="post">
+        <form class="ibox-body"  action="<?php echo base_url();?>acceso/login" method="post">
             <h4 class="font-strong text-center mb-5">INICIAR SESION<br><br>HelpDesk</h4>
             <? if($this->uri->segment(3) == "e")
                     {?>
@@ -59,7 +59,7 @@
                      </div>
                      <?}?>
 
-                <form action="<?php echo base_url();?>index.php?/acceso/login" method="post">
+                <form action="<?php echo base_url();?>acceso/login" method="post">
                     <div class="form-group has-feedback">
                         <input name="user" type="text" class="form-control" placeholder="Usuario" required>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

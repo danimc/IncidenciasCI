@@ -47,7 +47,7 @@ class Ticket extends CI_Controller {
 	function levantar_incidente()
 	{
 		if ($_POST['usrIncidente'] == 0) {
-			redirect(base_url().'index.php?/ticket/nuevo_ticket/e');			
+			redirect(base_url().'ticket/nuevo_ticket/e');			
 		}
 
 		$reportante = $this->session->userdata("codigo");
@@ -84,7 +84,7 @@ class Ticket extends CI_Controller {
 		$this->subir_adjuntos($idIncidente);
 
 		//$this->m_ticket->noti_alta($reportante, $usuarioIncidente, $idIncidente, $notificacion);
-	//	redirect(base_url() . 'index.php?/ticket/seguimiento/'.$idIncidente);
+	//	redirect(base_url() . 'ticket/seguimiento/'.$idIncidente);
 		redirect('ticket/correo_ticket_levantado/'. $idIncidente);
 	}
 		/**
@@ -346,7 +346,7 @@ class Ticket extends CI_Controller {
 		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora, $nImg);
 		//$this->m_ticket->sendTelegram_chat($folio, $mensaje);
 
-		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$folio);
+		redirect(base_url() . 'ticket/seguimiento/'.$folio);
 	}
 
 	function resize($nImg)
@@ -426,7 +426,7 @@ if (!$this->image_lib->resize()) {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
-		redirect(base_url() . 'index.php?/ticket/seguimiento/'.$incidente);
+		redirect(base_url() . 'ticket/seguimiento/'.$incidente);
 		
 
 	//	echo $this->email->print_debugger();

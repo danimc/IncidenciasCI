@@ -26,7 +26,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
         </section>
         <!-- Main content -->
         <section class="content">
-          <a href="<?=base_url()?>index.php?/expedientes/archivo_muerto_oficialia" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
+          <a href="<?=base_url()?>expedientes/archivo_muerto_oficialia" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
           <div class="row">
             <div class="col-md-12">
               <div id="mensaje"></div>
@@ -178,7 +178,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
 </form>
 
 <!-------MODAL PARA CAMBIAR CERRAR EL TICKET---->
-<form id="frmCerrar" action="<?=base_url()?>index.php?/ticket/cerrar_ticket" method="POST">
+<form id="frmCerrar" action="<?=base_url()?>ticket/cerrar_ticket" method="POST">
       <div class="modal fade" id="cerrar" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -216,7 +216,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/expedientes/asignar_usuario",
+      url: "<?=base_url()?>expedientes/asignar_usuario",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta);
@@ -230,7 +230,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cambiar_categoria",
+      url: "<?=base_url()?>ticket/cambiar_categoria",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
@@ -246,7 +246,7 @@ $asignado   = $this->m_ticket->asignados($exp->asignado);
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/cambiar_estatus",
+      url: "<?=base_url()?>ticket/cambiar_estatus",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
