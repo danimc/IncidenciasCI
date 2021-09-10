@@ -11,7 +11,7 @@
         {
             if($this->simplelogin->login($_REQUEST['user'],$_REQUEST['password'])){
 
-					redirect("/inicio");
+					redirect("/Inicio");
 				 
             }
             else{
