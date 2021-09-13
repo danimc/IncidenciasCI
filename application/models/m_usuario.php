@@ -147,6 +147,11 @@ class m_usuario extends CI_Model {
         return $this->db->get('rol')->result();
     }
 
+    function obt_prefijos()
+    {
+        return $this->db->get('Tb_Cat_GradoAcademico')->result();
+    }
+
     function cambiar_contra($usuario, $contraMd5)
     {
         $this->db->set('password', $contraMd5);

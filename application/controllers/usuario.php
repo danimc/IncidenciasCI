@@ -41,7 +41,7 @@ class Usuario extends CI_Controller {
 		else{
 			$codigo = $this->session->userdata("codigo");
 		}
-		
+
 		$datos['ticketR'] = $this->m_usuario->obt_tickets_reportados($codigo);
 		$datos['rol'] = $this->session->userdata("rol");
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);	
@@ -110,12 +110,13 @@ class Usuario extends CI_Controller {
 
 		
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
-		$datos['situaciones'] = $this->m_usuario->obt_situacion_usuarios();
 		$datos['rol'] = $this->session->userdata("rol");
 		$datos['dependencias'] = $this->m_usuario->obt_dependencias();
 		$datos['estatus'] = $this->m_usuario->obt_situacion_usuarios(); 
 		$datos['plazas'] = $this->m_usuario->obt_plazas();
 		$datos['roles'] = $this->m_usuario->obt_roles();
+		$datos['prefijos'] = $this->m_usuario->obt_prefijos();
+
 		$this->load->view('_encabezado1');
 		$this->load->view('_menuLateral1');
 		$this->load->view('formularios/v_perfil_edit', $datos);
@@ -183,7 +184,8 @@ class Usuario extends CI_Controller {
 						'correo'			=> $this->input->post('email'),
 						'estatus'			=> $this->input->post('estatus'),
 						'puesto'			=> $this->input->post('plaza'),
-						'rol'				=> $this->input->post('rol')
+						'rol'				=> $this->input->post('rol'),
+						'prefijo'			=> $this->input->post('prefijo')
 					);
 
 		$this->m_usuario->editar_usuario($codigo, $usuario);
