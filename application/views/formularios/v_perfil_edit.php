@@ -9,7 +9,8 @@
        document.getElementById('mensaje').innerHTML = null;
 
      } else {
-       var mensaje = '<div class="alert alert-warning"><p><i class="fa fa-warning"></i> Su contraseña no es la correcta</p></div>';
+       var mensaje =
+         '<div class="alert alert-warning"><p><i class="fa fa-warning"></i> Su contraseña no es la correcta</p></div>';
 
        document.getElementById('nueva').disabled = true;
        document.getElementById('verifica').disabled = true;
@@ -27,7 +28,8 @@
          document.getElementById('mensaje').innerHTML = mensaje;
          document.getElementById('cambiarPass').disabled = false;
        } else {
-         var mensaje = '<div align="center" class="alert alert-danger"><p><i class="fa fa-error"></i> Las contraseñas no coinciden</p></div>';
+         var mensaje =
+           '<div align="center" class="alert alert-danger"><p><i class="fa fa-error"></i> Las contraseñas no coinciden</p></div>';
          document.getElementById('mensaje').innerHTML = mensaje;
          document.getElementById('cambiarPass').disabled = true;
        }
@@ -84,81 +86,85 @@
          <h4 class="card-title mb-1"><?= $usuario->nombre_completo ?></h4>
          <div class="text-info"><i class="ti-location-pin mr-2"></i><?= $usuario->nom_dependencia ?></div>
        </div>
-
-
-
      </div>
-
      <div class="row">
        <div class="col-md-6">
          <div class="ibox ">
            <div class="ibox-head">
-             <div class="ibox-title">Información de Usuario</div>
+           <div class="col-sm-3"><form method="POST" action="<?= base_url() ?>index.php?/usuario/modificar_perfil"></div>
+               <div class="ibox-title">Información de Usuario</div>
+               <button class="btn btn-success" id="btnGuardarPerfil"><i class="fa fa-save"></i> Guardar Datos</button>
            </div>
            <div class="ibox-body">
              <div class="row">
-               <form method="POST" action="<?= base_url() ?>index.php?/usuario/modificar_perfil">
-                 <table class="table table-condensed">
+               <table class="table table-condensed">
 
-                   <tr>
-                     <td><strong><i class="fa fa-building margin-r-5"> </i> Prefijo:</strong></td>
-                     <td>
-                       <select name="prefijo" id="prefijo" class="form-control ">
-                         <option value="0">Selecciona 1:</option>
-                         <?
-                          foreach ($prefijos as $prefijo) { ?>
+                 <tr>
+                   <td><strong><i class="fa fa-building margin-r-5"> </i> Prefijo:</strong></td>
+                   <td>
+                     <select name="prefijo" id="prefijo" class="form-control ">
+                       <option value="<?= $usuario->idPrefijo ?>">
+                         <?= $usuario->prefijo ?>
+                       </option>
+                       <?
+                        foreach ($prefijos as $prefijo) { ?>
 
-                           <option value="<?= $prefijo->id ?>"><?= $prefijo->GradoAcademico ?></option>
-                     
+                         <option value="<?= $prefijo->id ?>"><?= $prefijo->GradoAcademico ?>
+                         </option>
 
-                   <? } ?>
-                   </select>
+
+                       <? } ?>
+                     </select>
                    </td>
-                   </tr>
+                 </tr>
 
-                   <tr>
-                     <td><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong></td>
-                     <td>
-                       <input type="hidden" name="codigo" id="codigo" value="<?= $usuario->codigo ?>">
-                       <input type="text" id="nombres" name="nombres" value="<?= $usuario->nombres ?>" class="form-control-sm col-md-6">
-                       <input type="text" id="apellido" name="apellido" value="<?= $usuario->apellido ?>" class="form-control-sm col-md-5">
-                     </td>
-                   </tr>
-                   <tr>
-                     <td><strong><i class="fa  fa-at margin-r-5"></i> Username:</strong></td>
-                     <td> <input type="text" disabled="" name="userid" value="<?= $usuario->usuario ?>" class="form-control"></td>
-                   </tr>
-                   <tr>
-                     <td><strong><i class="fa fa-building margin-r-5"> </i> Unidad:</strong></td>
-                     <td>
-                       <select name="dependencia" id="dependencia" class="form-control ">
-                         <option value="<?= $usuario->depId ?>"><?= $usuario->nom_dependencia ?> (<?= $usuario->dependencia ?>) </option>
-                         <? foreach ($dependencias as $unidad) { ?>
-                           <option value="<?= $unidad->id_dependencia ?>"><?= $unidad->nombre_dependencia ?> (<?= $unidad->abreviatura ?>) </option>
-                         <? } ?>
-                       </select>
-                     </td>
-                   </tr>
-                   <tr>
-                     <td><strong><i class="fa fa-phone margin-r-5"></i> Extension: </strong></td>
-                     <td><input type="number" name="extension" id="extension" value="<?= $usuario->extension ?>" class="form-control"></td>
-                   </tr>
-                   <tr>
-                     <td><strong><i class="fa fa-envelope margin-r-5"></i> Correo:</strong></td>
-                     <td><input type="email" name="email" id="email" value="<?= $usuario->correo ?>" class="form-control"> </td>
-                   </tr>
-                   <tr>
-                     <td><strong><i class="fa fa-asterisk margin-r-5"></i> Contraseña:</strong></td>
-                     <td>
-                       <a href="#" data-toggle="modal" data-target="#myModal">
-                         <? if ($rol == 1 or $this->session->userdata('codigo') == $usuario->codigo) { ?>
-                           <span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Modificar</span></a>
-                     <? } ?>
-                     *******
-                     </td>
-
-                   </tr>
-                 </table>
+                 <tr>
+                   <td><strong><i class="fa fa-user margin-r-5"></i> Nombre: </strong></td>
+                   <td>
+                     <input type="hidden" name="codigo" id="codigo" value="<?= $usuario->codigo ?>">
+                     <input type="text" id="nombres" name="nombres" value="<?= $usuario->nombres ?>" class="form-control-sm col-md-6">
+                     <input type="text" id="apellido" name="apellido" value="<?= $usuario->apellido ?>" class="form-control-sm col-md-5">
+                   </td>
+                 </tr>
+                 <tr>
+                   <td><strong><i class="fa  fa-at margin-r-5"></i> Username:</strong></td>
+                   <td> <input type="text" disabled="" name="userid" value="<?= $usuario->usuario ?>" class="form-control"></td>
+                 </tr>
+                 <tr>
+                   <td><strong><i class="fa fa-building margin-r-5"> </i> Unidad:</strong></td>
+                   <td>
+                     <select name="dependencia" id="dependencia" class="form-control ">
+                       <option value="<?= $usuario->depId ?>"><?= $usuario->nom_dependencia ?>
+                         (<?= $usuario->dependencia ?>) </option>
+                       <? foreach ($dependencias as $unidad) { ?>
+                         <option value="<?= $unidad->id_dependencia ?>">
+                           <?= $unidad->nombre_dependencia ?> (<?= $unidad->abreviatura ?>)
+                         </option>
+                       <? } ?>
+                     </select>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td><strong><i class="fa fa-phone margin-r-5"></i> Extension: </strong></td>
+                   <td><input type="number" name="extension" id="extension" value="<?= $usuario->extension ?>" class="form-control"></td>
+                 </tr>
+                 <tr>
+                   <td><strong><i class="fa fa-envelope margin-r-5"></i> Correo:</strong></td>
+                   <td><input type="email" name="email" id="email" value="<?= $usuario->correo ?>" class="form-control"> </td>
+                 </tr>
+                 <tr>
+                   <td><strong><i class="fa fa-asterisk margin-r-5"></i> Contraseña:</strong></td>
+                   <td>
+                     <a href="#" data-toggle="modal" data-target="#myModal">
+                       <? if ($rol == 1 or $this->session->userdata('codigo') == $usuario->codigo) { ?>
+                         <span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i>
+                           Modificar Contraseña</span>
+                     </a>
+                   <? } ?>
+                   *******
+                   </td>
+                 </tr>
+               </table>
              </div>
            </div>
          </div>
@@ -177,7 +183,8 @@
                      <td><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong></td>
                      <td>
                        <select name="estatus" id="estatus" class="form-control">
-                         <option value="<?= $usuario->estatus ?>"><?= $usuario->situacion ?></option>
+                         <option value="<?= $usuario->estatus ?>"><?= $usuario->situacion ?>
+                         </option>
                          <? foreach ($estatus as $situacion) { ?>
                            <option value="<?= $situacion->id ?>"><?= $situacion->situacion ?></option>
                          <? } ?>
@@ -200,9 +207,62 @@
                      </td>
                    </tr>
                    <tr>
-                     <td><strong><i class="fa fa-hand-o-right  margin-r-5"></i> Rol de Usuario: </strong></td>
+                     <td><strong><i class="fa fa-hand-o-right  margin-r-5"></i> Rol de Usuario:
+                       </strong></td>
                      <td>
                        <select name="rol" id="rol" class="form-control">
+                         <option value="<?= $usuario->estatus ?>"><?= $usuario->rol ?></option>
+                         <? foreach ($roles as $rol) { ?>
+                           <option value="<?= $rol->id_rol ?>"><?= $rol->rol ?></option>
+                         <? } ?>
+                       </select>
+                     </td>
+                   </tr>
+                 </table>
+               </div>
+             </div>
+           </div>
+         </div>
+       <? } else {
+        ?>
+         <div class="col-md-6">
+           <div class="ibox">
+             <div class="ibox-head">
+               <div class="ibox-title">Datos de Personal:</div>
+             </div>
+             <div class="ibox-body">
+               <div class="row">
+                 <table class="table table-condensed">
+                   <tr>
+                     <td><strong><i class="fa fa-eye margin-r-5"></i> Estatus: </strong></td>
+                     <td>
+                       <select disabled="true" name="estatus" id="estatus" class="form-control">
+                         <option value="<?= $usuario->estatus ?>"><?= $usuario->situacion ?>
+                         </option>
+                         <? foreach ($estatus as $situacion) { ?>
+                           <option value="<?= $situacion->id ?>"><?= $situacion->situacion ?></option>
+                         <? } ?>
+                       </select>
+                     </td>
+                   </tr>
+                   <tr>
+                     <td><strong><i class="fa fa-black-tie margin-r-5"></i> Plaza: </strong></td>
+                     <td>
+                       <select disabled="true" name="plaza" id="plaza" class="form-control">
+                         <option value="<?= $usuario->id_rol ?>"><?= $usuario->puesto ?></option>
+
+                       </select>
+                       <!--
+                                    <? if (isset($usuario->puesto)) { ?>
+                                    <?= $usuario->puesto;
+                                    } ?> -->
+                     </td>
+                   </tr>
+                   <tr>
+                     <td><strong><i class="fa fa-hand-o-right  margin-r-5"></i> Rol de Usuario:
+                       </strong></td>
+                     <td>
+                       <select disabled="true" name="rol" id="rol" class="form-control">
                          <option value="<?= $usuario->estatus ?>"><?= $usuario->rol ?></option>
                          <? foreach ($roles as $rol) { ?>
                            <option value="<?= $rol->id_rol ?>"><?= $rol->rol ?></option>
@@ -218,11 +278,7 @@
        <? } ?>
      </div>
 
-     <div class="ibox">
-       <div class="ibox-head">
-         <button class="btn btn-success" id="btnGuardarPerfil"><i class="fa fa-save"></i> Guardar</button>
-       </div>
-     </div>
+
      </form>
    </section>
 
@@ -242,7 +298,8 @@
            <div class="modal-body">
              <h3 align="center" class="title">Cambiar Contraseña</h3>
 
-             <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor ingrese los datos necesarios en el siguiente formulario </p>
+             <p align="center">Esta a punto de cambiar su contraseña de usuario. Por favor ingrese los datos
+               necesarios en el siguiente formulario </p>
 
              <div id="mensaje"></div>
              <br>
@@ -260,7 +317,8 @@
            </div>
            <div class="modal-footer">
              <button type="submit" id="cambiarPass" class="btn btn-success" disabled><i class="fa fa-check"></i> Cambiar Contraseña</button>
-             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"> Cancelar</i></button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">
+                 Cancelar</i></button>
            </div>
          </div>
        </div>
@@ -285,8 +343,10 @@
 
            </div>
            <div class="modal-footer">
-             <button type="submit" id="cambiarFoto" class="btn btn-success"><i class="fa fa-check"></i> Cambiar Foto</button>
-             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"> Cancelar</i></button>
+             <button type="submit" id="cambiarFoto" class="btn btn-success"><i class="fa fa-check"></i>
+               Cambiar Foto</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">
+                 Cancelar</i></button>
            </div>
          </div>
        </div>

@@ -56,14 +56,16 @@ class m_usuario extends CI_Model {
                 , usuario.rol as id_rol
                 , rol.rol
                 , p.puesto
+                , usuario.puesto as idPuesto
                 , e.situacion
                 , estatus
                 , extension
                 , correo
                 , password
                 , if(foto != '' , foto, 'team.png') as img
+                , usuario.prefijo as idPrefijo
                 , gd.GradoAcademico as prefijo
-                FROM crm.usuario
+                FROM usuario
                 INNER JOIN dependencias
                 INNER JOIN crm.puesto_usr p
                 INNER JOIN situacion_usuarios e

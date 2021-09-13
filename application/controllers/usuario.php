@@ -188,7 +188,9 @@ class Usuario extends CI_Controller {
 						'prefijo'			=> $this->input->post('prefijo')
 					);
 
-		$this->m_usuario->editar_usuario($codigo, $usuario);
+				$filtro = array_filter($usuario);
+
+		$this->m_usuario->editar_usuario($codigo, $filtro);
 
 		redirect('usuario/editar_perfil/'. $codigo);
 
