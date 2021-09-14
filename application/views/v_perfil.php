@@ -71,7 +71,7 @@ function verifica_contra() {
         </ol>
         <br>
     </div>
-    <a href="<?= base_url() ?>inicio/" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i>
+    <a href="<?= base_url() ?>Inicio/" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i>
         Regresar</a>
 
 
