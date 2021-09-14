@@ -192,7 +192,7 @@ class Usuario extends CI_Controller {
 
 		$this->m_usuario->editar_usuario($codigo, $filtro);
 
-		redirect('usuario/editar_perfil/'. $codigo);
+		redirect('usuario/perfil/'. $codigo);
 
 	}
 

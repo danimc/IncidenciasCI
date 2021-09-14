@@ -344,7 +344,7 @@ $pieNoasig      =   $noasig / $total   * 100;
 
                     <div class="row justify-content-md-center">
                         <div class="col-md-3">
-                            <a href="#">
+                            <a href="<?=base_url()?>src/archivos/GuiaFirma.pdf" target="_blank">
                                 <img class="" src="<?=base_url()?>src/img/pdfbig.png" width="100px">
                                 <span class="ml-3"> Intrucciones</span>
 

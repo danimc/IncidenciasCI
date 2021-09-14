@@ -9,15 +9,15 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                 <ul class="side-menu metismenu">
                 	<li class="heading">MENÚ LATERAL</li>
                     <li class="active">
-                        <a href="<?php echo base_url();?>index.php?/inicio"><i class="sidebar-item-icon ti-home"></i>
+                        <a href="<?php echo base_url();?>Inicio"><i class="sidebar-item-icon ti-home"></i>
                             <span class="nav-label">Inicio</span></a>
                     </li>                    
                     <li>
-                        <a href="<?=base_url()?>index.php?/ticket/nuevo_ticket"><i class="sidebar-item-icon ti-ticket"></i>
+                        <a href="<?=base_url()?>ticket/nuevo_ticket"><i class="sidebar-item-icon ti-ticket"></i>
                             <span class="nav-label">Nuevo Ticket</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url();?>index.php?/ticket/lista_tickets"><i class="sidebar-item-icon fa fa-barcode"></i> <span>Lista de Tickets</span></a>
+                        <a href="<?php echo base_url();?>ticket/lista_tickets"><i class="sidebar-item-icon fa fa-barcode"></i> <span>Lista de Tickets</span></a>
                     </li>
                             <?
 			if( $usuario->id_rol == 1 )
@@ -29,10 +29,10 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                             <span class="nav-label">Menú Tickets</span><i class="fa fa-angle-left arrow"></i></a>
                         <ul class="nav-2-level collapse">
                             <li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_abiertos"><i class="sidebar-item-icon fa fa-ticket"></i> <span>Tickets Abiertos</span></a>
+									<a href="<?php echo base_url();?>ticket/lista_tickets_abiertos"><i class="sidebar-item-icon fa fa-ticket"></i> <span>Tickets Abiertos</span></a>
 								</li>
 								<li>
-									<a href="<?php echo base_url();?>index.php?/ticket/lista_tickets_cerrados"><i class="sidebar-item-icon fa fa-lock"></i> <span>Tickets Cerrados</span></a>
+									<a href="<?php echo base_url();?>ticket/lista_tickets_cerrados"><i class="sidebar-item-icon fa fa-lock"></i> <span>Tickets Cerrados</span></a>
 								</li>								
                         </ul>
                     </li>
@@ -44,7 +44,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 					{
 		?>
 							                      <li>
-                        <a href="<?=base_url()?>index.php?/usuario/lista_usuarios"><i class="sidebar-item-icon ti-user"></i>
+                        <a href="<?=base_url()?>usuario/lista_usuarios"><i class="sidebar-item-icon ti-user"></i>
                             <span class="nav-label">Ctrl Usuarios</span></a>
                     </li>
 		<?
@@ -56,7 +56,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                     {
         ?><!--
                     <li>
-                        <a href="<?=base_url()?>index.php?/uppi"><i class="sidebar-item-icon ti-book"></i>
+                        <a href="<?=base_url()?>uppi"><i class="sidebar-item-icon ti-book"></i>
                             <span class="nav-label">UPPI</span></a>
                     </li>
                     -->
@@ -72,7 +72,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 <!--                     <a href="javascript:;"><i class="ti-announcement"></i></a>
                     <a href="calendar.html"><i class="ti-calendar"></i></a>
                     <a href="javascript:;"><i class="ti-comments"></i></a> -->
-                    <a href="<?=base_url()?>index.php?/acceso/logout" title="Cerrar Sesion"><i class="ti-power-off"></i></a>
+                    <a href="<?=base_url()?>acceso/logout" title="Cerrar Sesion"><i class="ti-power-off"></i></a>
                 </div>
             </div>
         </nav>

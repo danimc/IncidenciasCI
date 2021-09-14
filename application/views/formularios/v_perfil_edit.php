@@ -72,7 +72,7 @@
      </ol>
      <br>
    </div>
-   <a href="<?= base_url() ?>index.php?/usuario/perfil/<?= $usuario->codigo ?>" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
+   <a href="<?= base_url() ?>usuario/perfil/<?= $usuario->codigo ?>" class="btn btn-app btn-blue"><i class="fa fa-arrow-left"></i> Regresar</a>
 
 
    <!-- Main content -->
@@ -91,7 +91,7 @@
        <div class="col-md-6">
          <div class="ibox ">
            <div class="ibox-head">
-           <div class="col-sm-3"><form method="POST" action="<?= base_url() ?>index.php?/usuario/modificar_perfil"></div>
+           <div class="col-sm-3"><form method="POST" action="<?= base_url() ?>usuario/modificar_perfil"></div>
                <div class="ibox-title">Información de Usuario</div>
                <button class="btn btn-success" id="btnGuardarPerfil"><i class="fa fa-save"></i> Guardar Datos</button>
            </div>
