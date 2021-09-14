@@ -172,20 +172,21 @@ $pieNoasig      =   $noasig/$total   * 100;
             <?
             }
         ?>
-            <!-- <div class="col-lg-3 col-md-6 mb-4">
-                      <a href="<?=base_url()?>index.php?/inicio/descargar_formatos">
-                        <div class="card bg-danger">
-                            <div class="card-body">
-                                <h2 class="text-white">Formatos <i class="ti-cloud-down float-right"></i></h2>
-                                <div class="text-white mt-1"><i class="ti-stats-up mr-1"></i><small> Descarga de Formatos Varios</small></div>
-                            </div>
-                            <div class="progress mb-2 widget-dark-progress">
-                                <div class="progress-bar" role="progressbar" style="width:50%; height:5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="<?=base_url()?>index.php?/inicio/descargar_formatos">
+                    <div class="card bg-danger">
+                        <div class="card-body">
+                            <h2 class="text-white">Formatos <i class="ti-cloud-down float-right"></i></h2>
+                            <div class="text-white mt-1"><i class="ti-stats-up mr-1"></i><small> Descarga de Formatos
+                                    Varios</small></div>
                         </div>
-                          </a>
-                    </div>-->
-
+                        <div class="progress mb-2 widget-dark-progress">
+                            <div class="progress-bar" role="progressbar" style="width:50%; height:5px;"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
         <!-- TABLAS --->
         <div class="row">
@@ -193,7 +194,7 @@ $pieNoasig      =   $noasig/$total   * 100;
                 <div class="ibox ibox-fullheight">
                     <div class="ibox-head">
                         <div class="ibox-title">TICKETS REPORTADOS EN PROCESO </div>
-                
+
                     </div>
                     <div class="ibox-body">
                         <ul class="media-list media-list-divider scroller mr-2" data-height="470px">

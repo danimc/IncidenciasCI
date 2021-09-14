@@ -75,7 +75,7 @@ class Expedientes extends CI_Controller {
 			$this->load->view('_footer');	
 		}
 		else {
-			redirect('inicio/noaccess');
+			redirect('Inicio/noaccess');
 		}
 		
 	}

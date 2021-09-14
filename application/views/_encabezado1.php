@@ -46,7 +46,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     if($this->m_seguridad->acceso_sistema() == 0)
     {
 
-        redirect('/inicio/noaccess');
+        redirect('/Inicio/noaccess');
     }
     ?>
 
