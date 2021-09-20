@@ -778,4 +778,3 @@ $dia = $this->m_ticket->fecha_text($fecha);
 
 
 </html>
->>>>>>> origin/develop

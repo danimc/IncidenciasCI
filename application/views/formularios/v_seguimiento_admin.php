@@ -134,7 +134,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
               </ul>
           </div>
           <div class="ibox-footer">
-            <form  enctype="multipart/form-data" id="seguimiento" method="POST" action="<?=base_url()?>mensaje">
+            <form  enctype="multipart/form-data" id="seguimiento" method="POST" action="<?=base_url()?>ticket/mensaje">
               <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
               <div class="form-group">
                 <input class="form-control" type="file" name="imgComentario">

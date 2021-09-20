@@ -196,6 +196,10 @@ function verifica_contra() {
                                 <div class="ibox-head">
                                     <div class="ibox-title">
                                         Descarga tu firma Institucional
+
+                                        <a id="download">
+                                            <input type="button" value="Descargar" onClick="descargarFirma()">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="ibox-body"></div>
@@ -314,8 +318,8 @@ function verifica_contra() {
 
         let puesto = "";
 
-        if(idPuesto != 1 ){
-            if(idPuesto <= 5 || idPuesto >= 7){
+        if (idPuesto != 1) {
+            if (idPuesto <= 5 || idPuesto >= 7) {
                 puesto = "<?=$usuario->puesto?>";
             }
         }
@@ -348,19 +352,41 @@ function verifica_contra() {
 
         ctx.font = "15px Trajan pro";
         ctx.fillStyle = "#0e2d43";
-        ctx.fillText(`${puesto}`, 135, 150);
+        ctx.fillText(`${puesto}`, 130, 150);
 
-        ctx.font = "14px Times New Roman";
+        ctx.font = " 14px Times New Roman";
         ctx.fillStyle = "#304357";
         ctx.fillText("Av. Juárez 976, Edificio de la Rectoría General, Piso 3,", 130, 180);
         ctx.fillText("Col. Centro C.P. 44170, Guadalajara, Jalisco, México.", 130, 195);
         ctx.fillText(`Tel: [52] 33 3134 4661, 33 3134 2222 Ext. ${ext}`, 130, 210);
 
-        ctx.font = "bold 15px Times";
+        ctx.font = "15px Times";
         ctx.fillStyle = "#0e2d43";
+
         ctx.fillText(`${correo}`, 130, 235);
 
     })();
+
+
+
+    const descargarFirma = () => {
+        var canvas = document.getElementById("myCanvas");
+
+
+        //  var filename = prompt("Guardar como...", "Nombre del archivo");
+        const filename = "firma"
+        if (canvas.msToBlob) { //para internet explorer
+            var blob = canvas.msToBlob();
+            window.navigator.msSaveBlob(blob, filename + ".png"); // la extensión de preferencia pon jpg o png
+        } else {
+            link = document.getElementById("download");
+            //Otros navegadores: Google chrome, Firefox etc...
+            link.href = canvas.toDataURL(
+                "image/png"); // Extensión .png ("image/png") --- Extension .jpg ("image/jpeg")
+            link.download = filename;
+        }
+
+    }
 
 
     const firma = () => {

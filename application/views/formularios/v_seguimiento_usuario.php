@@ -95,7 +95,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
           </div>
           <div class="ibox-footer">
 
-            <form id="seguimiento" method="POST" action="<?=base_url()?>mensaje">
+            <form id="seguimiento" method="POST" action="<?=base_url()?>ticket/mensaje">
               <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
               <input type="hidden" name="folio" value="<?=$ticket->folio?>">
               <br>
