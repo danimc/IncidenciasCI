@@ -666,8 +666,8 @@ class m_ticket extends CI_Model {
                                     ?> <b>Archivos Adjuntos:</b>  <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver archivo"><?=$loguito?></a><hr>
                                 <?  } else{ 
                                       ?>
-                                    <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver imagen">
-                                     <img width="200px" src="src/att/<?=$mensaje->img?>"></a> <hr> 
+                                    <a target="_blank" href="/helpdesk/src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver imagen">
+                                     <img width="200px" src="/helpdesk/src/att/<?=$mensaje->img?>"></a> <hr> 
                                     <?}
                                  }?>
                             <?=$mensaje->mensaje?>                

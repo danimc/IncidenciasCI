@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="ibox-body"></div>
-                <canvas id="myCanvas" width="700px" height="250px" style=" background-color: #fff;">
+                <canvas id="myCanvas" width="900px" height="250px" style=" background-color: #fff;">
                 </canvas>
             </div>
 
