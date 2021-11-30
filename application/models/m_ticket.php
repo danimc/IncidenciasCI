@@ -517,23 +517,23 @@ class m_ticket extends CI_Model {
      function ext($ext)
     {
         if ($ext == "pdf" OR $ext == "PDF") {
-            $src = '<img width="" src="src/img/pdf.png">';
+            $src = '<img width="" src="/helpdesk/src/img/pdf.png">';
             return $src;
         }
         if ($ext == "jpg" OR $ext == "JPG") {
-            $src = '<img width="" src="src/img/jpg.png">';
+            $src = '<img width="" src="/helpdesk/src/img/jpg.png">';
             return $src;
         }
         if ($ext == "doc" OR $ext == "DOC" OR $ext == "docx" OR $ext == "DOCX") {
-            $src = '<img width="" src="src/img/doc.png">';
+            $src = '<img width="" src="/helpdesk/src/img/doc.png">';
             return $src;
         }
         if ($ext == "xls" OR $ext == "XLS" OR $ext == "xlsx" OR $ext == "XLSX") {
-            $src = '<img width="" src="src/img/xls.png">';
+            $src = '<img width="" src="/helpdesk/src/img/xls.png">';
             return $src;
         }
         if ($ext == 'ppt'OR $ext == "PPT" OR $ext == 'pptx' or $ext == "PPTX") {
-           $src = '<img width="" src="src/img/ppt.png">';
+           $src = '<img width="" src="/helpdesk/src/img/ppt.png">';
             return $src; 
         }
 
@@ -663,7 +663,7 @@ class m_ticket extends CI_Model {
                                     $ext = $ext[count($ext) - 1];
                                     if(strtolower($ext) != 'jpg' AND strtolower($ext) != 'png' AND strtolower($ext) != 'jpeg') {
                                         $loguito = $this->m_ticket->ext($ext); 
-                                    ?> <b>Archivos Adjuntos:</b>  <a target="_blank" href="src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver archivo"><?=$loguito?></a><hr>
+                                    ?> <b>Archivos Adjuntos:</b>  <a target="_blank" href="/helpdesk/src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver archivo"><?=$loguito?></a><hr>
                                 <?  } else{ 
                                       ?>
                                     <a target="_blank" href="/helpdesk/src/att/<?=$mensaje->img?>" data-toggle="tooltip" title="ver imagen">

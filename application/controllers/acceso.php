@@ -36,6 +36,12 @@ class Acceso extends CI_Controller {
 		$this->usuario->validar();
 	}
 
+	function menuPrincipal()
+	{
+		$this->load->view('_head');
+		$this->load->view('menu/menuPrincipal');
+	}
+
 	function logout()
 	{
 		$this->simplelogin->logout();
