@@ -71,6 +71,7 @@ class m_seguridad extends CI_Model {
 		$this->usuario = $this->session->userdata("codigo");
 		$this->fecha = date("Y-m-d");
 		$this->hora = date("H:i:s");
+		$this->ip = $this->session->userdata("ip_address");
 		
         $this->db->insert("log_general",$this);
 
