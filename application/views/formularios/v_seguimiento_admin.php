@@ -60,7 +60,7 @@ $fechaInicio = $this->m_ticket->fecha_text($date); ?>
               <?
                 foreach ($attach as $att) {
                   $ext = $this->m_ticket->ext($att->ext);?>
-                  <a target="_blank" href="src/att/<?=$att->ruta?>"><?=$ext?></a>
+                  <a target="_blank" href="<?=base_url("src/att/{$att->ruta}")?>"> <?=$ext?></a>
               <?}?>
                 </td>
               </tr>

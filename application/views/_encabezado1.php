@@ -114,8 +114,8 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
                                 <a class="admin-features-item" href="<?=base_url()?>usuario/perfil"><i class="ti-user"></i>
                                     <span>PERFIL</span>
                                 </a>
-                                <a class="admin-features-item" href="javascript:;"><i class="ti-settings"></i>
-                                    <span>AJUSTES</span>
+                                <a class="admin-features-item" href="148.202.169.71"><i class="ti-settings"></i>
+                                    <span>MENU</span>
                                 </a>                                
                                 <a class="admin-features-item" href="<?=base_url()?>acceso/logout"><i class="ti-shift-right"></i>
                                     <span>CERRAR SESIÓN</span>
