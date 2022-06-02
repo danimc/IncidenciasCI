@@ -11,8 +11,7 @@ class Reportes extends CI_Controller {
 		$this->load->model('m_reportes', "", TRUE);
 		$this->load->model('m_inicio', "", TRUE);
 
-		$this->load->library('excel');
-
+	
 
 	}
 

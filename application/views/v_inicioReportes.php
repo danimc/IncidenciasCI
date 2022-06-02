@@ -195,7 +195,10 @@ $pieNoasig      = 0;
                 </div>
             </div>
         </div>
-    </div>        
+    </div>     
+
+    
+    <iframe title="Informe de Libro Oficios OAG - AREA CONTABLE/SECRE" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=eb6d1e5c-7233-495e-b0c9-b9374c5c3137&autoAuth=true&ctid=d6a85b33-61f9-4da6-ba0f-bd17b4f71445&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D" frameborder="0" allowFullScreen="true"></iframe>
 
 <!-- TABLAS ---
     <div class="row">
